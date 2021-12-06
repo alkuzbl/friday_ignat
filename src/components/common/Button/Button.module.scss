@@ -1,0 +1,28 @@
+.default {
+  display: inline-block;
+  margin-right: 20px;
+  width: 150px;
+  padding: 15px 5px;
+  border: 1px solid #ffffff;
+  color: white;
+  background-color:  #f26c4f;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.transparent{
+  padding: 12px 20px;
+  text-transform: uppercase;
+  border: 1px solid #ffffff;
+  background-color: transparent;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all .5s;
+
+  &:hover {
+    background-color: #ffffff;
+    color: #020312;
+  }
+}
