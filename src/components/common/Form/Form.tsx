@@ -37,7 +37,6 @@ export const Form = () => {
   };
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(value);
     setValue({});
   };
 
