@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import { Routes, Route, NavLink } from 'react-router-dom';
+import { Routes, Route, NavLink } from "react-router-dom";
 
-import './App.css';
-import { CommonComponents } from './components/common/CommonComponents';
+import "./App.css";
+import { CommonComponents } from "./components/common/CommonComponents";
 
 export const Home = () => <div> Home </div>;
 export const Login = () => <div> Login </div>;
@@ -15,7 +15,7 @@ export const NewPassword = () => <div> New password </div>;
 export const NotPage = () => <div> 404 </div>;
 
 const activeStyleNavLink = (isActive: boolean) =>
-  isActive ? { fontWeight: 'bold' } : {};
+  isActive ? { fontWeight: "bold" } : {};
 
 const App = () => (
   <div className="App">
