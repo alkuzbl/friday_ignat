@@ -38,6 +38,8 @@ export const Form = () => {
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setValue({});
+    // eslint-disable-next-line no-alert
+    alert(JSON.stringify(value));
   };
 
   return (
