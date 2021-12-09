@@ -1,16 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import { Button } from './Button';
-import Checkbox from './Checkbox/Checkbox';
-import { Form } from './Form/Form';
-import { Input } from './Input/Input';
+import { Button } from "./Button";
+import Checkbox from "./Checkbox/Checkbox";
+import { Form } from "./Form/Form";
 
-const styleForCommonPage = { backgroundColor: '#e3e3e3', padding: '10px 100px' };
-const styleForButtonContainer = { display: 'inline-flex' };
+import { Input } from "./Input/Input";
+
+const styleForCommonPage = { backgroundColor: "#e3e3e3", padding: "10px 100px" };
+const styleForButtonContainer = { display: "inline-flex" };
 export const CommonComponents = () => {
   const onClickAlertMessage = () => {
     // eslint-disable-next-line no-alert
-    alert('Button click');
+    alert("Button click");
   };
   return (
     <div style={styleForCommonPage}>
