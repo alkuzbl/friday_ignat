@@ -1,60 +1,34 @@
-import React from "react";
+import React from 'react';
 
-import { Routes, Route, NavLink } from "react-router-dom";
+import { Route, Routes } from 'react-router-dom';
 
-import "./App.css";
-import { CommonComponents } from "./components/common/CommonComponents";
+import './App.css';
+import { CommonComponents } from './components/common/CommonComponents';
+import { CustomNavLink } from './components/common/CustomNavLink/CustomNavLink';
+import { NotPage } from './view/404/NotPage';
+import { Home } from './view/Home/Home';
+import { Login } from './view/Login/Login';
+import { NewPassword } from './view/NewPassword/NewPassword';
+import { Profile } from './view/Profile/Profile';
+import { RecoveryPassword } from './view/RecoveryPassword/RecoveryPassword';
+import { Registration } from './view/Registration/Registration';
 
-export const Home = () => <div> Home </div>;
-export const Login = () => <div> Login </div>;
-export const Registration = () => <div> Registration </div>;
-export const Profile = () => <div> Profile </div>;
-export const RecoveryPassword = () => <div> Password recovery </div>;
-export const NewPassword = () => <div> New password </div>;
-
-export const NotPage = () => <div> 404 </div>;
-
-const activeStyleNavLink = (isActive: boolean) =>
-  isActive ? { fontWeight: "bold" } : {};
+const menuData = [
+  { id: 1, path: '/', title: 'Home' },
+  { id: 2, path: 'login', title: 'Login' },
+  { id: 3, path: 'registration', title: 'Registration' },
+  { id: 4, path: 'profile', title: 'Profile' },
+  { id: 5, path: 'recovery', title: 'Password recovery' },
+  { id: 6, path: 'newPassword', title: 'New password' },
+  { id: 7, path: 'components', title: 'Common components' },
+];
 
 const App = () => (
   <div className="App">
     <ul>
-      <li>
-        <NavLink to="/" style={({ isActive }) => activeStyleNavLink(isActive)}>
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="login" style={({ isActive }) => activeStyleNavLink(isActive)}>
-          Login
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="registration" style={({ isActive }) => activeStyleNavLink(isActive)}>
-          Registration
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="profile" style={({ isActive }) => activeStyleNavLink(isActive)}>
-          Profile
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="recovery" style={({ isActive }) => activeStyleNavLink(isActive)}>
-          Password recovery
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="newPassword" style={({ isActive }) => activeStyleNavLink(isActive)}>
-          New password
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="components" style={({ isActive }) => activeStyleNavLink(isActive)}>
-          Common components
-        </NavLink>
-      </li>
+      {menuData.map(item => (
+        <CustomNavLink key={item.id} path={item.path} title={item.title} />
+      ))}
     </ul>
     <Routes>
       <Route path="/login" element={<Login />} />
