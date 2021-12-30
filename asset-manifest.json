@@ -1,22 +1,15 @@
 {
   "files": {
-    "main.css": "/friday_ignat/static/css/main.d04e02a5.chunk.css",
-    "main.js": "/friday_ignat/static/js/main.74cca7b9.chunk.js",
-    "main.js.map": "/friday_ignat/static/js/main.74cca7b9.chunk.js.map",
-    "runtime-main.js": "/friday_ignat/static/js/runtime-main.570f4996.js",
-    "runtime-main.js.map": "/friday_ignat/static/js/runtime-main.570f4996.js.map",
-    "static/js/2.9f0746e1.chunk.js": "/friday_ignat/static/js/2.9f0746e1.chunk.js",
-    "static/js/2.9f0746e1.chunk.js.map": "/friday_ignat/static/js/2.9f0746e1.chunk.js.map",
-    "static/js/3.430070c7.chunk.js": "/friday_ignat/static/js/3.430070c7.chunk.js",
-    "static/js/3.430070c7.chunk.js.map": "/friday_ignat/static/js/3.430070c7.chunk.js.map",
+    "main.css": "/friday_ignat/static/css/main.55ba2ac2.css",
+    "main.js": "/friday_ignat/static/js/main.47753b15.js",
+    "static/js/787.c843e9cc.chunk.js": "/friday_ignat/static/js/787.c843e9cc.chunk.js",
     "index.html": "/friday_ignat/index.html",
-    "static/css/main.d04e02a5.chunk.css.map": "/friday_ignat/static/css/main.d04e02a5.chunk.css.map",
-    "static/js/2.9f0746e1.chunk.js.LICENSE.txt": "/friday_ignat/static/js/2.9f0746e1.chunk.js.LICENSE.txt"
+    "main.55ba2ac2.css.map": "/friday_ignat/static/css/main.55ba2ac2.css.map",
+    "main.47753b15.js.map": "/friday_ignat/static/js/main.47753b15.js.map",
+    "787.c843e9cc.chunk.js.map": "/friday_ignat/static/js/787.c843e9cc.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.570f4996.js",
-    "static/js/2.9f0746e1.chunk.js",
-    "static/css/main.d04e02a5.chunk.css",
-    "static/js/main.74cca7b9.chunk.js"
+    "static/css/main.55ba2ac2.css",
+    "static/js/main.47753b15.js"
   ]
 }
