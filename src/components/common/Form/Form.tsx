@@ -38,8 +38,7 @@ export const Form = () => {
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setValue({});
-    // eslint-disable-next-line no-alert
-    alert(JSON.stringify(value));
+    console.log(value);
   };
 
   return (
@@ -86,11 +85,7 @@ export const Form = () => {
       />
 
       <div className={style.form__innerBtn}>
-        <Button
-          title="SEND A MESSAGE"
-          stylesElement={style.form__submitBtn}
-          type="submit"
-        />
+        <Button title="SEND A MESSAGE" type="submit" />
       </div>
     </form>
   );

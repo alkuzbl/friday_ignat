@@ -18,7 +18,7 @@ export const CommonComponents = () => {
       <div style={styleForButtonContainer}>
         <div>
           <h4>Button</h4>
-          <Button type="submit" title="Click me" onClick={onClickAlertMessage} />
+          <Button title="Click me" onClick={onClickAlertMessage} type="submit" />
         </div>
         <div>
           <h4>CheckBox</h4>

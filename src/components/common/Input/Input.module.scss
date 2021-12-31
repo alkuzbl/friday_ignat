@@ -1,23 +1,23 @@
 .input {
   width: 100%;
-  padding: 10px 15px;
+  padding: 0 15px 3px;
   display: block;
   margin: 5px 0 25px;
-  color: #ffffff;
-  background-color: #0b0c15;
+  color: #2D2E46;
   transition: all .6s;
-  border: 1px solid #252222;
+  border: none;
+  border-bottom: 2px solid rgba(36,37,34,.2) ;
   outline: none;
-  &:hover{
-    opacity: .8;
-    background-color: #272833;
-  }
-  &:focus{
-    background-color: #272833;
-    color: white;
-    opacity: 1;
+  background-color: transparent;
+  font-size: 16px;
+  line-height: 24px;
+  &__label{
+    text-align: left;
+    color: #24254A;
+    font-size: 13px;
   }
 }
+
 
 .textarea{
   display: block;

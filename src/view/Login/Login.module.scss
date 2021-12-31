@@ -1,0 +1,28 @@
+.login {
+  &__subtitle {
+    margin-bottom: 40px;
+  }
+
+  &__forgotInner{
+    display: flex;
+    justify-content: flex-end;
+  }
+  &__forgotLink {
+    text-align: right;
+    margin: 40px 0 80px;
+    color: #2D2E46;
+    font-size: 14px;
+  }
+  &__span{
+    display: block;
+    margin: 30px 0 10px;
+    font-size: 14px;
+    color: #2D2E46;
+  }
+  &__registrationLink{
+    display: block;
+    margin-bottom: 30px;
+    font-size: 16px;
+    color: #21268F;
+  }
+}

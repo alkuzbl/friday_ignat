@@ -1,48 +1,26 @@
 import React from 'react';
 
-import style from './Button.module.scss';
+import styles from './Button.module.scss';
 
 type ButtonPropsType = {
-  title?: string;
-  link?: string;
-  stylesElement?: string;
-  fileNameDownload?: string;
+  title: string;
   onClick?: () => void;
-  viewButton?: 'transparent';
-  type?: 'submit' | 'link';
+  type: 'submit' | 'button';
 };
 export const Button = (props: ButtonPropsType) => {
-  const {
-    title,
-    link,
-    stylesElement = '',
-    fileNameDownload,
-    onClick,
-    type,
-    viewButton,
-  } = props;
-
-  const classesStyles =
-    viewButton === 'transparent'
-      ? style.transparent
-      : `${style.default} ${stylesElement}`;
+  const { title, onClick, type } = props;
 
   return (
     <>
-      {type === 'submit' && (
-        <button type="submit" className={classesStyles} onClick={onClick}>
+      {type === 'button' && (
+        <button type="button" className={styles.default} onClick={onClick}>
           {title}
         </button>
       )}
-      {type === 'link' && (
-        <a
-          className={classesStyles}
-          href={link}
-          download={fileNameDownload}
-          onClick={onClick}
-        >
-          <span>{title}</span>
-        </a>
+      {type === 'submit' && (
+        <button type="submit" className={styles.default} onClick={onClick}>
+          {title}
+        </button>
       )}
     </>
   );

@@ -6,7 +6,7 @@ import React, {
   TextareaHTMLAttributes,
 } from 'react';
 
-import classes from './Input.module.scss';
+import styles from './Input.module.scss';
 
 export type InputChangeEventType = ChangeEvent<HTMLTextAreaElement | HTMLInputElement>;
 type DefaultType = DetailedHTMLProps<
@@ -62,11 +62,11 @@ export const Input = (props: InputPropsType) => {
 
   const stylesElement =
     type === 'textarea'
-      ? `${classes.textarea} ${classNameElement || ''}`
-      : `${classes.input} ${classNameElement || ''}`;
+      ? `${styles.textarea} ${classNameElement || ''}`
+      : `${styles.input} ${classNameElement || ''}`;
 
   return (
-    <div className={classes.inner}>
+    <div className={styles.input__label}>
       <label>
         {title}
         {type === 'textarea' ? (
