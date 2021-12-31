@@ -9,7 +9,7 @@ import { Input, InputChangeEventType } from '../../components/common/Input/Input
 
 import styles from './Login.module.scss';
 
-type FormStateType = {
+export type FormStateType = {
   [key: string]: string;
 };
 
