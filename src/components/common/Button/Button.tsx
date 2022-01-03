@@ -8,7 +8,7 @@ type ButtonPropsType = {
   title: string;
   onClick?: () => void;
   type: 'submit' | 'button' | 'link';
-  view?: 'default' | 'transparent';
+  view?: 'default' | 'transparent' | 'default-for-packsList' | 'delete-for-packsList';
   path?: string;
   disabled?: boolean;
 };
@@ -22,8 +22,20 @@ export const Button = (props: ButtonPropsType) => {
   const activeStyleForButton = active ? { boxShadow: 'none' } : {};
   const disabledStyle = { pointerEvents: 'none', boxShadow: 'none', opacity: '.5' };
 
-  const classForButton =
-    view === 'transparent' ? `${styles.default} ${styles.transparent}` : styles.default;
+  let classForButton;
+  switch (view) {
+    case 'transparent':
+      classForButton = `${styles.default} ${styles.transparent}`;
+      break;
+    case 'default-for-packsList':
+      classForButton = `${styles.default} ${styles.defaultPacksList}`;
+      break;
+    case 'delete-for-packsList':
+      classForButton = `${styles.default} ${styles.defaultPacksList} ${styles.deletePacksList}`;
+      break;
+    default:
+      classForButton = styles.default;
+  }
 
   return (
     <>

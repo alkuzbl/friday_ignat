@@ -1,14 +1,22 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 
-import { loginReducer } from './login-reducer';
+import { appReducer } from '../app/app-slice';
 
-export type RootStateType = ReturnType<typeof rootReducer>;
+import { authReducer } from './login-slice';
 
 const rootReducer = combineReducers({
-  login: loginReducer,
+  auth: authReducer,
+  app: appReducer,
 });
 
-export type AppStoreType = typeof store;
+export const store = configureStore({
+  reducer: rootReducer,
+  middleware: [thunk],
+  devTools: process.env.NODE_ENV !== 'production',
+});
 
-export const store = createStore(rootReducer, applyMiddleware(thunk));
+// types
+export type AppStoreType = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

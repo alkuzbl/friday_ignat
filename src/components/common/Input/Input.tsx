@@ -34,7 +34,7 @@ type InputPropsType = DefaultType & {
   onChange?: (value: InputChangeEventType) => void;
   onEnter?: () => void;
   onKeyPress?: (e: DefaultType) => void;
-  value: string;
+  value?: string;
 };
 
 export const Input = (props: InputPropsType) => {

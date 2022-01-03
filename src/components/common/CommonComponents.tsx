@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 
-import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Navigate, NavLink } from 'react-router-dom';
 
+import { AppStoreType } from '../../bll/store';
 import { FormStateType } from '../../view/Login/Login';
 import styles from '../../view/Login/Login.module.scss';
 
@@ -14,6 +16,7 @@ import { Input, InputChangeEventType } from './Input/Input';
 const styleForCommonPage = { backgroundColor: '#e3e3e3', padding: '10px 100px' };
 const styleForButtonContainer = { display: 'inline-flex' };
 export const CommonComponents = () => {
+  const isAuth = useSelector<AppStoreType, boolean>(state => state.auth.isAuth);
   const onClickAlertMessage = () => {
     // eslint-disable-next-line no-alert
     alert('Button click');
@@ -23,6 +26,10 @@ export const CommonComponents = () => {
     const targetName = e.currentTarget.name;
     setValue({ ...value, [targetName]: e.currentTarget.value });
   };
+
+  if (!isAuth) {
+    return <Navigate to="/login" />;
+  }
   return (
     <div style={styleForCommonPage}>
       <h3 style={{ marginBottom: '40px' }}>Common components</h3>

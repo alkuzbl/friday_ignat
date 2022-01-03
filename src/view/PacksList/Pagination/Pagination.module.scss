@@ -1,0 +1,77 @@
+.pagination {
+  display: flex;
+
+  &__box {
+    display: flex;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  &__buttonPrev, .pagination__buttonNext {
+    margin-right: 20px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+
+  }
+
+  &__listItem {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    color: #2D2E46;
+
+    a {
+      color: inherit;
+    }
+  }
+
+  &__countPages {
+    display: flex;
+    align-items: center;
+
+    p {
+      margin-right: 12px;
+    }
+  }
+
+
+  &__selectBox {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  &__inputBox {
+    margin: 0 5px;
+  }
+
+  &__selectInput {
+    width: 45px;
+    height: 25px;
+    border: 1px solid rgba(99, 93, 128, .4);
+    outline: none;
+  }
+}
+
+
+.active {
+  background-color: #21268F;
+  color: #F2F5F7;
+  cursor: pointer;
+}

@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 
 const instance = axios.create({
   baseURL: 'http://localhost:7542/2.0/',
@@ -7,28 +7,27 @@ const instance = axios.create({
 
 // api
 export const authAPI = {
-  setAuthLogin: (data: LoginDataType) =>
-    instance.post<AxiosResponse<UserType>>('auth/login', data),
+  setAuth: (data: LoginDataType) => instance.post<UserType>('auth/login', data),
   setRegistration: (data: RegisterUserDataType) =>
-    instance.post<any>('auth/register', data),
-  getAuthMe: (data: {}) => instance.post<AxiosResponse<UserType>>('auth/me', data),
-  updateAuthMe: (data: UpdateUserDataType) =>
-    instance.put<AxiosResponse<UserType>>('auth/me', data),
-  setLogOut: (data: {}) =>
-    instance.delete<AxiosResponse<{ info: string; error: string }>>('auth/me', data),
-  getForgotPassword: (data: ForgotDataType) => instance.post<any>('auth/forgot', data),
+    instance.post<UserType>('auth/register', data),
+  getAuthMe: (data: {}) => instance.post<UserType>('auth/me', data),
+  setUpdatedUserData: (data: UpdateUserDataType) =>
+    instance.put<{ updatedUser: UserType }>('auth/me', data),
+  setLogOut: (data: {}) => instance.delete<ResponseType>('auth/me', data),
+  getForgotPassword: (data: ForgotDataType) =>
+    instance.post<ResponseType>('auth/forgot', data),
   setNewPassword: (data: NewPasswordDataType) =>
-    instance.post<any>('auth/set-new-password', data),
+    instance.post<ResponseType>('auth/set-new-password', data),
 };
 
 // types
-type LoginDataType = {
+export type LoginDataType = {
   email: string;
   password: string;
   rememberMe: boolean;
 };
-type RegisterUserDataType = Omit<LoginDataType, 'rememberMe'>;
-type UpdateUserDataType = {
+export type RegisterUserDataType = Omit<LoginDataType, 'rememberMe'>;
+export type UpdateUserDataType = {
   name: string;
   avatar: string;
 };
@@ -41,13 +40,13 @@ type NewPasswordDataType = {
   password: string;
   resetPasswordToken: string;
 };
-type UserType = {
+export type UserType = {
   _id: string;
   email: string;
   name: string;
   avatar?: string;
   publicCardPacksCount: number; // количество колод
-
+  token: string;
   created: Date;
   updated: Date;
   isAdmin: boolean;
@@ -55,4 +54,15 @@ type UserType = {
   rememberMe: boolean;
 
   error?: string;
+};
+type ResponseType = { info: string; error: string };
+// не обязательный тип - потом решить
+export type ResponseErrorType = {
+  error: string;
+  body: LoginDataType;
+};
+export type ResponseErrorType2 = {
+  error: string;
+  email: string;
+  in: string; // create user
 };

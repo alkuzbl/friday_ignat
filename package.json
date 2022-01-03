@@ -4,6 +4,7 @@
   "homepage": "https://alkuzbl.github.io/friday_ignat",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.7.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -30,7 +31,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && set NODE_ENV=production",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",

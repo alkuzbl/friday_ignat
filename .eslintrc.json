@@ -61,7 +61,15 @@
     "react/display-name": "off",
     "react/react-in-jsx-scope": "off",
     "react/destructuring-assignment": "off",
-    "default-param-last": ["warn"],
+    "no-param-reassign": ["error", {
+      "props": true,
+      "ignorePropertyModificationsFor": [
+        "state"
+      ]
+    }],
+    "default-param-last": [
+      "warn"
+    ],
     "react/jsx-filename-extension": [
       1,
       {
@@ -121,10 +129,12 @@
       2,
       {
         "namedComponents": "arrow-function",
-        "unnamedComponents":  "arrow-function"
+        "unnamedComponents": "arrow-function"
       }
     ],
-    "react/require-default-props": [0]
+    "react/require-default-props": [
+      0
+    ]
   },
   "settings": {
     "import/resolver": {

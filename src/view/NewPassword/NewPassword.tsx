@@ -17,29 +17,31 @@ export const NewPassword = () => {
     console.log(value);
   };
   return (
-    <div className={styles.password}>
-      <AuthBox>
-        <h3 className={styles.password__subtitle}>Forgot your password?</h3>
-        <div>
-          <Input
-            type="password"
-            title="Password"
-            name="password"
-            onChange={onChange}
-            value={value.password}
-          />
-          <p className={styles.password__info}>
-            Create new password and we will send you further instructions to email
-          </p>
-          <div className={styles.password__button}>
-            <Button
-              title="Create new password"
-              type="button"
-              onClick={sendPasswordHandler}
+    <div className="container-center">
+      <div className={styles.password}>
+        <AuthBox>
+          <h3 className={styles.password__subtitle}>Forgot your password?</h3>
+          <div>
+            <Input
+              type="password"
+              title="Password"
+              name="password"
+              onChange={onChange}
+              value={value.password}
             />
+            <p className={styles.password__info}>
+              Create new password and we will send you further instructions to email
+            </p>
+            <div className={styles.password__button}>
+              <Button
+                title="Create new password"
+                type="button"
+                onClick={sendPasswordHandler}
+              />
+            </div>
           </div>
-        </div>
-      </AuthBox>
+        </AuthBox>
+      </div>
     </div>
   );
 };
