@@ -1,6 +1,8 @@
 import React from 'react';
 
-import styles from '../../ProfilePage/ProfilePage.module.scss';
+import { Link } from 'react-router-dom';
+
+import styles from '../CommonPacksList/CommonPacksList.module.scss';
 
 import { ActionButton } from './ActionButton/ActionButton';
 import { ActionEditButtons } from './ActionEditButtons/ActionButtons';
@@ -22,7 +24,9 @@ export const PackListItem = (props: PackListItemPropsType) => {
 
   return (
     <div className={styleItem}>
-      <p className={styles.packsList__itemContent}>{packName}</p>
+      <p className={styles.packsList__itemContent}>
+        <Link to="/packs-list">{packName}</Link>
+      </p>
       <p className={styles.packsList__itemContent}>{count}</p>
       <p className={styles.packsList__itemContent}>{date}</p>
       <p className={styles.packsList__itemContent}>{userName}</p>

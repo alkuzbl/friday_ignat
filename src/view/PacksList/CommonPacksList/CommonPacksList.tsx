@@ -1,8 +1,9 @@
 import React from 'react';
 
-import styles from '../../ProfilePage/ProfilePage.module.scss';
 import { PackListItem } from '../PackListItem/PackListItem';
 import { PacksListSearch } from '../PacksListSearch/PacksListSearch';
+
+import styles from './CommonPacksList.module.scss';
 
 export const CommonPacksList = () => (
   <div className={styles.packsList}>

@@ -7,7 +7,7 @@ type FormStateType = {
 type FormControlPropsType = {
   children?: React.ReactNode;
   onSubmitValue: FormStateType;
-  resetValue: (value: FormStateType) => void;
+  resetValue?: (value: FormStateType) => void;
 };
 
 export const FormControl = (props: FormControlPropsType) => {
@@ -16,7 +16,7 @@ export const FormControl = (props: FormControlPropsType) => {
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(onSubmitValue);
-    resetValue({});
+    resetValue && resetValue({});
   };
   return <form onSubmit={onSubmitHandler}>{children}</form>;
 };

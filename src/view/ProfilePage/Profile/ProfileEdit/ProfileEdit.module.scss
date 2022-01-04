@@ -1,0 +1,36 @@
+.editBox{
+  width: 415px;
+  height: 540px;
+  background: #F9F9FE;
+  border: 1px solid #c4c4c4;
+  border-radius: 8px;
+  padding: 30px 60px;
+  margin: 0 auto;
+  filter: drop-shadow(0px 4px 14px rgba(45, 46, 70, 0.15));
+  &__title{
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  &__image{
+    width: 95px;
+    margin: 0 auto 40px;
+  }
+  &__userData{
+    margin-bottom: 100px;
+  }
+  &__buttonBox{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+  }
+  &__button{
+    max-width: 125px;
+    width: 100%;
+  }
+}
+.profileEdit{
+  padding-top: 40px;
+
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Button } from '../../../../components/common/Button';
-import styles from '../../../ProfilePage/ProfilePage.module.scss';
+import styles from '../../CommonPacksList/CommonPacksList.module.scss';
 
 // type ActionEditButtonsPropsType = {
 //   id?: number;

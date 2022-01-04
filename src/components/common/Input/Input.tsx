@@ -35,6 +35,7 @@ type InputPropsType = DefaultType & {
   onEnter?: () => void;
   onKeyPress?: (e: DefaultType) => void;
   value?: string;
+  onBlur?: () => void;
 };
 
 export const Input = (props: InputPropsType) => {
@@ -49,6 +50,7 @@ export const Input = (props: InputPropsType) => {
     onEnter,
     onKeyPress,
     value,
+    onBlur,
   } = props;
 
   const onKeyPressHandler = (e: DefaultType) => {
@@ -58,6 +60,9 @@ export const Input = (props: InputPropsType) => {
 
   const onChangeHandler = (e: InputChangeEventType) => {
     onChange && onChange(e);
+  };
+  const onBlurHandler = () => {
+    onBlur && onBlur();
   };
 
   const stylesElement =
@@ -87,6 +92,7 @@ export const Input = (props: InputPropsType) => {
             value={value || ''}
             placeholder={placeholder}
             onChange={onChangeHandler}
+            onBlur={onBlurHandler}
             name={name || ''}
             onKeyPress={onKeyPressHandler}
           />
