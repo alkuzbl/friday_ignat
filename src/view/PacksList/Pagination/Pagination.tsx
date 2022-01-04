@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import { useParams } from 'react-router-dom';
 
+import { Select } from '../../../components/common/Select/Select';
+
 import styles from './Pagination.module.scss';
 import { PaginationListItem } from './PaginationListItem/PaginationListItem';
 
@@ -24,8 +26,6 @@ export const Pagination = () => {
   const onClickPrev = () => setPortionNumber(portionNumber - 1);
   const onClickNext = () => setPortionNumber(portionNumber + 1);
 
-  // @ts-ignore
-  // @ts-ignore
   return (
     <div className={styles.pagination}>
       <div className={styles.pagination__box}>
@@ -72,16 +72,8 @@ export const Pagination = () => {
         <div className={styles.pagination__selectBox}>
           <span className={styles.pagination__select}>Show</span>
           <div className={styles.pagination__inputBox}>
-            <select className={styles.pagination__selectInput}>
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
-              <option value={6}>6</option>
-              <option value={7}>7</option>
-              <option value={8}>8</option>
-            </select>
+            {/* доделать локальный стейт */}
+            <Select value={[1, 2, 3, 4, 5, 6, 7, 8]} />
           </div>
           <span className={styles.pagination__select}>Cards per Page</span>
         </div>

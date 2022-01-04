@@ -1,8 +1,6 @@
 .profilePage {
   padding: 25px 0 70px;
-  //height: calc(100vh - 60px);
-
-  &__wrapper {
+   &__wrapper {
     display: flex;
     height: 620px;
   }
@@ -13,12 +11,24 @@
     background-color: #ECECF9;
   }
 
+  &__range {
+    padding: 20px 25px 0;
+  }
+
+  &__rangeTitle {
+    margin-bottom: 25px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+  }
+
   &__packsList {
     padding: 25px 40px;
     width: 100%;
     filter: drop-shadow(0px 4px 14px rgba(45, 46, 70, 0.15));
   }
-  &__pagination{
+
+  &__pagination {
     padding-top: 30px;
   }
 }
@@ -31,12 +41,14 @@
     color: #2D2E46;
     margin-bottom: 15px;
   }
-  &__search{
+
+  &__search {
     background-color: #ECECF9;
     margin-bottom: 25px;
     position: relative;
   }
-  &__searchIcon{
+
+  &__searchIcon {
     position: absolute;
     width: 12px;
     height: 12px;
@@ -45,25 +57,28 @@
     background-image: url("./../../issets/images/search_icon.svg");
   }
 
-  &__itemsTitle, .packsList__item{
+  &__itemsTitle, .packsList__item {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 200px;
     padding: 16px 25px;
     text-align: left;
   }
-  &__itemsTitle{
+
+  &__itemsTitle {
     background-color: #ECECF9;
   }
 
-  &__itemSort{
+  &__itemSort {
     display: flex;
   }
-  &__itemButtons{
+
+  &__itemButtons {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 5px;
   }
 }
-.dark{
+
+.dark {
   background-color: #F8F7FD;
 }

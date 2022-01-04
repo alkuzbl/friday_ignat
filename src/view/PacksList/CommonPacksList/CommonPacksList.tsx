@@ -82,15 +82,6 @@ export const CommonPacksList = () => (
         date="28.05.2021"
         myCard
       />
-      <PackListItem
-        // id={1}
-        index={8}
-        packName="PackName"
-        userName="Ivan Markov"
-        count={44}
-        date="28.05.2021"
-        myCard
-      />
     </div>
   </div>
 );
