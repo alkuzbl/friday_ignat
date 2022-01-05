@@ -3,13 +3,17 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-import { setAuthError, setRegistrationNewUser, StatusType } from '../../bll/login-slice';
-import { AppStoreType } from '../../bll/store';
-import { AuthBox } from '../../components/common/AuthBox/AuthBox';
-import { Button } from '../../components/common/Button';
-import { FormControl } from '../../components/common/Form/FormControl/FormControl';
-import { Input, InputChangeEventType } from '../../components/common/Input/Input';
-import { RegisterUserDataType } from '../../dal/auth-api';
+import {
+  setAuthError,
+  setRegistrationNewUser,
+  StatusType,
+} from '../../../bll/login-slice';
+import { AppStoreType } from '../../../bll/store';
+import { AuthBox } from '../../../components/common/AuthBox/AuthBox';
+import { Button } from '../../../components/common/Button';
+import { FormControl } from '../../../components/common/Form/FormControl/FormControl';
+import { Input, InputChangeEventType } from '../../../components/common/Input/Input';
+import { RegisterUserDataType } from '../../../dal/auth-api';
 import { FormStateType } from '../Login/Login';
 
 import styles from './Registration.module.scss';

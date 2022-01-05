@@ -1,0 +1,10 @@
+.packsListPage {
+  padding: 25px 0 70px;
+
+  &__packsList {
+    filter: drop-shadow(0px 4px 14px rgba(45, 46, 70, 0.15));
+  }
+  &__pagination {
+    padding-top: 30px;
+  }
+}

@@ -54,6 +54,12 @@ export const { setIsAuth, setUserData, setAuthError, setLogout, addNewUser, setS
 export const authReducer = authSlice.reducer;
 
 // thanks
+
+// const loginToTheApp = createAsyncThunk(
+//   'loginToTheApp',
+//   (data: LoginDataType, thunkAPI) => {},
+// );
+
 export const loginToTheApp = (data: LoginDataType) => async (dispatch: Dispatch) => {
   dispatch(setStatus('loading'));
   try {

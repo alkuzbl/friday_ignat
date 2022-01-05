@@ -3,12 +3,12 @@ import React, { CSSProperties, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, NavLink } from 'react-router-dom';
 
-import { loginToTheApp, setStatus, StatusType } from '../../bll/login-slice';
-import { AppStoreType } from '../../bll/store';
-import { AuthBox } from '../../components/common/AuthBox/AuthBox';
-import { Button } from '../../components/common/Button';
-import { FormControl } from '../../components/common/Form/FormControl/FormControl';
-import { Input, InputChangeEventType } from '../../components/common/Input/Input';
+import { loginToTheApp, setStatus, StatusType } from '../../../bll/login-slice';
+import { AppStoreType } from '../../../bll/store';
+import { AuthBox } from '../../../components/common/AuthBox/AuthBox';
+import { Button } from '../../../components/common/Button';
+import { FormControl } from '../../../components/common/Form/FormControl/FormControl';
+import { Input, InputChangeEventType } from '../../../components/common/Input/Input';
 
 import styles from './Login.module.scss';
 

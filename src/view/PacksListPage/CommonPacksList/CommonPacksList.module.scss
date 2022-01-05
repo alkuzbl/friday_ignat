@@ -1,4 +1,4 @@
-.packsList {
+.packs {
   &__title {
     font-size: 22px;
     line-height: 33px;
@@ -22,7 +22,14 @@
     background-image: url("./../../../issets/images/search_icon.svg");
   }
 
-  &__itemsTitle, .packsList__item {
+  &__itemsTitle {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 200px;
+    padding: 16px 25px;
+    text-align: left;
+  }
+
+  &__item {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 200px;
     padding: 16px 25px;
@@ -41,6 +48,22 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 5px;
+    max-height: 25px;
+  }
+
+}
+
+.pack {
+  &__itemsTitle {
+    grid-template-columns: 1fr 1fr 150px 150px 150px;
+  }
+
+  &__item {
+    grid-template-columns: 1fr 1fr 150px 150px 150px;
+  }
+
+  &__itemButtons {
+    grid-template-columns: 1fr 1fr;
   }
 }
 

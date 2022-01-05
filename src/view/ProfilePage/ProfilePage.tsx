@@ -1,26 +1,18 @@
 import React, { useState } from 'react';
 
-import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
-
-import { AppStoreType } from '../../bll/store';
 import { DoubleRange } from '../../components/common/DoubleRange/DoubleRange';
-import { CommonPacksList } from '../PacksList/CommonPacksList/CommonPacksList';
-import { Pagination } from '../PacksList/Pagination/Pagination';
+import { RedirectionIfNotAuthorized } from '../../hoc/RedirectionIfNotAuthorized';
+import { CommonPacksList } from '../PacksListPage/CommonPacksList/CommonPacksList';
+import { Pagination } from '../PacksListPage/Pagination/Pagination';
 
 import { Profile } from './Profile/Profile';
 import styles from './ProfilePage.module.scss';
 
-export const ProfilePage = () => {
-  const isAuth = useSelector<AppStoreType, boolean>(state => state.auth.isAuth);
+const ProfilePage = () => {
   // потом положить в redux, в зависимости что искать нужно
   const [valueRangeSlider, setValueRangeSlider] = useState<number[]>([0, 100]);
 
   const onChangeRange = (value: number[]) => setValueRangeSlider(value);
-
-  if (!isAuth) {
-    return <Navigate to="/login" />;
-  }
 
   return (
     <div className={styles.profilePage}>
@@ -44,3 +36,5 @@ export const ProfilePage = () => {
     </div>
   );
 };
+
+export const ProfilePageContainer = RedirectionIfNotAuthorized(ProfilePage);

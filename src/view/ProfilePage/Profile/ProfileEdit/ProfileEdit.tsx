@@ -7,7 +7,7 @@ import { AppStoreType } from '../../../../bll/store';
 import { Button } from '../../../../components/common/Button';
 import { EditableSpan } from '../../../../components/common/EditableSpan/EditableSpan';
 import { FormControl } from '../../../../components/common/Form/FormControl/FormControl';
-import { FormStateType } from '../../../Login/Login';
+import { FormStateType } from '../../../Authentication/Login/Login';
 import { UserImageBox } from '../UserImageBox/UserImageBox';
 
 import styles from './ProfileEdit.module.scss';

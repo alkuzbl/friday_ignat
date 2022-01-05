@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 import { Navigate, NavLink } from 'react-router-dom';
 
 import { AppStoreType } from '../../bll/store';
-import { FormStateType } from '../../view/Login/Login';
-import styles from '../../view/Login/Login.module.scss';
+import { FormStateType } from '../../view/Authentication/Login/Login';
+import styles from '../../view/Authentication/Login/Login.module.scss';
 
 import { AuthBox } from './AuthBox/AuthBox';
 import { Button } from './Button';

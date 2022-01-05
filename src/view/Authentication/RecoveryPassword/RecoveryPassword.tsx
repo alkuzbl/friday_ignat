@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import { AuthBox } from '../../components/common/AuthBox/AuthBox';
-import { Button } from '../../components/common/Button';
-import { Input, InputChangeEventType } from '../../components/common/Input/Input';
+import { AuthBox } from '../../../components/common/AuthBox/AuthBox';
+import { Button } from '../../../components/common/Button';
+import { Input, InputChangeEventType } from '../../../components/common/Input/Input';
 import { FormStateType } from '../Login/Login';
 
 import styles from './RecoveryPassword.module.scss';

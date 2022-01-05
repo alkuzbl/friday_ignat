@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Button } from '../../../../components/common/Button';
-import styles from '../../CommonPacksList/CommonPacksList.module.scss';
+import { Button } from '../../../../../components/common/Button';
+import styles from '../../CommonPacksList.module.scss';
 
 // type ActionEditButtonsPropsType = {
 //   id?: number;
@@ -12,7 +12,7 @@ export const ActionEditButtons = () => {
   const onClickEdit = () => {};
   const onClickLern = () => {};
   return (
-    <div className={styles.packsList__itemButtons}>
+    <div className={styles.packs__itemButtons}>
       <Button
         title="Delete"
         type="button"

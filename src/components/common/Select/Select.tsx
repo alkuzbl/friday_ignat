@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from '../../../view/PacksList/Pagination/Pagination.module.scss';
+import styles from '../../../view/PacksListPage/Pagination/Pagination.module.scss';
 
 type SelectPropsType = {
   value: string[] | number[];

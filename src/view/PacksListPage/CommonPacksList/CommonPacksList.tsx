@@ -1,24 +1,24 @@
 import React from 'react';
 
-import { PackListItem } from '../PackListItem/PackListItem';
 import { PacksListSearch } from '../PacksListSearch/PacksListSearch';
 
 import styles from './CommonPacksList.module.scss';
+import { PackListItem } from './PackListItem/PackListItem';
 
 export const CommonPacksList = () => (
-  <div className={styles.packsList}>
-    <h3 className={styles.packsList__title}>My packs list</h3>
+  <div className={styles.packs}>
+    <h3 className={styles.packs__title}>My packs list</h3>
     <PacksListSearch />
-    <div className={styles.packsList__box}>
-      <div className={styles.packsList__itemsTitle}>
-        <h4 className={styles.packsList__itemTitle}>Name</h4>
-        <h4 className={styles.packsList__itemTitle}>Cards</h4>
-        <div className={styles.packsList__itemSort}>
-          <h4 className={styles.packsList__itemTitle}>Last Updated</h4>
+    <div className={styles.packs__box}>
+      <div className={styles.packs__itemsTitle}>
+        <h4 className={styles.packs__itemTitle}>Name</h4>
+        <h4 className={styles.packs__itemTitle}>Cards</h4>
+        <div className={styles.packs__itemSort}>
+          <h4 className={styles.packs__itemTitle}>Last Updated</h4>
           <span>X</span>
         </div>
-        <h4 className={styles.packsList__itemTitle}>Created by</h4>
-        <h4 className={styles.packsList__itemTitle}>Actions</h4>
+        <h4 className={styles.packs__itemTitle}>Created by</h4>
+        <h4 className={styles.packs__itemTitle}>Actions</h4>
       </div>
       <PackListItem
         // id={1}

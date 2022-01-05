@@ -9,7 +9,6 @@ type ButtonPropsType = {
   onClick?: () => void;
   type: 'submit' | 'button' | 'link';
   view?: 'default' | 'transparent' | 'default-for-packsList' | 'delete-for-packsList';
-
   path?: string;
   disabled?: boolean;
 };
