@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Button } from '../../../../../../components/common/Button';
 import styles from '../../../CommonPacksList.module.scss';
+import { Grade } from '../Grade/Grade';
 
 type PackItemPropsType = {
   columnOne: string;
@@ -27,13 +28,7 @@ export const PackItem = (props: PackItemPropsType) => {
       <p className={styles.packs__itemContent}>{columnTwo}</p>
       <p className={styles.packs__itemContent}>{columnThree}</p>
       <p className={styles.packs__itemContent}>
-        <div>
-          <span>{columnFour}</span>
-          <span>{columnFour}</span>
-          <span>{columnFour}</span>
-          <span>{columnFour}</span>
-          <span>{columnFour}</span>
-        </div>
+        <Grade score={columnFour} />
       </p>
 
       <div className={`${styles.packs__itemButtons} ${styles.pack__itemButtons}`}>

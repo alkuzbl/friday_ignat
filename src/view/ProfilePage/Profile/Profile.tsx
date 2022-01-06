@@ -11,6 +11,8 @@ import { UserImageBox } from './UserImageBox/UserImageBox';
 export const Profile = () => {
   const isAuth = useSelector<AppStoreType, boolean>(state => state.auth.isAuth);
   const { avatar, name } = useSelector<AppStoreType, any>(state => state.auth.user);
+  // реализовать логику показа кнопки редактирования своего профайла
+  const isMyProfile = true;
 
   if (!isAuth) {
     return <Navigate to="/login" />;
@@ -23,9 +25,13 @@ export const Profile = () => {
       </div>
       <h4 className={styles.profile__name}>{name}</h4>
       <p className={styles.profile__job}>Front-end developer</p>
-      <Link className={styles.profile__button} to="/profile/edit">
-        Edit profile
-      </Link>
+      <div className={styles.profile__editButton}>
+        {isMyProfile && (
+          <Link className={styles.profile__button} to="/profile/edit">
+            Edit profile
+          </Link>
+        )}
+      </div>
     </div>
   );
 };

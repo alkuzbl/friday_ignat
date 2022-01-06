@@ -8,7 +8,14 @@ type ButtonPropsType = {
   title: string;
   onClick?: () => void;
   type: 'submit' | 'button' | 'link';
-  view?: 'default' | 'transparent' | 'default-for-packsList' | 'delete-for-packsList';
+  view?:
+    | 'default'
+    | 'transparent'
+    | 'default-for-packsList'
+    | 'delete-for-packsList'
+    | 'delete-for-pack-name'
+    | 'default-for-pack-name'
+    | 'popup-close';
   path?: string;
   disabled?: boolean;
 };
@@ -32,6 +39,15 @@ export const Button = (props: ButtonPropsType) => {
       break;
     case 'delete-for-packsList':
       classForButton = `${styles.default} ${styles.defaultPacksList} ${styles.deletePacksList}`;
+      break;
+    case 'delete-for-pack-name':
+      classForButton = `${styles.default} ${styles.defaultPackName} ${styles.deletePacksList}`;
+      break;
+    case 'default-for-pack-name':
+      classForButton = `${styles.default} ${styles.defaultPackName}`;
+      break;
+    case 'popup-close':
+      classForButton = `${styles.popupClose}`;
       break;
     default:
       classForButton = styles.default;

@@ -10,7 +10,7 @@ export const ActionEditButtons = () => {
   // const { id } = props;
   const onClickDelete = () => {};
   const onClickEdit = () => {};
-  const onClickLern = () => {};
+  const onClickLearn = () => {};
   return (
     <div className={styles.packs__itemButtons}>
       <Button
@@ -29,7 +29,7 @@ export const ActionEditButtons = () => {
         title="Learn"
         type="button"
         view="default-for-packsList"
-        onClick={onClickLern}
+        onClick={onClickLearn}
       />
     </div>
   );

@@ -29,9 +29,24 @@
   padding: 5px 6px;
   max-width: 70px;
 }
+
+.defaultPackName{
+  box-shadow: 0 4px 5px rgba(33, 38, 143, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background-color: #D7D8EF;
+  color: #21268F;
+  font-size: 16px;
+  line-height: 19px;
+  max-width: 120px;
+}
+
 .deletePacksList{
   background-color: #F1453D;
   color: #ffffff;
 }
-
-
+.popupClose{
+  border: none;
+  outline: none;
+  background-color:transparent;
+  cursor: pointer;
+  box-shadow: 0 4px 5px rgba(33, 38, 143, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}

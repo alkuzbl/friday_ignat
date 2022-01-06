@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Button } from '../../../../../components/common/Button';
 import { PacksListSearch } from '../../../PacksListSearch/PacksListSearch';
 import styles from '../../CommonPacksList.module.scss';
 
@@ -12,7 +13,29 @@ export const Pack = () => {
   return (
     <div className={styles.packs}>
       <h3 className={styles.packs__title}>{title}</h3>
-      <PacksListSearch />
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          marginBottom: '20px',
+        }}
+      >
+        <div style={{ width: '100%' }}>
+          <PacksListSearch />
+        </div>
+
+        <div
+          style={{
+            height: '35px',
+            maxWidth: '185px',
+            width: '100%',
+            marginLeft: '25px',
+          }}
+        >
+          <Button title="Add new card" type="button" view="default" />
+        </div>
+      </div>
+
       <div className={styles.packs__box}>
         <div className={`${styles.packs__itemsTitle} ${styles.pack__itemsTitle}`}>
           <h4>Question</h4>
@@ -36,21 +59,21 @@ export const Pack = () => {
           columnOne={'How "This" works in JavaScript?'}
           columnTwo={'This is how "This" works in JavaScript'}
           columnThree="18.03.2021"
-          columnFour={3}
+          columnFour={4}
           index={2}
         />
         <PackItem
           columnOne={'How "This" works in JavaScript?'}
           columnTwo={'This is how "This" works in JavaScript'}
           columnThree="18.03.2021"
-          columnFour={3}
+          columnFour={1}
           index={3}
         />
         <PackItem
           columnOne={'How "This" works in JavaScript?'}
           columnTwo={'This is how "This" works in JavaScript'}
           columnThree="18.03.2021"
-          columnFour={3}
+          columnFour={5}
           index={4}
         />
         <PackItem
@@ -71,14 +94,14 @@ export const Pack = () => {
           columnOne={'How "This" works in JavaScript?'}
           columnTwo={'This is how "This" works in JavaScript'}
           columnThree="18.03.2021"
-          columnFour={3}
+          columnFour={2}
           index={7}
         />
         <PackItem
           columnOne={'How "This" works in JavaScript?'}
           columnTwo={'This is how "This" works in JavaScript'}
           columnThree="18.03.2021"
-          columnFour={3}
+          columnFour={4}
           index={8}
         />
       </div>

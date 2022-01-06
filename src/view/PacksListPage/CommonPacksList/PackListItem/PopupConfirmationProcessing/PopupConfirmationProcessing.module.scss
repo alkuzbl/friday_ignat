@@ -1,0 +1,44 @@
+.popup{
+  padding: 5px 25px 30px;
+  max-width: 400px;
+  border-radius: 5px;
+  border: 1px solid #EDF0F6;
+  background-color: #ffffff;
+
+  &__titleBox{
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #EDF0F6;
+    margin-bottom: 30px;
+  }
+  &__title{
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    color: #2D2E46;
+  }
+
+  &__content{
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #000000;
+    margin-bottom: 30px;
+    span{
+      font-weight: 700;
+    }
+  }
+  &__input{
+    margin-bottom: 45px;
+    input{
+      border-bottom: 1px solid rgba(36,37,34,.1) ;
+    }
+  }
+  &__buttonsInner{
+    display: flex;
+    justify-content: space-between;
+    z-index: 100;
+  }
+}

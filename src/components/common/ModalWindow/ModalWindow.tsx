@@ -4,7 +4,7 @@ import './Modal.scss';
 type ModalWindowPropsType = {
   active: boolean;
   setActive: (active: boolean) => void;
-  children: any;
+  children?: any;
 };
 
 export const ModalWindow = (props: ModalWindowPropsType) => {

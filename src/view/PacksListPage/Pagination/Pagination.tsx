@@ -8,7 +8,7 @@ import styles from './Pagination.module.scss';
 import { PaginationListItem } from './PaginationListItem/PaginationListItem';
 
 export const Pagination = () => {
-  const pagesCount = Math.ceil(87 / 8);
+  const pagesCount = Math.ceil(222 / 8);
   const { currentPage } = useParams();
 
   const pages = [];
@@ -16,15 +16,25 @@ export const Pagination = () => {
     pages.push(i);
   }
   // логика не написана - просто захардкожино все
-  const portionSize = 5;
+  const portionSize = 7;
 
   const portionCount = Math.ceil(pagesCount / portionSize);
   const [portionNumber, setPortionNumber] = useState(1);
 
   const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
   const rightPortionPageNumber = portionNumber * portionSize;
-  const onClickPrev = () => setPortionNumber(portionNumber - 1);
-  const onClickNext = () => setPortionNumber(portionNumber + 1);
+  const setNextPage = portionSize * portionNumber - (portionSize - 1);
+  const onClickPrev = () => {
+    setPortionNumber(portionNumber - 1);
+  };
+  const onClickNext = () => {
+    setPortionNumber(portionNumber + 1);
+    console.log(setNextPage);
+  };
+
+  // const pagesJ = pages.filter(
+  //   page => page >= leftPortionPageNumber && page <= rightPortionPageNumber,
+  // );
 
   return (
     <div className={styles.pagination}>
