@@ -3,30 +3,44 @@
     margin-bottom: 40px;
   }
 
-  &__forgotInner{
+  &__forgotInner {
     display: flex;
     justify-content: flex-end;
   }
+
   &__forgotLink {
     text-align: right;
-    margin: 40px 0 80px;
+    margin-bottom: 80px;
     color: #2D2E46;
     font-size: 14px;
   }
-  &__span{
+
+  &__span {
     display: block;
     margin: 30px 0 10px;
     font-size: 14px;
     color: #2D2E46;
   }
-  &__registrationLink{
+
+  &__registrationLink {
     display: block;
     margin-bottom: 30px;
     font-size: 16px;
     color: #21268F;
   }
-  &__checkbox{
+
+  &__checkbox {
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 25px;
+    label{
+      font-size: 14px;
+    }
+
+    input {
+      width: 20px;
+      order: 0;
+      background-color: #D7D8EF;
+    }
   }
 }

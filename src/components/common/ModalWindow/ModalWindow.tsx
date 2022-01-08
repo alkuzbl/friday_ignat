@@ -9,6 +9,7 @@ type ModalWindowPropsType = {
 
 export const ModalWindow = (props: ModalWindowPropsType) => {
   const { active, setActive, children } = props;
+  console.log(active);
 
   return (
     <div
@@ -17,6 +18,7 @@ export const ModalWindow = (props: ModalWindowPropsType) => {
       className={active ? 'modal active' : 'modal'}
       onClick={() => setActive(false)}
       onKeyPress={e => {
+        console.log(e.key);
         e.ctrlKey && setActive(false);
       }}
     >

@@ -98,6 +98,29 @@ export const getAuthMe =
     dispatch(initializeApp(true));
   };
 
+export const setNewPassword =
+  (data: { password: string }) => async (dispatch: Dispatch, getState: any) => {
+    const token = getState((state: { user: { token: any } }) => state.user.token);
+    try {
+      const response = await authAPI.setNewPassword({
+        ...data,
+        resetPasswordToken: token,
+      });
+      if (response.status < 400) {
+        // eslint-disable-next-line no-alert
+        alert(response.data);
+      }
+    } catch (err: any) {
+      const error = err.response;
+      if (error) {
+        dispatch(setErrorApp(error.data.error));
+      } else {
+        console.log(err.message);
+      }
+    }
+    dispatch(initializeApp(true));
+  };
+
 export const setRegistrationNewUser =
   (data: RegisterUserDataType) => async (dispatch: Dispatch) => {
     dispatch(setStatus('loading'));

@@ -12,6 +12,7 @@ import { NavBar } from './Navbar/NavBar';
 
 export const Header = () => {
   const isAuth = useSelector<AppStoreType, boolean>(state => state.auth.isAuth);
+
   const dispatch = useDispatch();
   const logOut = () => dispatch(setLogOut());
   return (
@@ -21,13 +22,17 @@ export const Header = () => {
           <div className={styles.logo}>
             <img className={styles.logo__icon} src={logo} alt="it-incubator" />
           </div>
-          {isAuth && <NavBar />}
-          <Button
-            title="logout"
-            type="button"
-            onClick={logOut}
-            view="default-for-packsList"
-          />
+          {isAuth && (
+            <>
+              <NavBar />
+              <Button
+                title="logout"
+                type="button"
+                onClick={logOut}
+                view="default-for-packsList"
+              />
+            </>
+          )}
         </div>
       </div>
     </div>

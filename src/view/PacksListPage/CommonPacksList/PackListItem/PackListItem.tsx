@@ -22,7 +22,6 @@ export const PackListItem = (props: PackListItemPropsType) => {
   const packId = '1';
   const styleItem =
     index % 2 === 0 ? styles.packs__item : `${styles.packs__item} ${styles.dark}`;
-
   return (
     <div className={styleItem}>
       <p className={styles.packs__itemContent}>

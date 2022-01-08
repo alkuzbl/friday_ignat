@@ -30,7 +30,8 @@ const App = () => {
   const isInitialized = useSelector<AppStoreType, boolean>(
     state => state.app.isInitialized,
   );
-  const [val, setVal] = useState(false);
+  const isAuth = useSelector<AppStoreType, boolean>(state => state.auth.isAuth);
+  const [modalActive, setModalActive] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -71,15 +72,16 @@ const App = () => {
 
         <Route path="*" element={<NotPage />} />
       </Routes>
-      <ModalWindow
-        active={val}
-        setActive={value => {
-          setVal(value);
-        }}
-      >
-        {' '}
-        <PopupConfirmationDeletePack />{' '}
-      </ModalWindow>
+      {isAuth && (
+        <ModalWindow
+          active={modalActive}
+          setActive={value => {
+            setModalActive(value);
+          }}
+        >
+          <PopupConfirmationDeletePack />
+        </ModalWindow>
+      )}
     </div>
   );
 };

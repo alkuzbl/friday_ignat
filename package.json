@@ -4,6 +4,7 @@
   "homepage": "https://alkuzbl.github.io/friday_ignat",
   "private": true,
   "dependencies": {
+    "@hookform/resolvers": "^2.8.5",
     "@reduxjs/toolkit": "^1.7.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^12.1.2",
@@ -21,6 +22,7 @@
     "rc-slider": "^9.7.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-hook-form": "^7.22.5",
     "react-redux": "^7.2.6",
     "react-router-dom": "6",
     "react-scripts": "5.0.0",
@@ -28,7 +30,8 @@
     "redux-thunk": "^2.4.1",
     "sass": "^1.45.2",
     "typescript": "^4.1.2",
-    "web-vitals": "^2.1.2"
+    "web-vitals": "^2.1.2",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
