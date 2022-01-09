@@ -24,16 +24,19 @@
 
   &__itemsTitle {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 200px;
+    grid-template-columns: 1fr 65px 120px 0.5fr 200px;
+    grid-gap: 5px;
     padding: 16px 25px;
     text-align: left;
   }
 
   &__item {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 200px;
+    grid-template-columns: 1fr 65px 120px 0.5fr 200px;
+    grid-gap: 10px;
     padding: 16px 25px;
     text-align: left;
+    align-items: center;
   }
 
   &__itemsTitle {
@@ -45,6 +48,8 @@
   }
 
   &__itemContent {
+    text-overflow:ellipsis;
+    overflow:hidden;
     a {
       color: inherit;
     }

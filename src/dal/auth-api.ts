@@ -1,11 +1,5 @@
-import axios from 'axios';
+import { instance } from './instance-axios';
 
-const instance = axios.create({
-  baseURL: 'http://localhost:7542/2.0/',
-  withCredentials: true,
-});
-
-// api
 export const authAPI = {
   setAuth: (data: LoginDataType) => instance.post<UserType>('auth/login', data),
   setRegistration: (data: RegisterUserDataType) =>
@@ -28,8 +22,8 @@ export type LoginDataType = {
 };
 export type RegisterUserDataType = Omit<LoginDataType, 'rememberMe'>;
 export type UpdateUserDataType = {
-  name: string;
-  avatar: string;
+  name?: string;
+  avatar?: string;
 };
 type ForgotDataType = {
   email: string;
@@ -56,13 +50,3 @@ export type UserType = {
   error?: string;
 };
 type ResponseType = { info: string; error: string };
-// не обязательный тип - потом решить
-export type ResponseErrorType = {
-  error: string;
-  body: LoginDataType;
-};
-export type ResponseErrorType2 = {
-  error: string;
-  email: string;
-  in: string; // create user
-};

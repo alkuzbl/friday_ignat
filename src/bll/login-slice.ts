@@ -10,7 +10,7 @@ import {
 } from '../dal/auth-api';
 
 const initialState: InitialStateType = {
-  user: {},
+  user: {} as UserType,
   isAuth: false,
   error: null,
   status: 'idle',
@@ -31,7 +31,7 @@ const authSlice = createSlice({
       state.user = action.payload;
     },
     setLogout: state => {
-      state.user = {};
+      state.user = {} as UserType;
       state.isAuth = false;
     },
     setUserData: (state, action: PayloadAction<UserType>) => {
@@ -185,7 +185,7 @@ export const setLogOut =
 
 // types
 type InitialStateType = {
-  user: UserType | {};
+  user: UserType;
   isAuth: boolean;
   error: string | null;
   status: StatusType;

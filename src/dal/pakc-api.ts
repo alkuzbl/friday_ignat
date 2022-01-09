@@ -1,0 +1,69 @@
+import { CardPackType } from '../bll/pack-slice';
+
+import { instance } from './instance-axios';
+
+export const packAPI = {
+  getAllPack: (data: RequestGetPayloadPacksType) =>
+    instance.get<ResponseGetCardPacksType>(
+      `cards/pack?page=${data.page}&pageCount=${data.pageCount}`,
+    ),
+
+  getUserPack: (data: RequestGetPayloadPacksType) =>
+    instance.get<ResponseGetCardPacksType>(
+      `cards/pack?user_id=${data.user_id}&page=${data.page}&pageCount=${data.pageCount}`,
+    ),
+
+  createNewPack: (data: RequestPayloadCreatePackType) =>
+    instance.post<{ newCardsPack: CardPackType; error: string }>(`cards/pack`, {
+      cardsPack: data,
+    }),
+
+  deletePack: (packId: string) =>
+    instance.delete<{ deletedCardsPack: CardPackType; error: string }>(
+      `cards/pack?id=${packId}`,
+    ),
+
+  updatePack: (data: RequestPayloadUpdatePackType) =>
+    instance.put(`cards/pack`, { cardsPack: data }),
+};
+
+// types response
+type ResponseGetCardPacksType = {
+  cardPacks: CardPackType[];
+  page: number;
+  pageCount: number;
+  cardPacksTotalCount: number;
+  minCardsCount: number;
+  maxCardsCount: number;
+  token: string;
+  tokenDeathTime: number;
+  error: string;
+};
+
+// types request
+type RequestGetPayloadPacksType = {
+  packName?: string;
+  min?: number;
+  max?: number;
+  sortPacks?: 0;
+  page?: number;
+  pageCount?: number;
+  user_id?: string;
+};
+
+type RequestPayloadCreatePackType = {
+  name: string;
+  path?: string;
+  grade?: number;
+  shots?: number;
+  rating?: number;
+  deckCover?: string;
+  private?: boolean;
+  type?: string;
+};
+type RequestPayloadUpdatePackType = {
+  id: string;
+  name: string;
+  rating?: number;
+  private?: boolean;
+};

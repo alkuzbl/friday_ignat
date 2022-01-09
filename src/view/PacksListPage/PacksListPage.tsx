@@ -69,7 +69,7 @@ const PacksListPage = () => {
                   <h4 className={stylesPack.packs__itemTitle}>Actions</h4>
                 </div>
                 <PackListItem
-                  // id={1}
+                  packId="1"
                   index={1}
                   packName="PackName"
                   userName="Ivanm Ivanov"
@@ -78,7 +78,7 @@ const PacksListPage = () => {
                   myCard
                 />
                 <PackListItem
-                  // id={1}
+                  packId="1"
                   index={2}
                   packName="PackName"
                   userName="Ivan Kozlov"
@@ -87,7 +87,7 @@ const PacksListPage = () => {
                   myCard
                 />
                 <PackListItem
-                  // id={1}
+                  packId="1"
                   index={3}
                   packName="PackName"
                   userName="Ivan Markov"
@@ -96,7 +96,7 @@ const PacksListPage = () => {
                   myCard={false}
                 />
                 <PackListItem
-                  // id={1}
+                  packId="1"
                   index={4}
                   packName="PackName"
                   userName="Ivan Markov"
@@ -105,7 +105,7 @@ const PacksListPage = () => {
                   myCard
                 />
                 <PackListItem
-                  // id={1}
+                  packId="1"
                   index={5}
                   packName="PackName"
                   userName="Ivan Markov"
@@ -114,7 +114,7 @@ const PacksListPage = () => {
                   myCard
                 />
                 <PackListItem
-                  // id={1}
+                  packId="1"
                   index={6}
                   packName="PackName"
                   userName="Ivan Markov"
@@ -123,7 +123,7 @@ const PacksListPage = () => {
                   myCard={false}
                 />
                 <PackListItem
-                  // id={1}
+                  packId="1"
                   index={7}
                   packName="PackName"
                   userName="Ivan Markov"
@@ -134,7 +134,7 @@ const PacksListPage = () => {
               </div>
             </div>
             <div className={styles.profilePage__pagination}>
-              <Pagination />
+              <Pagination totalCount={1232} selectPage={() => {}} />
             </div>
           </div>
         </div>
@@ -142,18 +142,7 @@ const PacksListPage = () => {
     </div>
   );
 };
-//   (
-//   <div className={styles.packsListPage}>
-//     <div className="container">
-//       <div className={styles.packsListPage__packsList}>
-//         <Pack />
-//         <div className={styles.packsListPage__pagination}>
-//           <Pagination />
-//         </div>
-//       </div>
-//     </div>
-//   </div>
-// );
+
 export const PacksListPageContainer = RedirectionIfNotAuthorized(PacksListPage);
 
 const PackPage = () => (
@@ -162,7 +151,7 @@ const PackPage = () => (
       <div className={styles.packsListPage__packsList}>
         <Pack />
         <div className={styles.packsListPage__pagination}>
-          <Pagination />
+          <Pagination totalCount={1232} selectPage={() => {}} />
         </div>
       </div>
     </div>

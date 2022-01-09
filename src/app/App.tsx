@@ -31,7 +31,7 @@ const App = () => {
     state => state.app.isInitialized,
   );
   const isAuth = useSelector<AppStoreType, boolean>(state => state.auth.isAuth);
-  const [modalActive, setModalActive] = useState(true);
+  const [modalActive, setModalActive] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {

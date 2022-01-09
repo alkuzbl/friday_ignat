@@ -4,11 +4,15 @@ import thunk from 'redux-thunk';
 
 import { appReducer } from '../app/app-slice';
 
+import { cardsReducer } from './card-slice';
 import { authReducer } from './login-slice';
+import { packReducer } from './pack-slice';
 
 const rootReducer = combineReducers({
   auth: authReducer,
   app: appReducer,
+  packs: packReducer,
+  cards: cardsReducer,
 });
 
 export const store = configureStore({

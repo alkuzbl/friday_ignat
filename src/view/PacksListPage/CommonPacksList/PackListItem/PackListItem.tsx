@@ -10,16 +10,16 @@ import { ActionEditButtons } from './ActionEditButtons/ActionButtons';
 type PackListItemPropsType = {
   userName: string;
   index: number;
-  // id: number;
+  packId: string;
   date: string;
   packName: string;
   count: number;
   myCard: boolean;
 };
 export const PackListItem = (props: PackListItemPropsType) => {
-  const { userName, date, packName, count, index, myCard } = props;
+  const { userName, date, packName, count, index, myCard, packId } = props;
   // нужна логика
-  const packId = '1';
+
   const styleItem =
     index % 2 === 0 ? styles.packs__item : `${styles.packs__item} ${styles.dark}`;
   return (
