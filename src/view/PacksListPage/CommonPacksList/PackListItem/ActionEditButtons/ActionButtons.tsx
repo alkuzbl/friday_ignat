@@ -1,14 +1,21 @@
 import React from 'react';
 
+import { useDispatch } from 'react-redux';
+
+import { setActiveModalCardsPack } from '../../../../../bll/pack-slice';
 import { Button } from '../../../../../components/common/Button';
 import styles from '../../CommonPacksList.module.scss';
 
-// type ActionEditButtonsPropsType = {
-//   id?: number;
-// };
-export const ActionEditButtons = () => {
-  // const { id } = props;
-  const onClickDelete = () => {};
+type ActionEditButtonsPropsType = {
+  packId: string;
+  packName: string;
+};
+export const ActionEditButtons = (props: ActionEditButtonsPropsType) => {
+  const { packName, packId } = props;
+  const dispatch = useDispatch();
+  const onClickDelete = () => {
+    dispatch(setActiveModalCardsPack({ status: true, packName, packId }));
+  };
   const onClickEdit = () => {};
   const onClickLearn = () => {};
   return (

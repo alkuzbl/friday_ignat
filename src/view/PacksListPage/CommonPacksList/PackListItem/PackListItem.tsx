@@ -30,7 +30,11 @@ export const PackListItem = (props: PackListItemPropsType) => {
       <p className={styles.packs__itemContent}>{count}</p>
       <p className={styles.packs__itemContent}>{date}</p>
       <p className={styles.packs__itemContent}>{userName}</p>
-      {myCard ? <ActionEditButtons /> : <ActionButton />}
+      {myCard ? (
+        <ActionEditButtons packId={packId} packName={packName} />
+      ) : (
+        <ActionButton />
+      )}
     </div>
   );
 };

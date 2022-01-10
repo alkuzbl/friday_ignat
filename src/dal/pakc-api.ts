@@ -1,15 +1,15 @@
-import { CardPackType } from '../bll/pack-slice';
+import { CardPackType, CardsPackType } from '../bll/pack-slice';
 
 import { instance } from './instance-axios';
 
 export const packAPI = {
   getAllPack: (data: RequestGetPayloadPacksType) =>
-    instance.get<ResponseGetCardPacksType>(
+    instance.get<Omit<CardsPackType, 'status' & 'activeModal'>>(
       `cards/pack?page=${data.page}&pageCount=${data.pageCount}`,
     ),
 
   getUserPack: (data: RequestGetPayloadPacksType) =>
-    instance.get<ResponseGetCardPacksType>(
+    instance.get<Omit<CardsPackType, 'status' & 'activeModal'>>(
       `cards/pack?user_id=${data.user_id}&page=${data.page}&pageCount=${data.pageCount}`,
     ),
 
@@ -24,20 +24,9 @@ export const packAPI = {
     ),
 
   updatePack: (data: RequestPayloadUpdatePackType) =>
-    instance.put(`cards/pack`, { cardsPack: data }),
-};
-
-// types response
-type ResponseGetCardPacksType = {
-  cardPacks: CardPackType[];
-  page: number;
-  pageCount: number;
-  cardPacksTotalCount: number;
-  minCardsCount: number;
-  maxCardsCount: number;
-  token: string;
-  tokenDeathTime: number;
-  error: string;
+    instance.put<{ updatedCardsPack: CardPackType; error: string }>(`cards/pack`, {
+      cardsPack: data,
+    }),
 };
 
 // types request
@@ -51,7 +40,7 @@ type RequestGetPayloadPacksType = {
   user_id?: string;
 };
 
-type RequestPayloadCreatePackType = {
+export type RequestPayloadCreatePackType = {
   name: string;
   path?: string;
   grade?: number;
@@ -61,7 +50,7 @@ type RequestPayloadCreatePackType = {
   private?: boolean;
   type?: string;
 };
-type RequestPayloadUpdatePackType = {
+export type RequestPayloadUpdatePackType = {
   id: string;
   name: string;
   rating?: number;

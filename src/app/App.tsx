@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 
 import { getAuthMe } from '../bll/login-slice';
+import { setActiveModalCardsPack } from '../bll/pack-slice';
 import { AppStoreType } from '../bll/store';
 import { CommonComponents } from '../components/common/CommonComponents';
 import { ModalWindow } from '../components/common/ModalWindow/ModalWindow';
@@ -31,7 +32,9 @@ const App = () => {
     state => state.app.isInitialized,
   );
   const isAuth = useSelector<AppStoreType, boolean>(state => state.auth.isAuth);
-  const [modalActive, setModalActive] = useState(false);
+  const activeModal = useSelector<AppStoreType, boolean>(
+    state => state.packs.modalWindow.activeModal,
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -74,12 +77,15 @@ const App = () => {
       </Routes>
       {isAuth && (
         <ModalWindow
-          active={modalActive}
+          active={activeModal}
           setActive={value => {
-            setModalActive(value);
+            dispatch(
+              setActiveModalCardsPack({ status: value, packName: '', packId: '' }),
+            );
           }}
         >
           <PopupConfirmationDeletePack />
+          {/* <AddNewPack /> */}
         </ModalWindow>
       )}
     </div>

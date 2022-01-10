@@ -27,9 +27,9 @@ export const PackItem = (props: PackItemPropsType) => {
       <p className={styles.packs__itemContent}>{columnOne}</p>
       <p className={styles.packs__itemContent}>{columnTwo}</p>
       <p className={styles.packs__itemContent}>{columnThree}</p>
-      <p className={styles.packs__itemContent}>
+      <div className={styles.packs__itemContent}>
         <Grade score={columnFour} />
-      </p>
+      </div>
 
       <div className={`${styles.packs__itemButtons} ${styles.pack__itemButtons}`}>
         <Button
