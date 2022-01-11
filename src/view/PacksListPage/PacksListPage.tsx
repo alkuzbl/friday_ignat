@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import { Button } from '../../components/common/Button';
 import { DoubleRange } from '../../components/common/DoubleRange/DoubleRange';
-import { RedirectionIfNotAuthorized } from '../../hoc/RedirectionIfNotAuthorized';
 import styles from '../ProfilePage/ProfilePage.module.scss';
 
 import { ButtonsBoxPacksList } from './ButtonsBoxForPacksList/ButtonsBoxPacksList';
@@ -12,7 +11,8 @@ import { PackListItem } from './CommonPacksList/PackListItem/PackListItem';
 import { PacksListSearch } from './PacksListSearch/PacksListSearch';
 import { Pagination } from './Pagination/Pagination';
 
-const PacksListPage = () => {
+// в этой компоненте еще одна снизу!!!!!!!!!
+export const PacksListPage = () => {
   // потом положить в redux, в зависимости что искать нужно
   const [valueRangeSlider, setValueRangeSlider] = useState<number[]>([0, 100]);
 
@@ -68,6 +68,7 @@ const PacksListPage = () => {
                   <h4 className={stylesPack.packs__itemTitle}>Created by</h4>
                   <h4 className={stylesPack.packs__itemTitle}>Actions</h4>
                 </div>
+                {/* //это для верстки - в дальнейшем нужно мапить один элемент PackListItem и передавать туда значения с сервера */}
                 <PackListItem
                   packId="1"
                   index={1}
@@ -143,9 +144,7 @@ const PacksListPage = () => {
   );
 };
 
-export const PacksListPageContainer = RedirectionIfNotAuthorized(PacksListPage);
-
-const PackPage = () => (
+export const PackPage = () => (
   <div className={styles.packsListPage}>
     <div className="container">
       <div className={styles.packsListPage__packsList}>
@@ -157,4 +156,3 @@ const PackPage = () => (
     </div>
   </div>
 );
-export const PacksListContainer = RedirectionIfNotAuthorized(PackPage);

@@ -1,8 +1,5 @@
 import React from 'react';
 
-import { useDispatch } from 'react-redux';
-
-import { setNewPassword } from '../../../bll/login-slice';
 import { AuthBox } from '../../../components/common/AuthBox/AuthBox';
 import { Button } from '../../../components/common/Button';
 import { FormControl } from '../../../components/common/FormControl/FormControl';
@@ -12,9 +9,8 @@ import { newPasswordValidationSchema } from '../../../utils/validationSchemes';
 import styles from './NewPassword.module.scss';
 
 export const NewPassword = () => {
-  const dispatch = useDispatch();
   const onSubmit = (data: { password: string }) => {
-    dispatch(setNewPassword(data));
+    console.log(data);
   };
   return (
     <div className="container-center">
@@ -43,5 +39,3 @@ export const NewPassword = () => {
     </div>
   );
 };
-
-// export const NewPasswordContainer = RedirectionIfNotAuthorized(NewPassword);

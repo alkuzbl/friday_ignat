@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 
-import { useDispatch } from 'react-redux';
-
-import { createCardsPack, setActiveModalCardsPack } from '../../../../bll/pack-slice';
 import styles from '../../../../view/PacksListPage/CommonPacksList/PackListItem/PopupConfirmationProcessing/PopupConfirmationProcessing.module.scss';
 import { Button } from '../../Button';
 import { Input, InputChangeEventType } from '../../Input/Input';
@@ -12,12 +9,12 @@ export const AddNewPack = () => {
   const onChangeHandler = (e: InputChangeEventType) => {
     setValue(e.currentTarget.value);
   };
-  const dispatch = useDispatch();
+
   const savePack = () => {
-    dispatch(createCardsPack({ name: value }));
+    console.log('save pack');
   };
   const cancel = () => {
-    dispatch(setActiveModalCardsPack({ status: false, packName: '', packId: '' }));
+    console.log('cancel');
   };
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions

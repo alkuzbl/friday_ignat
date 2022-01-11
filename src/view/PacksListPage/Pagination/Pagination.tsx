@@ -40,7 +40,6 @@ export const Pagination = (props: PaginationPropsType) => {
   const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
   const rightPortionPageNumber = portionNumber * portionSize;
 
-  // const setNextPage = portionSize * portionNumber - (portionSize - 1);
   const setNextPage = portionSize * portionNumber + 1;
   const setPrevPage = (portionNumber - 1) * portionSize;
 

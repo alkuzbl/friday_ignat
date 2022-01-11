@@ -13,6 +13,7 @@ export const PacksListSearch = () => {
   return (
     <div className={styles.packsList__search}>
       <span className={styles.packsList__searchIcon} />
+      {/* //это обычный инпут = можно использывать везде */}
       <Input
         type="text"
         onChange={onChangeSearch}

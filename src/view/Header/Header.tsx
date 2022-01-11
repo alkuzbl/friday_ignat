@@ -1,9 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-
-import { setLogOut } from '../../bll/login-slice';
-import { AppStoreType } from '../../bll/store';
 import { Button } from '../../components/common/Button';
 import logo from '../../issets/images/logo.png';
 
@@ -11,10 +7,11 @@ import styles from './Header.module.scss';
 import { NavBar } from './Navbar/NavBar';
 
 export const Header = () => {
-  const isAuth = useSelector<AppStoreType, boolean>(state => state.auth.isAuth);
-
-  const dispatch = useDispatch();
-  const logOut = () => dispatch(setLogOut());
+  // заглушка, данные должны приходить с redux
+  const [isAuth] = useState<boolean>(true);
+  const logOut = () => {
+    console.log('header');
+  };
   return (
     <div className={styles.header}>
       <div className="container">

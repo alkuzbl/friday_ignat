@@ -1,8 +1,5 @@
 import React from 'react';
 
-import { useDispatch } from 'react-redux';
-
-import { setActiveModalCardsPack } from '../../../../../bll/pack-slice';
 import { Button } from '../../../../../components/common/Button';
 import styles from '../../CommonPacksList.module.scss';
 
@@ -12,9 +9,9 @@ type ActionEditButtonsPropsType = {
 };
 export const ActionEditButtons = (props: ActionEditButtonsPropsType) => {
   const { packName, packId } = props;
-  const dispatch = useDispatch();
+
   const onClickDelete = () => {
-    dispatch(setActiveModalCardsPack({ status: true, packName, packId }));
+    console.log(`delete - packName ${packName}, packId ${packId}`);
   };
   const onClickEdit = () => {};
   const onClickLearn = () => {};

@@ -1,10 +1,5 @@
 import React from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
-
-import { setRegistrationNewUser, StatusType } from '../../../bll/login-slice';
-import { AppStoreType } from '../../../bll/store';
 import { AuthBox } from '../../../components/common/AuthBox/AuthBox';
 import { Button } from '../../../components/common/Button';
 import { FormControl } from '../../../components/common/FormControl/FormControl';
@@ -20,23 +15,10 @@ type RegistrationFormValuesType = {
 };
 
 export const Registration = () => {
-  const status = useSelector<AppStoreType, StatusType>(state => state.auth.status);
-  const isAuth = useSelector<AppStoreType, boolean>(state => state.auth.isAuth);
-  const dispatch = useDispatch();
-
   const onSubmit = (data: RegistrationFormValuesType) => {
-    if (data.password === data.confirmPassword) {
-      const payload = { email: data.email, password: data.password };
-      dispatch(setRegistrationNewUser(payload));
-    }
+    console.log(data);
   };
 
-  if (status === 'succeed') {
-    return <Navigate to="/login" />;
-  }
-  if (isAuth) {
-    return <Navigate to="/" />;
-  }
   return (
     <div className="container-center">
       <div className={styles.registration}>

@@ -9,19 +9,16 @@ const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    initializeApp: (state, action) => {
-      state.isInitialized = action.payload;
-    },
-    setErrorApp: (state, action) => {
-      state.error = action.payload;
-    },
+    // принимает state, action
+    initializeApp: () => {},
+    setErrorApp: () => {},
   },
 });
 
-// reducer
+// reducer - export в store
 export const appReducer = appSlice.reducer;
 
-// actions
+// actions по сути аналог actionCreator
 export const { initializeApp, setErrorApp } = appSlice.actions;
 
 // thanks
