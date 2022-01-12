@@ -22,7 +22,9 @@ const authSlice = createSlice({
     setIsAuth: (state, action: PayloadAction<boolean>) => {
       state.isAuth = action.payload;
     },
-    setLogout: () => {},
+    setLogout: state => {
+      state.user = {} as UserType;
+    },
     setUserData: (state, action: PayloadAction<UserType>) => {
       state.user = action.payload;
     },
@@ -57,6 +59,22 @@ export const login = (data: LoginDataType) => (dispatch: Dispatch) => {
       console.log('Error: ', { ...e });
       dispatch(setAuthError(error));
       dispatch(setStatus('failed'));
+    });
+};
+
+export const logout = () => (dispatch: Dispatch) => {
+  authAPI
+    .setLogOut({})
+    .then(() => {
+      dispatch(setLogout());
+      dispatch(setIsAuth(false));
+    })
+    .catch(e => {
+      const error = e.response
+        ? e.response.data.error
+        : `${e.message}, more details in the console`;
+      console.log('Error: ', { ...e });
+      dispatch(setAuthError(error));
     });
 };
 
