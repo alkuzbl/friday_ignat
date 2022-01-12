@@ -28,7 +28,9 @@ const authSlice = createSlice({
     setUserData: (state, action: PayloadAction<UserType>) => {
       state.user = action.payload;
     },
-    getAuthMe: () => {},
+    getAuthMe: (state, action: PayloadAction<UserType>) => {
+      state.user = action.payload;
+    },
     addNewUser: (state, action: PayloadAction<StatusType>) => {
       state.status = action.payload;
     },
@@ -68,6 +70,22 @@ export const logout = () => (dispatch: Dispatch) => {
     .then(() => {
       dispatch(setLogout());
       dispatch(setIsAuth(false));
+    })
+    .catch(e => {
+      const error = e.response
+        ? e.response.data.error
+        : `${e.message}, more details in the console`;
+      console.log('Error: ', { ...e });
+      dispatch(setAuthError(error));
+    });
+};
+
+export const getAuthUser = () => (dispatch: Dispatch) => {
+  authAPI
+    .getAuthMe({})
+    .then(res => {
+      dispatch(setIsAuth(true));
+      dispatch(setUserData(res.data));
     })
     .catch(e => {
       const error = e.response
