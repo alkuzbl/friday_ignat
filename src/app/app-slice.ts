@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: InitialStateType = {
   isInitialized: false,
@@ -10,8 +10,12 @@ const appSlice = createSlice({
   initialState,
   reducers: {
     // принимает state, action
-    initializeApp: () => {},
-    setErrorApp: () => {},
+    setIsInitialized: (state, action: PayloadAction<boolean>) => {
+      state.isInitialized = action.payload;
+    },
+    setErrorApp: (state, action) => {
+      state.error = action.payload;
+    },
   },
 });
 
@@ -19,9 +23,9 @@ const appSlice = createSlice({
 export const appReducer = appSlice.reducer;
 
 // actions по сути аналог actionCreator
-export const { initializeApp, setErrorApp } = appSlice.actions;
+export const { setIsInitialized, setErrorApp } = appSlice.actions;
 
-// thanks
+// thunks
 
 // types
 type InitialStateType = {
