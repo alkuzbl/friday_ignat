@@ -1,5 +1,6 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
 
+import { setIsInitialized } from '../app/app-slice';
 import { authAPI, LoginDataType, RegisterUserDataType, UserType } from '../dal/auth-api';
 
 const initialState: InitialStateType = {
@@ -86,6 +87,7 @@ export const getAuthUser = () => (dispatch: Dispatch) => {
     .then(res => {
       dispatch(setIsAuth(true));
       dispatch(setUserData(res.data));
+      dispatch(setIsInitialized(true));
     })
     .catch(e => {
       const error = e.response
@@ -93,6 +95,7 @@ export const getAuthUser = () => (dispatch: Dispatch) => {
         : `${e.message}, more details in the console`;
       console.log('Error: ', { ...e });
       dispatch(setAuthError(error));
+      dispatch(setIsInitialized(true));
     });
 };
 
