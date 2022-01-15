@@ -5,6 +5,7 @@ import {
   authAPI,
   ForgotDataType,
   LoginDataType,
+  NewPasswordDataType,
   RegisterUserDataType,
   UserType,
 } from '../dal/auth-api';
@@ -65,7 +66,6 @@ export const login = (data: LoginDataType) => (dispatch: Dispatch) => {
       const error = e.response
         ? e.response.data.error
         : `${e.message}, more details in the console`;
-      console.log('Error: ', { ...e });
       dispatch(setAuthError(error));
       dispatch(setStatus('failed'));
     });
@@ -82,7 +82,6 @@ export const logout = () => (dispatch: Dispatch) => {
       const error = e.response
         ? e.response.data.error
         : `${e.message}, more details in the console`;
-      console.log('Error: ', { ...e });
       dispatch(setAuthError(error));
     });
 };
@@ -98,7 +97,6 @@ export const getAuthUser = () => (dispatch: Dispatch) => {
       const error = e.response
         ? e.response.data.error
         : `${e.message}, more details in the console`;
-      console.log('Error: ', { ...e });
       dispatch(setAuthError(error));
     })
     .finally(() => dispatch(setIsInitialized(true)));
@@ -113,7 +111,6 @@ export const registerUser = (data: RegisterUserDataType) => (dispatch: Dispatch)
       const error = e.response
         ? e.response.data.error
         : `${e.message}, more details in the console`;
-      console.log('Error: ', { ...e });
       dispatch(setAuthError(error));
       dispatch(setStatus('failed'));
     });
@@ -127,7 +124,19 @@ export const forgotPassword = (data: ForgotDataType) => (dispatch: Dispatch) => 
       const error = e.response
         ? e.response.data.error
         : `${e.message}, more details in the console`;
-      console.log('Error: ', { ...e });
+      dispatch(setAuthError(error));
+      dispatch(setStatus('failed'));
+    });
+};
+
+export const setNewPassword = (data: NewPasswordDataType) => (dispatch: Dispatch) => {
+  authAPI
+    .setNewPassword(data)
+    .then(() => dispatch(setStatus('succeed')))
+    .catch(e => {
+      const error = e.response
+        ? e.response.data.error
+        : `${e.message}, more details in the console`;
       dispatch(setAuthError(error));
       dispatch(setStatus('failed'));
     });

@@ -30,9 +30,9 @@ export type ForgotDataType = {
   from: string;
   message: string;
 };
-type NewPasswordDataType = {
+export type NewPasswordDataType = {
   password: string;
-  resetPasswordToken: string;
+  resetPasswordToken: string | undefined;
 };
 export type UserType = {
   _id: string;
