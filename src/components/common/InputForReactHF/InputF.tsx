@@ -6,7 +6,14 @@ type InputPropsType = {
   className?: string;
   required?: boolean;
   label: string;
-  name: 'email' | 'password' | 'rememberMe' | 'confirmPassword';
+  name:
+    | 'email'
+    | 'password'
+    | 'rememberMe'
+    | 'confirmPassword'
+    | 'name'
+    | 'question'
+    | 'answer';
   register?: any;
   errors?: any;
   type: 'checkbox' | 'text' | 'password' | 'email';

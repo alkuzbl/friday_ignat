@@ -23,3 +23,10 @@ export const registrationValidationSchema = yup.object().shape({
   password: yup.string().required(),
   confirmPassword: yup.string().required(),
 });
+export const createPackValidationSchema = yup.object().shape({
+  name: yup.string().required().min(3).max(30),
+});
+export const cardInfoValidationSchema = yup.object().shape({
+  question: yup.string().required().min(1).max(100),
+  name: yup.string().required().min(1).max(100),
+});

@@ -1,25 +1,21 @@
 import React from 'react';
 
-import { Button } from '../../../../../components/common/Button';
+import { Button } from '../../../Button';
 
 import styles from './PopupConfirmationProcessing.module.scss';
 
-export const PopupConfirmationDeletePack = () => {
+export const PackDeletingForm = () => {
   const deletePack = () => {
     console.log('delete');
   };
   const cancel = () => {
     console.log('cancel');
   };
-  // ниже в компоненте нужно потом добавить правило в еслинт чтобы он не ругался или как то по другому реализовать логику строка 20
+  const onClickDiv = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.stopPropagation();
+  };
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-    <div
-      className={styles.popup}
-      onClick={e => {
-        e.stopPropagation();
-      }}
-    >
+    <div role="presentation" className={styles.popup} onClick={onClickDiv}>
       <div className={styles.popup__titleBox}>
         <h3 className={styles.popup__title}>Delete Pack</h3>
         <Button title="X" type="button" view="popup-close" onClick={cancel} />

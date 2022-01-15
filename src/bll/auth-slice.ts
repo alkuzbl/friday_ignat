@@ -1,6 +1,6 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
 
-import { setIsInitialized } from '../app/app-slice';
+import { setIsInitialized, StatusType } from '../app/app-slice';
 import {
   authAPI,
   ForgotDataType,
@@ -29,6 +29,7 @@ const authSlice = createSlice({
     },
     setIsAuth: (state, action: PayloadAction<boolean>) => {
       state.isAuth = action.payload;
+      state.error = null;
     },
     setLogout: state => {
       state.user = {} as UserType;
@@ -38,6 +39,7 @@ const authSlice = createSlice({
     },
     getAuthMe: (state, action: PayloadAction<UserType>) => {
       state.user = action.payload;
+      state.error = null;
     },
     addNewUser: (state, action: PayloadAction<StatusType>) => {
       state.status = action.payload;
@@ -53,94 +55,90 @@ export const { setIsAuth, setUserData, setAuthError, setLogout, addNewUser, setS
 export const authReducer = authSlice.reducer;
 
 // thunks
-export const login = (data: LoginDataType) => (dispatch: Dispatch) => {
+export const login = (data: LoginDataType) => async (dispatch: Dispatch) => {
   dispatch(setStatus('loading'));
-  authAPI
-    .setAuth(data)
-    .then(res => {
-      dispatch(setIsAuth(true));
-      dispatch(setUserData(res.data));
+  try {
+    const res = await authAPI.setAuth(data);
+    dispatch(setIsAuth(true));
+    dispatch(setUserData(res.data));
+    dispatch(setStatus('succeed'));
+  } catch (e: any) {
+    const error = e.response
+      ? e.response.data.error
+      : `${e.message}, more details in the console`;
+    dispatch(setAuthError(error));
+    dispatch(setStatus('failed'));
+  }
+};
+
+export const logout = () => async (dispatch: Dispatch) => {
+  try {
+    await authAPI.setLogOut({});
+    dispatch(setLogout());
+    dispatch(setIsAuth(false));
+  } catch (e: any) {
+    const error = e.response
+      ? e.response.data.error
+      : `${e.message}, more details in the console`;
+    dispatch(setAuthError(error));
+  }
+};
+
+export const getAuthUser = () => async (dispatch: Dispatch) => {
+  try {
+    const res = await authAPI.getAuthMe({});
+    dispatch(setUserData(res.data));
+    dispatch(setIsAuth(true));
+  } catch (e: any) {
+    const error = e.response
+      ? e.response.data.error
+      : `${e.message}, more details in the console`;
+    dispatch(setAuthError(error));
+  }
+  dispatch(setIsInitialized(true));
+};
+
+export const registerUser =
+  (data: RegisterUserDataType) => async (dispatch: Dispatch) => {
+    dispatch(setStatus('loading'));
+    try {
+      await authAPI.setRegistration(data);
       dispatch(setStatus('succeed'));
-    })
-    .catch(e => {
+    } catch (e: any) {
       const error = e.response
         ? e.response.data.error
         : `${e.message}, more details in the console`;
       dispatch(setAuthError(error));
       dispatch(setStatus('failed'));
-    });
+    }
+  };
+
+export const forgotPassword = (data: ForgotDataType) => async (dispatch: Dispatch) => {
+  try {
+    await authAPI.getForgotPassword(data);
+    dispatch(setStatus('succeed'));
+  } catch (e: any) {
+    const error = e.response
+      ? e.response.data.error
+      : `${e.message}, more details in the console`;
+    dispatch(setAuthError(error));
+    dispatch(setStatus('failed'));
+  }
 };
 
-export const logout = () => (dispatch: Dispatch) => {
-  authAPI
-    .setLogOut({})
-    .then(() => {
-      dispatch(setLogout());
-      dispatch(setIsAuth(false));
-    })
-    .catch(e => {
-      const error = e.response
-        ? e.response.data.error
-        : `${e.message}, more details in the console`;
-      dispatch(setAuthError(error));
-    });
-};
-
-export const getAuthUser = () => (dispatch: Dispatch) => {
-  authAPI
-    .getAuthMe({})
-    .then(res => {
-      dispatch(setIsAuth(true));
-      dispatch(setUserData(res.data));
-    })
-    .catch(e => {
-      const error = e.response
-        ? e.response.data.error
-        : `${e.message}, more details in the console`;
-      dispatch(setAuthError(error));
-    })
-    .finally(() => dispatch(setIsInitialized(true)));
-};
-
-export const registerUser = (data: RegisterUserDataType) => (dispatch: Dispatch) => {
-  dispatch(setStatus('loading'));
-  authAPI
-    .setRegistration(data)
-    .then(() => dispatch(setStatus('succeed')))
-    .catch(e => {
+export const setNewPassword =
+  (data: NewPasswordDataType) => async (dispatch: Dispatch) => {
+    try {
+      await authAPI.setNewPassword(data);
+      dispatch(setStatus('succeed'));
+    } catch (e: any) {
       const error = e.response
         ? e.response.data.error
         : `${e.message}, more details in the console`;
       dispatch(setAuthError(error));
       dispatch(setStatus('failed'));
-    });
-};
-
-export const forgotPassword = (data: ForgotDataType) => (dispatch: Dispatch) => {
-  authAPI
-    .getForgotPassword(data)
-    .then(() => dispatch(setStatus('succeed')))
-    .catch(e => {
-      const error = e.response
-        ? e.response.data.error
-        : `${e.message}, more details in the console`;
-      dispatch(setAuthError(error));
-      dispatch(setStatus('failed'));
-    });
-};
-
-export const setNewPassword = (data: NewPasswordDataType) => (dispatch: Dispatch) => {
-  authAPI
-    .setNewPassword(data)
-    .then(() => dispatch(setStatus('succeed')))
-    .catch(e => {
-      const error = e.response
-        ? e.response.data.error
-        : `${e.message}, more details in the console`;
-      dispatch(setAuthError(error));
-      dispatch(setStatus('failed'));
-    });
-};
+    }
+  };
 
 // types
 type InitialStateType = {
@@ -149,5 +147,3 @@ type InitialStateType = {
   error: string | null;
   status: StatusType;
 };
-
-export type StatusType = 'idle' | 'loading' | 'succeed' | 'failed';

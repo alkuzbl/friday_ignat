@@ -1,0 +1,41 @@
+.popup {
+  padding: 30px 25px 70px;
+  max-width: 400px;
+  border-radius: 5px;
+  border: 1px solid #EDF0F6;
+  background-color: white;
+
+  &__title {
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 33px;
+    color: #2D2E46;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  &__inner {
+    margin-bottom: 80px;
+  }
+
+  &__input {
+    label {
+      font-size: 13px;
+      line-height: 20px;
+      color: #24254A;
+      opacity: 0.5;
+    }
+    input {
+      border-bottom: 1px solid rgba(36, 37, 34, .1);
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+
+  &__buttonsInner {
+    display: flex;
+    justify-content: space-between;
+
+  }
+}

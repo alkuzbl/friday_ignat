@@ -1,58 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const packInitialState: CardsPackType = {
-  cardPacks: [
-    {
-      _id: '61d9fec45b54c80004e5c607',
-      user_id: '61b91c1ca732663958ceb125',
-      user_name: 'Dimond@list.ru',
-      private: false,
-      name: 'asdasd',
-      path: '/def',
-      grade: 0,
-      shots: 0,
-      cardsCount: 2,
-      type: 'pack',
-      rating: 0,
-      created: '2022-01-08T21:14:44.425Z',
-      updated: '2022-01-08T21:15:10.168Z',
-      more_id: '61b91c1ca732663958ceb125',
-      __v: 0,
-    },
-    {
-      _id: '61d9f46b08c08e08bc53603c',
-      user_id: '61b65543655534000420210f',
-      user_name: 'nastyh1233@gmail.com',
-      private: false,
-      name: 'sdsds',
-      path: '/def',
-      grade: 0,
-      shots: 0,
-      cardsCount: 3,
-      type: 'pack',
-      rating: 0,
-      created: '2022-01-08T20:30:35.073Z',
-      updated: '2022-01-08T20:44:59.033Z',
-      more_id: '61b65543655534000420210f',
-      __v: 0,
-    },
-  ],
-  page: 1,
-  pageCount: 8,
-  cardPacksTotalCount: 0,
-  minCardsCount: 0,
-  maxCardsCount: 0,
-  token: null as unknown as string,
-  tokenDeathTime: null as unknown as number,
-  error: null as unknown as string,
-  status: 'idle',
-  modalWindow: {
-    activeModal: false,
-    packName: '',
-    packId: '',
+import { StatusType } from '../app/app-slice';
+
+const packInitialState: PackInitialStateType = {
+  data: {
+    cardPacks: [],
+    page: 1,
+    pageCount: 8,
+    cardPacksTotalCount: null as unknown as number,
+    minCardsCount: null as unknown as number,
+    maxCardsCount: null as unknown as number,
+    token: null as unknown as string,
+    tokenDeathTime: null as unknown as number,
+    error: null as unknown as string,
   },
+  status: 'idle',
 };
-// логика убита!!!
+
 const packSlice = createSlice({
   name: 'pack',
   initialState: packInitialState,
@@ -85,7 +49,6 @@ export const {
 // thanks
 
 // types
-
 export type CardPackType = {
   _id: string;
   user_id: string;
@@ -101,10 +64,8 @@ export type CardPackType = {
   created: string;
   updated: string;
   more_id: string;
-  __v: number;
 };
-
-export type CardsPackType = {
+export type DataPackType = {
   cardPacks: CardPackType[];
   page: number;
   pageCount: number;
@@ -114,11 +75,8 @@ export type CardsPackType = {
   token: string;
   tokenDeathTime: number;
   error: string;
-  status: StatusType;
-  modalWindow: {
-    activeModal: boolean;
-    packName: string;
-    packId: string;
-  };
 };
-type StatusType = 'idle' | 'loading' | 'succeeded' | 'failed';
+export type PackInitialStateType = {
+  data: DataPackType;
+  status: StatusType;
+};

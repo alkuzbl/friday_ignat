@@ -3,7 +3,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useParams } from 'react-router-dom';
 
-import { setNewPassword, StatusType } from '../../../bll/auth-slice';
+import { StatusType } from '../../../app/app-slice';
+import { setNewPassword } from '../../../bll/auth-slice';
 import { AppStoreType } from '../../../bll/store';
 import { AuthBox } from '../../../components/common/AuthBox/AuthBox';
 import { Button } from '../../../components/common/Button';

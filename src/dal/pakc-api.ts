@@ -1,17 +1,10 @@
-import { CardPackType, CardsPackType } from '../bll/pack-slice';
+import { CardPackType, DataPackType } from '../bll/pack-slice';
 
 import { instance } from './instance-axios';
 
 export const packAPI = {
-  getAllPack: (data: RequestGetPayloadPacksType) =>
-    instance.get<Omit<CardsPackType, 'status' & 'activeModal'>>(
-      `cards/pack?page=${data.page}&pageCount=${data.pageCount}`,
-    ),
-
-  getUserPack: (data: RequestGetPayloadPacksType) =>
-    instance.get<Omit<CardsPackType, 'status' & 'activeModal'>>(
-      `cards/pack?user_id=${data.user_id}&page=${data.page}&pageCount=${data.pageCount}`,
-    ),
+  getCardsPack: (data: RequestGetPayloadPacksType) =>
+    instance.get<DataPackType>(`cards/pack`, { params: data }),
 
   createNewPack: (data: RequestPayloadCreatePackType) =>
     instance.post<{ newCardsPack: CardPackType; error: string }>(`cards/pack`, {

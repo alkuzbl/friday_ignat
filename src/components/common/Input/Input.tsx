@@ -16,7 +16,7 @@ type DefaultType = DetailedHTMLProps<
   DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>;
 
 type InputPropsType = DefaultType & {
-  title?: string;
+  label?: string;
   classNameElement?: string;
   style?: CSSProperties;
   type:
@@ -27,8 +27,7 @@ type InputPropsType = DefaultType & {
     | 'checkbox'
     | 'hidden'
     | 'button'
-    | 'submit'
-    | 'textarea';
+    | 'submit';
   placeholder?: string;
   name?: string;
   onChange?: (value: InputChangeEventType) => void;
@@ -42,7 +41,7 @@ export const Input = (props: InputPropsType) => {
   // нужно будет отсюда убрать textArea - в проекте не нежна и компонента лучше будет
   const {
     classNameElement,
-    title,
+    label,
     type,
     placeholder,
     name,
@@ -66,38 +65,23 @@ export const Input = (props: InputPropsType) => {
     onBlur && onBlur();
   };
 
-  const stylesElement =
-    type === 'textarea'
-      ? `${styles.textarea} ${classNameElement || ''}`
-      : `${styles.input} ${classNameElement || ''}`;
+  const stylesElement = `${styles.input} ${classNameElement || ''}`;
 
   return (
     <div className={styles.input__label}>
       <label>
-        {title}
-        {type === 'textarea' ? (
-          <textarea
-            className={stylesElement}
-            style={style || {}}
-            placeholder={placeholder}
-            onChange={onChangeHandler}
-            value={value || ''}
-            name={name || ''}
-            onKeyPress={onKeyPressHandler}
-          />
-        ) : (
-          <input
-            className={stylesElement}
-            style={style || {}}
-            type={type}
-            value={value || ''}
-            placeholder={placeholder}
-            onChange={onChangeHandler}
-            onBlur={onBlurHandler}
-            name={name || ''}
-            onKeyPress={onKeyPressHandler}
-          />
-        )}
+        {label}
+        <input
+          className={stylesElement}
+          style={style || {}}
+          type={type}
+          value={value || ''}
+          placeholder={placeholder}
+          onChange={onChangeHandler}
+          onBlur={onBlurHandler}
+          name={name || ''}
+          onKeyPress={onKeyPressHandler}
+        />
       </label>
     </div>
   );
