@@ -1,7 +1,13 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
 
 import { setIsInitialized } from '../app/app-slice';
-import { authAPI, LoginDataType, RegisterUserDataType, UserType } from '../dal/auth-api';
+import {
+  authAPI,
+  ForgotDataType,
+  LoginDataType,
+  RegisterUserDataType,
+  UserType,
+} from '../dal/auth-api';
 
 const initialState: InitialStateType = {
   user: {} as UserType,
@@ -102,6 +108,20 @@ export const registerUser = (data: RegisterUserDataType) => (dispatch: Dispatch)
   dispatch(setStatus('loading'));
   authAPI
     .setRegistration(data)
+    .then(() => dispatch(setStatus('succeed')))
+    .catch(e => {
+      const error = e.response
+        ? e.response.data.error
+        : `${e.message}, more details in the console`;
+      console.log('Error: ', { ...e });
+      dispatch(setAuthError(error));
+      dispatch(setStatus('failed'));
+    });
+};
+
+export const forgotPassword = (data: ForgotDataType) => (dispatch: Dispatch) => {
+  authAPI
+    .getForgotPassword(data)
     .then(() => dispatch(setStatus('succeed')))
     .catch(e => {
       const error = e.response

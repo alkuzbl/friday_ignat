@@ -25,7 +25,7 @@ export type UpdateUserDataType = {
   name?: string;
   avatar?: string;
 };
-type ForgotDataType = {
+export type ForgotDataType = {
   email: string;
   from: string;
   message: string;
