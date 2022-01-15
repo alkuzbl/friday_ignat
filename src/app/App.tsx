@@ -47,7 +47,7 @@ const App = () => {
 
         <Route path="recovery" element={<RecoveryPassword />} />
 
-        <Route path="new-password" element={<NewPassword />} />
+        <Route path="new-password/:token" element={<NewPassword />} />
 
         <Route path="components" element={<CommonComponents />} />
 
