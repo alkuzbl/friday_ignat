@@ -54,7 +54,8 @@
         "allowExpressions": true
       }
     ],
-    "prettier/prettier": "error",
+    //"prettier/prettier": "error",
+    "prettier/prettier": ["error", { "endOfLine":"auto" }],
     "jsx-a11y/label-has-for": "off",
     "jsx-a11y/label-has-associated-control": "off",
     "react/prop-types": 0,

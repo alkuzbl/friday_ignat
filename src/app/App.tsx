@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
 import './App.css';
+import { getAuthUser } from '../bll/auth-slice';
+import { AppStoreType } from '../bll/store';
 import { CommonComponents } from '../components/common/CommonComponents';
 import { ModalWindow } from '../components/common/ModalWindow/ModalWindow';
+import { Spinner } from '../components/common/Spinner/Spinner';
 import { NotPage } from '../view/404/NotPage';
 import { Login } from '../view/Authentication/Login/Login';
 import { NewPassword } from '../view/Authentication/NewPassword/NewPassword';
@@ -20,6 +24,18 @@ import { CardInfo } from '../view/stand/CardInfo/CardInfo';
 
 const App = () => {
   const [active, setActive] = useState<boolean>(false);
+  const isInitialized = useSelector<AppStoreType, boolean>(
+    state => state.app.isInitialized,
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAuthUser());
+  }, []);
+
+  if (!isInitialized) {
+    return <Spinner />;
+  }
 
   return (
     <div className="App">
@@ -31,7 +47,7 @@ const App = () => {
 
         <Route path="recovery" element={<RecoveryPassword />} />
 
-        <Route path="new-password" element={<NewPassword />} />
+        <Route path="new-password/:token" element={<NewPassword />} />
 
         <Route path="components" element={<CommonComponents />} />
 

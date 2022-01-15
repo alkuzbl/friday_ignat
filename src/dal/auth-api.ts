@@ -25,14 +25,14 @@ export type UpdateUserDataType = {
   name?: string;
   avatar?: string;
 };
-type ForgotDataType = {
+export type ForgotDataType = {
   email: string;
   from: string;
   message: string;
 };
-type NewPasswordDataType = {
+export type NewPasswordDataType = {
   password: string;
-  resetPasswordToken: string;
+  resetPasswordToken: string | undefined;
 };
 export type UserType = {
   _id: string;

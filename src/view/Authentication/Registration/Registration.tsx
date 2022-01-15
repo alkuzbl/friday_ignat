@@ -1,5 +1,10 @@
 import React from 'react';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+
+import { registerUser, StatusType } from '../../../bll/auth-slice';
+import { AppStoreType } from '../../../bll/store';
 import { AuthBox } from '../../../components/common/AuthBox/AuthBox';
 import { Button } from '../../../components/common/Button';
 import { FormControl } from '../../../components/common/FormControl/FormControl';
@@ -15,10 +20,17 @@ type RegistrationFormValuesType = {
 };
 
 export const Registration = () => {
+  const dispatch = useDispatch();
+  const requestStatus = useSelector<AppStoreType, StatusType>(state => state.auth.status);
   const onSubmit = (data: RegistrationFormValuesType) => {
-    console.log(data);
+    if (data.password === data.confirmPassword) {
+      dispatch(registerUser(data));
+    }
   };
 
+  if (requestStatus === 'succeed') {
+    return <Navigate to="/login" />;
+  }
   return (
     <div className="container-center">
       <div className={styles.registration}>
