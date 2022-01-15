@@ -14,9 +14,11 @@ import styles from './RecoveryPassword.module.scss';
 
 export const RecoveryPassword = () => {
   const dispatch = useDispatch();
+
   const message = `<div style='background-color: lime; padding: 15px'>
 password recovery link: 
-<a href='http://localhost:3000/#/new-password/$token$'>link</a></div>`;
+<a href='https://alkuzbl.github.io/friday_ignat/#/new-password/#/new-password/$token$'>link</a></div>`;
+
   const onSubmit = (data: { email: string }) => {
     dispatch(
       forgotPassword({
