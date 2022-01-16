@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { StatusType } from '../app/app-slice';
 
@@ -21,14 +21,23 @@ const packSlice = createSlice({
   name: 'pack',
   initialState: packInitialState,
   reducers: {
-    setPacks: () => {},
-    createPack: () => {},
-    removePack: () => {},
-    updatePack: () => {},
-    setPageCount: () => {},
-    setStatusCardsPack: () => {},
-    setErrorCardsPack: () => {},
-    setActiveModalCardsPack: () => {},
+    setPacks: (state, action: PayloadAction<DataPackType>) => {
+      state.data = action.payload;
+    },
+    updatePack: (state, action: PayloadAction<CardPackType>) => {
+      state.data.cardPacks = state.data.cardPacks.map(pack =>
+        pack._id === action.payload._id ? { ...pack, ...action.payload } : pack,
+      );
+    },
+    setPageCount: (state, action: PayloadAction<{ pageCount: number }>) => {
+      state.data.pageCount = action.payload.pageCount;
+    },
+    setStatusCardsPack: (state, action: PayloadAction<StatusType>) => {
+      state.status = action.payload;
+    },
+    setErrorCardsPack: (state, action: PayloadAction<string>) => {
+      state.data.error = action.payload;
+    },
   },
 });
 
@@ -37,13 +46,10 @@ export const packReducer = packSlice.reducer;
 // actions
 export const {
   setPacks,
-  removePack,
   updatePack,
-  createPack,
   setPageCount,
   setErrorCardsPack,
   setStatusCardsPack,
-  setActiveModalCardsPack,
 } = packSlice.actions;
 
 // thanks
