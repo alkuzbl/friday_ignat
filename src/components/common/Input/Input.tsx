@@ -38,7 +38,6 @@ type InputPropsType = DefaultType & {
 };
 
 export const Input = (props: InputPropsType) => {
-  // нужно будет отсюда убрать textArea - в проекте не нежна и компонента лучше будет
   const {
     classNameElement,
     label,

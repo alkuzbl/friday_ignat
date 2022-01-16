@@ -3,14 +3,13 @@ import React, { useState } from 'react';
 import { Button } from '../../components/common/Button';
 import { CardsPackTable } from '../../components/common/CardsPackTable/CardsPackTable';
 import { DoubleRange } from '../../components/common/DoubleRange/DoubleRange';
+import { Pagination } from '../../components/common/Pagination/Pagination';
+import { SearchForm } from '../../components/common/SearchForm/SearchForm';
 import { RedirectionIfNotAuthorized } from '../../hoc/RedirectionIfNotAuthorized';
 import styles from '../ProfilePage/ProfilePage.module.scss';
 
 import { ButtonsBoxPacksList } from './ButtonsBoxForPacksList/ButtonsBoxPacksList';
-import stylesPack from './CommonPacksList/CardsPackList.module.scss';
-import { Pack } from './CommonPacksList/PackListItem/Pack/Pack';
-import { PacksListSearch } from './PacksListSearch/PacksListSearch';
-import { Pagination } from './Pagination/Pagination';
+import stylesPack from './CardsPackList/CardsPackList.module.scss';
 
 // в этой компоненте еще одна снизу!!!!!!!!!
 const PacksListPage = () => {
@@ -43,7 +42,7 @@ const PacksListPage = () => {
                 }}
               >
                 <div style={{ width: '100%' }}>
-                  <PacksListSearch />
+                  <SearchForm />
                 </div>
 
                 <div
@@ -70,15 +69,3 @@ const PacksListPage = () => {
   );
 };
 export const PacksListPageContainer = RedirectionIfNotAuthorized(PacksListPage);
-export const PackPage = () => (
-  <div className={styles.packsListPage}>
-    <div className="container">
-      <div className={styles.packsListPage__packsList}>
-        <Pack />
-        <div className={styles.packsListPage__pagination}>
-          <Pagination totalCount={1232} selectPage={() => {}} />
-        </div>
-      </div>
-    </div>
-  </div>
-);

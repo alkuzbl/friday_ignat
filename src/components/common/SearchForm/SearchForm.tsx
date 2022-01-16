@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-import { Input, InputChangeEventType } from '../../../components/common/Input/Input';
-import styles from '../../ProfilePage/ProfilePage.module.scss';
+import styles from '../../../view/ProfilePage/ProfilePage.module.scss';
+import { Input, InputChangeEventType } from '../Input/Input';
 
-export const PacksListSearch = () => {
+export const SearchForm = () => {
   const [value, setValue] = useState('');
 
   const onChangeSearch = (e: InputChangeEventType) => {
@@ -14,6 +14,7 @@ export const PacksListSearch = () => {
     <div className={styles.packsList__search}>
       <span className={styles.packsList__searchIcon} />
       {/* //это обычный инпут = можно использывать везде */}
+
       <Input
         type="text"
         onChange={onChangeSearch}

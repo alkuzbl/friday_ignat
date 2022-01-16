@@ -5,7 +5,8 @@ import styles from './InputF.module.scss';
 type InputPropsType = {
   className?: string;
   required?: boolean;
-  label: string;
+  label?: string;
+  placeholder?: string;
   name:
     | 'email'
     | 'password'
@@ -22,7 +23,17 @@ type InputPropsType = {
 };
 
 export const InputF = (props: InputPropsType) => {
-  const { register, name, label, className, errors, type, autoComplete, ...rest } = props;
+  const {
+    register,
+    name,
+    label,
+    placeholder,
+    className,
+    errors,
+    type,
+    autoComplete,
+    ...rest
+  } = props;
 
   const stylesElement = `${styles.input} ${className || ''}`;
   const errorStyleInput = errors[name] ? { border: '1px solid red' } : {};
@@ -32,6 +43,7 @@ export const InputF = (props: InputPropsType) => {
       <label htmlFor={name}>{label}</label>
       <input
         type={type}
+        placeholder={placeholder}
         className={styles.input__input}
         {...register(name)}
         {...rest}

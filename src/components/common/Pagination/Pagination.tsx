@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Link, useParams } from 'react-router-dom';
 
-import { Select } from '../../../components/common/Select/Select';
+import { Select } from '../Select/Select';
 
 import styles from './Pagination.module.scss';
 import { PaginationListItem } from './PaginationListItem/PaginationListItem';

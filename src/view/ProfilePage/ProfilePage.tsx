@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
 import { DoubleRange } from '../../components/common/DoubleRange/DoubleRange';
+import { Pagination } from '../../components/common/Pagination/Pagination';
 import { RedirectionIfNotAuthorized } from '../../hoc/RedirectionIfNotAuthorized';
-import { CardsPackList } from '../PacksListPage/CommonPacksList/CardsPackList';
-import { Pagination } from '../PacksListPage/Pagination/Pagination';
+import { CardsPackList } from '../PacksListPage/CardsPackList/CardsPackList';
 
 import { Profile } from './Profile/Profile';
 import styles from './ProfilePage.module.scss';

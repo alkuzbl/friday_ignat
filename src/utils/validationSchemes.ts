@@ -30,3 +30,6 @@ export const cardInfoValidationSchema = yup.object().shape({
   question: yup.string().required().min(1).max(100),
   name: yup.string().required().min(1).max(100),
 });
+export const searchValidationSchema = yup.object().shape({
+  name: yup.string().max(20),
+});

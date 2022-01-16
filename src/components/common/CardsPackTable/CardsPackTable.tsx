@@ -1,7 +1,7 @@
 import React from 'react';
 
-import styles from '../../../view/PacksListPage/CommonPacksList/CardsPackList.module.scss';
-import { PackListItem } from '../../../view/PacksListPage/CommonPacksList/PackListItem/PackListItem';
+import styles from '../../../view/PacksListPage/CardsPackList/CardsPackList.module.scss';
+import { PackListItem } from '../../../view/PacksListPage/CardsPackList/PackListItem/PackListItem';
 
 export const CardsPackTable = () => (
   <div className={styles.packs__box}>

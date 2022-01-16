@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Button } from '../../../../../components/common/Button';
-import { PacksListSearch } from '../../../PacksListSearch/PacksListSearch';
+import { SearchForm } from '../../../../../components/common/SearchForm/SearchForm';
 import styles from '../../CardsPackList.module.scss';
 
 import { PackItem } from './PackItem/PackItem';
@@ -21,7 +21,7 @@ export const Pack = () => {
         }}
       >
         <div style={{ width: '100%' }}>
-          <PacksListSearch />
+          <SearchForm />
         </div>
 
         <div
