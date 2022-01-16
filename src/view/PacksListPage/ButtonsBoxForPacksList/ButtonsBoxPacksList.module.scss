@@ -20,7 +20,9 @@
   }
 
   &__btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 95px;
     height: 35px;
     border: none;
@@ -34,4 +36,5 @@
 }
 .active{
   background: #9A91C8;
+  pointer-events: none;
 }

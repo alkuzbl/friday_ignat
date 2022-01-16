@@ -14,9 +14,9 @@ import { NewPassword } from '../view/Authentication/NewPassword/NewPassword';
 import { RecoveryPassword } from '../view/Authentication/RecoveryPassword/RecoveryPassword';
 import { Registration } from '../view/Authentication/Registration/Registration';
 import { Header } from '../view/Header/Header';
-import { PackPage, PacksListPage } from '../view/PacksListPage/PacksListPage';
-import { ProfileEdit } from '../view/ProfilePage/Profile/ProfileEdit/ProfileEdit';
-import { ProfilePage } from '../view/ProfilePage/ProfilePage';
+import { PackPage, PacksListPageContainer } from '../view/PacksListPage/PacksListPage';
+import { ProfileEditContainer } from '../view/ProfilePage/Profile/ProfileEdit/ProfileEdit';
+import { ProfilePageContainer } from '../view/ProfilePage/ProfilePage';
 
 import { setInactiveModalWindow } from './app-slice';
 
@@ -46,12 +46,18 @@ const App = () => {
         <Route path="recovery" element={<RecoveryPassword />} />
         <Route path="new-password/:token" element={<NewPassword />} />
         {/* разобраться с логикой страниц, пагинацию пока не трогаем, также как и переходы по страницам в card and pack */}
-        <Route path="packs-list" element={<PacksListPage />} />
-        <Route path="packs-list/:packId" element={<PackPage />} />
+        <Route path="packs-list" element={<Navigate to="cards-pack/all" />} />
+        <Route path="packs-list/cards-pack/my" element={<PacksListPageContainer />} />
+        <Route path="packs-list/cards-pack/all" element={<PacksListPageContainer />} />
+        <Route path="packs-list/cards-pack/:packId" element={<PackPage />} />
 
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/profile/:userId" element={<ProfilePage />} />
-        <Route path="profile/user/pack-page/:currentPage" element={<ProfileEdit />} />
+        <Route path="/profile" element={<Navigate to="user/pack-page/1" />} />
+        <Route path="/profile/:userId/pack-page/1" element={<ProfilePageContainer />} />
+        <Route path="/profile/user/edit" element={<ProfileEditContainer />} />
+        <Route
+          path="profile/user/pack-page/:currentPage"
+          element={<ProfilePageContainer />}
+        />
 
         <Route path="/" element={<Navigate to="profile" />} />
         <Route path="*" element={<NotPage />} />

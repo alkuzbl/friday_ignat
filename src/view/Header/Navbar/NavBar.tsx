@@ -2,10 +2,10 @@ import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import iconCard from '../../../issets/images/card.svg';
-import iconProfile from '../../../issets/images/profile.svg';
+import iconCard from '../../../assets/images/card.svg';
+import iconProfile from '../../../assets/images/profile.svg';
 import styles from '../Header.module.scss';
-// стили для активного NavLink/ react-router-dom v.6 поменял логику стилей
+
 const setActiveStylesForMenu = (isActive: {}) =>
   isActive ? `${styles.navbar__item} ${styles.active}` : styles.navbar__item;
 

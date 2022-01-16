@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import iconEditError from '../../../issets/images/edit_icon-error.svg';
-import iconEdit from '../../../issets/images/edit_icon.svg';
+import iconEditError from '../../../assets/images/edit_icon-error.svg';
+import iconEdit from '../../../assets/images/edit_icon.svg';
 import { FormStateType } from '../../../view/Authentication/Login/Login';
 import { InputChangeEventType } from '../Input/Input';
 

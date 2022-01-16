@@ -1,6 +1,6 @@
 import React from 'react';
 
-import icon from '../../../issets/images/iconEmail.svg';
+import icon from '../../../assets/images/iconEmail.svg';
 import { AuthBox } from '../AuthBox/AuthBox';
 
 import styles from './PopupEmail.module.scss';

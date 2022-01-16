@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 
+import avatar from '../../../../assets/images/user_icon.svg';
 import { Button } from '../../../../components/common/Button';
 import { EditableSpan } from '../../../../components/common/EditableSpan/EditableSpan';
 import { FormControl } from '../../../../components/common/Form/FormControl/FormControl';
-import avatar from '../../../../issets/images/user_icon.svg';
+import { RedirectionIfNotAuthorized } from '../../../../hoc/RedirectionIfNotAuthorized';
 import { FormStateType } from '../../../Authentication/Login/Login';
 import { UserImageBox } from '../UserImageBox/UserImageBox';
 
 import styles from './ProfileEdit.module.scss';
 
-export const ProfileEdit = () => {
+const ProfileEdit = () => {
   const [value, setValue] = useState<FormStateType>({ name: 'Sasha' });
   const savingEditableUserData = () => {
     console.log(value);
@@ -53,3 +54,5 @@ export const ProfileEdit = () => {
     </div>
   );
 };
+
+export const ProfileEditContainer = RedirectionIfNotAuthorized(ProfileEdit);

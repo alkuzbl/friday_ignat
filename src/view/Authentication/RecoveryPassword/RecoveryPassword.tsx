@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate, NavLink } from 'react-router-dom';
 
 import { forgotPassword } from '../../../bll/auth-slice';
+import { AppStoreType } from '../../../bll/store';
 import { AuthBox } from '../../../components/common/AuthBox/AuthBox';
 import { Button } from '../../../components/common/Button';
 import { FormControl } from '../../../components/common/FormControl/FormControl';
@@ -13,11 +14,16 @@ import { recoveryValidationSchema } from '../../../utils/validationSchemes';
 import styles from './RecoveryPassword.module.scss';
 
 export const RecoveryPassword = () => {
+  const isAuth = useSelector<AppStoreType, boolean>(state => state.auth.isAuth);
   const dispatch = useDispatch();
 
   const message = `<div style='background-color: lime; padding: 15px'>
 password recovery link: 
-<a href='https://alkuzbl.github.io/friday_ignat/#/new-password/#/new-password/$token$'>link</a></div>`;
+<a href='https://alkuzbl.github.io/friday_ignat/#/new-password/$token$'>link</a></div>`;
+
+  if (isAuth) {
+    return <Navigate to="/profile" />;
+  }
 
   const onSubmit = (data: { email: string }) => {
     dispatch(

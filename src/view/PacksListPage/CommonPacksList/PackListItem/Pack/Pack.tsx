@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Button } from '../../../../../components/common/Button';
 import { PacksListSearch } from '../../../PacksListSearch/PacksListSearch';
-import styles from '../../CommonPacksList.module.scss';
+import styles from '../../CardsPackList.module.scss';
 
 import { PackItem } from './PackItem/PackItem';
 

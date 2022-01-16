@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import styles from '../CommonPacksList.module.scss';
+import styles from '../CardsPackList.module.scss';
 
 import { ActionButton } from './ActionButton/ActionButton';
 import { ActionEditButtons } from './ActionEditButtons/ActionButtons';
@@ -25,7 +25,7 @@ export const PackListItem = (props: PackListItemPropsType) => {
   return (
     <div className={styleItem}>
       <p className={styles.packs__itemContent}>
-        <Link to={`/packs-list/${packId}`}>{packName}</Link>
+        <Link to={`/packs-list/cards-pack/${packId}`}>{packName}</Link>
       </p>
       <p className={styles.packs__itemContent}>{count}</p>
       <p className={styles.packs__itemContent}>{date}</p>

@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 
 import { Button } from '../../components/common/Button';
+import { CardsPackTable } from '../../components/common/CardsPackTable/CardsPackTable';
 import { DoubleRange } from '../../components/common/DoubleRange/DoubleRange';
+import { RedirectionIfNotAuthorized } from '../../hoc/RedirectionIfNotAuthorized';
 import styles from '../ProfilePage/ProfilePage.module.scss';
 
 import { ButtonsBoxPacksList } from './ButtonsBoxForPacksList/ButtonsBoxPacksList';
-import stylesPack from './CommonPacksList/CommonPacksList.module.scss';
+import stylesPack from './CommonPacksList/CardsPackList.module.scss';
 import { Pack } from './CommonPacksList/PackListItem/Pack/Pack';
-import { PackListItem } from './CommonPacksList/PackListItem/PackListItem';
 import { PacksListSearch } from './PacksListSearch/PacksListSearch';
 import { Pagination } from './Pagination/Pagination';
 
 // в этой компоненте еще одна снизу!!!!!!!!!
-export const PacksListPage = () => {
+const PacksListPage = () => {
   // потом положить в redux, в зависимости что искать нужно
   const [valueRangeSlider, setValueRangeSlider] = useState<number[]>([0, 100]);
-
+  console.log('packListPage');
   const onChangeRange = (value: number[]) => setValueRangeSlider(value);
 
   return (
@@ -57,82 +58,7 @@ export const PacksListPage = () => {
                 </div>
               </div>
 
-              <div className={stylesPack.packs__box}>
-                <div className={stylesPack.packs__itemsTitle}>
-                  <h4 className={stylesPack.packs__itemTitle}>Name</h4>
-                  <h4 className={stylesPack.packs__itemTitle}>Cards</h4>
-                  <div className={stylesPack.packs__itemSort}>
-                    <h4 className={stylesPack.packs__itemTitle}>Last Updated</h4>
-                    <span>X</span>
-                  </div>
-                  <h4 className={stylesPack.packs__itemTitle}>Created by</h4>
-                  <h4 className={stylesPack.packs__itemTitle}>Actions</h4>
-                </div>
-                {/* //это для верстки - в дальнейшем нужно мапить один элемент PackListItem и передавать туда значения с сервера */}
-                <PackListItem
-                  packId="1"
-                  index={1}
-                  packName="PackName"
-                  userName="Ivanm Ivanov"
-                  count={4}
-                  date="18.03.2021"
-                  myCard
-                />
-                <PackListItem
-                  packId="1"
-                  index={2}
-                  packName="PackName"
-                  userName="Ivan Kozlov"
-                  count={112}
-                  date="12.03.2021"
-                  myCard
-                />
-                <PackListItem
-                  packId="1"
-                  index={3}
-                  packName="PackName"
-                  userName="Ivan Markov"
-                  count={44}
-                  date="28.05.2021"
-                  myCard={false}
-                />
-                <PackListItem
-                  packId="1"
-                  index={4}
-                  packName="PackName"
-                  userName="Ivan Markov"
-                  count={44}
-                  date="28.05.2021"
-                  myCard
-                />
-                <PackListItem
-                  packId="1"
-                  index={5}
-                  packName="PackName"
-                  userName="Ivan Markov"
-                  count={44}
-                  date="28.05.2021"
-                  myCard
-                />
-                <PackListItem
-                  packId="1"
-                  index={6}
-                  packName="PackName"
-                  userName="Ivan Markov"
-                  count={44}
-                  date="28.05.2021"
-                  myCard={false}
-                />
-                <PackListItem
-                  packId="1"
-                  index={7}
-                  packName="PackName"
-                  userName="Ivan Markov"
-                  count={44}
-                  date="28.05.2021"
-                  myCard
-                />
-              </div>
+              <CardsPackTable />
             </div>
             <div className={styles.profilePage__pagination}>
               <Pagination totalCount={1232} selectPage={() => {}} />
@@ -143,7 +69,7 @@ export const PacksListPage = () => {
     </div>
   );
 };
-
+export const PacksListPageContainer = RedirectionIfNotAuthorized(PacksListPage);
 export const PackPage = () => (
   <div className={styles.packsListPage}>
     <div className="container">

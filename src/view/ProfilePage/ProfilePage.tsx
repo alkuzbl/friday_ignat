@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
 
-import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
-
-import { AppStoreType } from '../../bll/store';
 import { DoubleRange } from '../../components/common/DoubleRange/DoubleRange';
-import { CommonPacksList } from '../PacksListPage/CommonPacksList/CommonPacksList';
+import { RedirectionIfNotAuthorized } from '../../hoc/RedirectionIfNotAuthorized';
+import { CardsPackList } from '../PacksListPage/CommonPacksList/CardsPackList';
 import { Pagination } from '../PacksListPage/Pagination/Pagination';
 
 import { Profile } from './Profile/Profile';
 import styles from './ProfilePage.module.scss';
 
-export const ProfilePage = () => {
-  const isAuth = useSelector<AppStoreType, boolean>(state => state.auth.isAuth);
-
+const ProfilePage = () => {
   // потом положить в redux, в зависимости что искать нужно
   const [valueRangeSlider, setValueRangeSlider] = useState<number[]>([0, 100]);
 
@@ -25,9 +20,8 @@ export const ProfilePage = () => {
   const setPageCountForPacks = (value: number) => {
     console.log(value);
   };
-  if (!isAuth) {
-    return <Navigate to="/login" />;
-  }
+  console.log('profilePage');
+
   return (
     <div className={styles.profilePage}>
       <div className="container">
@@ -40,7 +34,7 @@ export const ProfilePage = () => {
             </div>
           </div>
           <div className={styles.profilePage__packsList}>
-            <CommonPacksList />
+            <CardsPackList />
             <div className={styles.profilePage__pagination}>
               <Pagination
                 totalCount={3434}
@@ -56,3 +50,5 @@ export const ProfilePage = () => {
     </div>
   );
 };
+
+export const ProfilePageContainer = RedirectionIfNotAuthorized(ProfilePage);

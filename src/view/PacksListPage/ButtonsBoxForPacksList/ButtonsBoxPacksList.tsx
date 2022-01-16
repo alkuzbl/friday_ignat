@@ -1,34 +1,50 @@
-import React, { useState } from 'react';
+import React from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+
+import { AppStoreType } from '../../../bll/store';
 
 import styles from './ButtonsBoxPacksList.module.scss';
 
 export const ButtonsBoxPacksList = () => {
-  const [active, setActive] = useState<boolean>(true);
+  const myId = useSelector<AppStoreType, string>(state => state.auth.user._id);
+  const pageCount = useSelector<AppStoreType, number>(
+    state => state.packs.data.pageCount,
+  );
+
+  const dispatch = useDispatch();
+
   const getMyCards = () => {
-    setActive(!active);
+    console.log(dispatch, myId, pageCount);
+    // dispatch нужных параметров
   };
   const getAllCards = () => {
-    setActive(!active);
+    // dispatch нужных параметров
   };
-  const activeStyle = `${styles.buttonBox__btn} ${styles.active}`;
+  const setActiveStylesForMenu = (isActive: {}) =>
+    isActive ? `${styles.buttonBox__btn} ${styles.active}` : styles.buttonBox__btn;
+
   return (
     <div className={styles.buttonBox}>
       <h3 className={styles.buttonBox__title}>Show packs cards</h3>
       <div className={styles.buttonBox__inner}>
-        <button
-          className={!active ? activeStyle : styles.buttonBox__btn}
+        <NavLink
+          className={({ isActive }) => setActiveStylesForMenu(isActive)}
           type="button"
           onClick={getMyCards}
+          to="/packs-list/cards-pack/my"
         >
           My
-        </button>
-        <button
-          className={active ? activeStyle : styles.buttonBox__btn}
+        </NavLink>
+        <NavLink
+          className={({ isActive }) => setActiveStylesForMenu(isActive)}
           type="button"
           onClick={getAllCards}
+          to="/packs-list/cards-pack/all"
         >
           All
-        </button>
+        </NavLink>
       </div>
     </div>
   );

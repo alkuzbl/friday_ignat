@@ -1,6 +1,6 @@
 import React from 'react';
 
-import userIcon from '../../../../issets/images/user_icon.svg';
+import userIcon from '../../../../assets/images/user_icon.svg';
 
 import styles from './UserImageBox.module.scss';
 

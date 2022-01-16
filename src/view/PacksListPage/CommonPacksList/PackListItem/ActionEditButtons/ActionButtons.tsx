@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Button } from '../../../../../components/common/Button';
-import styles from '../../CommonPacksList.module.scss';
+import styles from '../../CardsPackList.module.scss';
 
 type ActionEditButtonsPropsType = {
   packId: string;
