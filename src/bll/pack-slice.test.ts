@@ -4,6 +4,7 @@ import {
   packReducer,
   setErrorCardsPack,
   setPacks,
+  setPage,
   setPageCount,
   setStatusCardsPack,
   updatePack,
@@ -180,4 +181,11 @@ test('An error should be added to the cardsPack', () => {
 
   expect(testState.data.error).toBe('Test error');
   expect(testState.data.pageCount).toBe(4); // проверяю, что не перезатер data
+});
+
+test('The page should be updated', () => {
+  const testState = packReducer(packInitialState, setPage({ page: 123 }));
+
+  expect(testState.data.page).toBe(123);
+  expect(packInitialState.data.page).toBe(1);
 });

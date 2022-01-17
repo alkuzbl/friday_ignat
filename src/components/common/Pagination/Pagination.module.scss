@@ -1,6 +1,5 @@
 .pagination {
   display: flex;
-
   &__box {
     display: flex;
     font-weight: 400;
@@ -27,15 +26,14 @@
   }
 
   &__listItem {
-    width: 25px;
-    height: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin-right: 12px;
     color: #2D2E46;
-
     a {
+      width: 25px;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: inherit;
     }
   }
@@ -43,7 +41,6 @@
   &__countPages {
     display: flex;
     align-items: center;
-
     p {
       margin-right: 12px;
     }
@@ -75,5 +72,4 @@
 .active {
   background-color: #21268F;
   color: #F2F5F7;
-  cursor: pointer;
 }

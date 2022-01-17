@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import styles from '../Pagination.module.scss';
 
 type PaginationListItemPropsType = {
-  currentValue?: number | string | undefined;
+  currentValue: number | string | undefined;
   value: number;
   link: string;
   onClick: (value: number) => void;

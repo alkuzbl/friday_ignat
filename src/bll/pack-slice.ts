@@ -1,12 +1,13 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
 
 import { StatusType } from '../app/app-slice';
+import { packAPI, RequestGetPayloadPacksType } from '../dal/pakc-api';
 
 const packInitialState: PackInitialStateType = {
   data: {
     cardPacks: [],
     page: 1,
-    pageCount: 8,
+    pageCount: 6,
     cardPacksTotalCount: null as unknown as number,
     minCardsCount: null as unknown as number,
     maxCardsCount: null as unknown as number,
@@ -32,6 +33,9 @@ const packSlice = createSlice({
     setPageCount: (state, action: PayloadAction<{ pageCount: number }>) => {
       state.data.pageCount = action.payload.pageCount;
     },
+    setPage: (state, action: PayloadAction<{ page: number }>) => {
+      state.data.page = action.payload.page;
+    },
     setStatusCardsPack: (state, action: PayloadAction<StatusType>) => {
       state.status = action.payload;
     },
@@ -50,9 +54,25 @@ export const {
   setPageCount,
   setErrorCardsPack,
   setStatusCardsPack,
+  setPage,
 } = packSlice.actions;
 
 // thanks
+export const getCardsPack =
+  (data: RequestGetPayloadPacksType) => async (dispatch: Dispatch) => {
+    dispatch(setStatusCardsPack('loading'));
+    try {
+      const res = await packAPI.getCardsPack(data);
+      dispatch(setPacks(res.data));
+      dispatch(setStatusCardsPack('succeed'));
+    } catch (e: any) {
+      const error = e.response
+        ? e.response.data.error
+        : `${e.message}, more details in the console`;
+      dispatch(setErrorCardsPack(error));
+      dispatch(setStatusCardsPack('failed'));
+    }
+  };
 
 // types
 export type CardPackType = {

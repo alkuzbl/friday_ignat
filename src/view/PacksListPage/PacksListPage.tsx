@@ -60,7 +60,14 @@ const PacksListPage = () => {
               <CardsPackTable />
             </div>
             <div className={styles.profilePage__pagination}>
-              <Pagination totalCount={1232} selectPage={() => {}} />
+              <Pagination
+                totalCount={1}
+                selectPage={() => {}}
+                setCountItem={() => {}}
+                pageCount={8}
+                pathToUrl="..."
+                optionValue={[1, 2, 3, 4, 5, 6, 7, 8]}
+              />
             </div>
           </div>
         </div>

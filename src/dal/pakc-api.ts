@@ -23,7 +23,7 @@ export const packAPI = {
 };
 
 // types request
-type RequestGetPayloadPacksType = {
+export type RequestGetPayloadPacksType = {
   packName?: string;
   min?: number;
   max?: number;

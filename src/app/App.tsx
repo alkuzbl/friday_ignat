@@ -50,7 +50,7 @@ const App = () => {
         <Route path="packs-list" element={<Navigate to="cards-pack/all" />} />
         <Route path="packs-list/cards-pack/my" element={<PacksListPageContainer />} />
         <Route path="packs-list/cards-pack/all" element={<PacksListPageContainer />} />
-        <Route path="packs-list/cards-pack/:packId" element={<CardsList />} />
+        <Route path="packs-list/cards-pack/:packId/1" element={<CardsList />} />
 
         <Route path="/profile" element={<Navigate to="user/pack-page/1" />} />
         <Route path="/profile/:userId/pack-page/1" element={<ProfilePageContainer />} />
