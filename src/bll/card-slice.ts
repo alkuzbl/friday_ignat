@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { StatusType } from '../app/app-slice';
 
+import { setLogout } from './auth-slice';
+
 const cardsInitialState: CardsInitialStateType = {
   data: {
     cards: [],
@@ -29,6 +31,22 @@ const cardsSlice = createSlice({
     setPageCount: () => {},
     setErrorCard: () => {},
     setStatusCard: () => {},
+  },
+  extraReducers: builder => {
+    builder.addCase(setLogout, state => {
+      state.data = {
+        cards: [],
+        packUserId: null as never as string,
+        page: 1,
+        pageCount: 8,
+        cardsTotalCount: null as never as number,
+        minGrade: null as never as number,
+        maxGrade: null as never as number,
+        token: null as never as string,
+        tokenDeathTime: null as never as number,
+        error: null,
+      };
+    });
   },
 });
 

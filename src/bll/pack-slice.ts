@@ -7,6 +7,7 @@ import {
 } from '../app/app-slice';
 import { packAPI, RequestGetPayloadPacksType } from '../dal/pack-api';
 
+import { setLogout } from './auth-slice';
 import { AppStoreType } from './store';
 
 const packInitialState: PackInitialStateType = {
@@ -51,6 +52,21 @@ const packSlice = createSlice({
     clearCardPacksData: state => {
       state.data.cardPacks = [];
     },
+  },
+  extraReducers: builder => {
+    builder.addCase(setLogout, state => {
+      state.data = {
+        cardPacks: [],
+        page: 1,
+        pageCount: 6,
+        cardPacksTotalCount: null as unknown as number,
+        minCardsCount: null as unknown as number,
+        maxCardsCount: null as unknown as number,
+        token: null as unknown as string,
+        tokenDeathTime: null as unknown as number,
+        error: null as unknown as string,
+      };
+    });
   },
 });
 
