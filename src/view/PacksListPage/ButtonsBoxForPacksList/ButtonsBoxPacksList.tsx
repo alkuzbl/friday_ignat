@@ -33,7 +33,7 @@ export const ButtonsBoxPacksList = () => {
           className={({ isActive }) => setActiveStylesForMenu(isActive)}
           type="button"
           onClick={getMyCards}
-          to="/packs-list/cards-pack/my"
+          to="/packs-list/cards-pack/my/1"
         >
           My
         </NavLink>
@@ -41,7 +41,7 @@ export const ButtonsBoxPacksList = () => {
           className={({ isActive }) => setActiveStylesForMenu(isActive)}
           type="button"
           onClick={getAllCards}
-          to="/packs-list/cards-pack/all"
+          to="/packs-list/cards-pack/all/1"
         >
           All
         </NavLink>

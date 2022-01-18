@@ -16,7 +16,7 @@ export const NavBar = () => {
   return (
     <div className={styles.navbar}>
       <NavLink
-        to="/packs-list"
+        to="/packs-list/cards-pack/all/1"
         className={({ isActive }) => setActiveStylesForMenu(isActive)}
       >
         <img src={iconCard} alt="Packs list" />

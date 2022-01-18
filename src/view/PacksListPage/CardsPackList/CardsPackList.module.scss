@@ -77,6 +77,16 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+.packCardsAll {
+  &__itemsTitle {
+    grid-template-columns: 1fr 1fr 150px 150px;
+  }
+
+  &__item {
+    grid-template-columns: 1fr 1fr 150px 150px;
+  }
+
+}
 
 .dark {
   background-color: #F8F7FD;

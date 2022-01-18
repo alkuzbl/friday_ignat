@@ -1,17 +1,27 @@
 import React from 'react';
 
-import styles from '../../ProfilePage/ProfilePage.module.scss';
-import { Pack } from '../CardsPackList/PackListItem/Pack/Pack';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-export const CardsList = () => (
-  <div className={styles.packsListPage}>
-    <div className="container">
-      <div className={styles.packsListPage__packsList}>
-        <Pack />
-        <div className={styles.packsListPage__pagination}>
-          {/* <Pagination totalCount={1232} selectPage={() => {}} /> */}
+import { AppStoreType } from '../../../bll/store';
+import styles from '../../ProfilePage/ProfilePage.module.scss';
+
+import { PackageCardsAll } from './PackageCardsAll/PackageCardsAll';
+import { PackageCardsMe } from './PackageCardsMe/PackageCardsMe';
+
+export const CardsList = () => {
+  const myId = useSelector<AppStoreType, string>(state => state.auth.user._id);
+  const { userId } = useParams<'userId'>();
+  return (
+    <div className={styles.packsListPage}>
+      <div className="container">
+        <div className={styles.packsListPage__packsList}>
+          {myId === userId ? <PackageCardsMe /> : <PackageCardsAll />}
+          <div className={styles.packsListPage__pagination}>
+            {/* <Pagination totalCount={1232} selectPage={() => {}} /> */}
+          </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};

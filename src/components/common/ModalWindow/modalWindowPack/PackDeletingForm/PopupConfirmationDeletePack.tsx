@@ -1,16 +1,22 @@
 import React from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { setInactiveModalWindow } from '../../../../../app/app-slice';
+import {
+  ModalWindowPackType,
+  setInactiveModalWindow,
+} from '../../../../../app/app-slice';
 import { deleteCardsPack } from '../../../../../bll/pack-slice';
+import { AppStoreType } from '../../../../../bll/store';
 import { Button } from '../../../Button';
 
 import styles from './PopupConfirmationProcessing.module.scss';
 
 export const PackDeletingForm = () => {
   const dispatch = useDispatch();
-
+  const { name } = useSelector<AppStoreType, ModalWindowPackType>(
+    state => state.app.modalWindow.modalWindowData,
+  );
   const deletePack = () => dispatch(deleteCardsPack());
   const cancel = () => dispatch(setInactiveModalWindow());
 
@@ -24,7 +30,7 @@ export const PackDeletingForm = () => {
         <Button title="X" type="button" view="popup-close" onClick={cancel} />
       </div>
       <p className={styles.popup__content}>
-        Do you really want to remove <span>Pack Name - PAckName</span> <br />
+        Do you really want to remove <span>Pack Name - {name}</span> <br />
         All cards will be excluded from this course.
       </p>
       <div className={styles.popup__buttonsInner}>

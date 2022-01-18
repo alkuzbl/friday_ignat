@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import './App.css';
 import { getAuthUser } from '../bll/auth-slice';
@@ -46,16 +46,15 @@ const App = () => {
         <Route path="registration" element={<Registration />} />
         <Route path="recovery" element={<RecoveryPassword />} />
         <Route path="new-password/:token" element={<NewPassword />} />
-        {/* разобраться с логикой страниц, пагинацию пока не трогаем, также как и переходы по страницам в card and pack */}
 
-        <Route path="packs-list" element={<Navigate to="cards-pack/all" />} />
-        <Route path="packs-list/cards-pack/my" element={<PacksListPageContainer />} />
-        <Route path="packs-list/cards-pack/all" element={<PacksListPageContainer />} />
         <Route
-          path="packs-list/cards-pack/all/:currentPage"
+          path="packs-list/:userId/pack/:packId/:currentPage"
+          element={<CardsList />}
+        />
+        <Route
+          path="packs-list/cards-pack/:me/:currentPage"
           element={<PacksListPageContainer />}
         />
-        <Route path="packs-list/cards-pack/:packId/1" element={<CardsList />} />
 
         <Route path="profile">
           <Route

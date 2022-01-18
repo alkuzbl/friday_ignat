@@ -28,7 +28,7 @@ export const AddNewPack = () => {
         answer sheets ...
       </p>
       <FormControl onSubmit={onSubmit} defaultValues={createPackValidationSchema}>
-        <InputF label="Pack name" name="name" type="text" />
+        <InputF label="PackageCardsMe name" name="name" type="text" />
         <div className={styles.popup__buttonsInner}>
           <Button
             title="Cancel"

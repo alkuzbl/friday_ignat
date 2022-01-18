@@ -1,17 +1,17 @@
 import React from 'react';
 
-import { Button } from '../../../../../../components/common/Button';
-import styles from '../../../CardsPackList.module.scss';
-import { Grade } from '../Grade/Grade';
+import { Button } from '../../../../../components/common/Button';
+import { Grade } from '../../../../../components/common/Grade/Grade';
+import styles from '../../../CardsPackList/CardsPackList.module.scss';
 
-type PackItemPropsType = {
+type PackageItemForMePropsType = {
   columnOne: string;
   columnTwo: string;
   columnThree: string;
   columnFour: number;
   index: number;
 };
-export const PackItem = (props: PackItemPropsType) => {
+export const PackageItemForMe = (props: PackageItemForMePropsType) => {
   const { columnOne, columnTwo, columnThree, columnFour, index } = props;
 
   const onClickDelete = () => {};

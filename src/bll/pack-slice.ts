@@ -104,12 +104,12 @@ export const deleteCardsPack =
   () => async (dispatch: Dispatch<any>, getState: () => AppStoreType) => {
     const secondState = getState();
     // @ts-ignore
-    const { id } = secondState.app.modalWindow.modalWindowData;
+    const { _id } = secondState.app.modalWindow.modalWindowData;
     const userId = secondState.auth.user._id;
     const { page, pageCount } = secondState.packs.data;
     dispatch(setStatusCardsPack('loading'));
     try {
-      await packAPI.deletePack({ id });
+      await packAPI.deletePack({ id: _id });
       dispatch(getCardsPack({ user_id: userId, page, pageCount }));
       dispatch(setStatusCardsPack('succeed'));
     } catch (e: any) {
