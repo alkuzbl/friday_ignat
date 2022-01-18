@@ -4,14 +4,14 @@ import { Grade } from '../../../../../components/common/Grade/Grade';
 import styles from '../../../CardsPackList/CardsPackList.module.scss';
 
 type PackItemForAllPropsType = {
-  columnOne: string;
-  columnTwo: string;
-  columnThree: string;
-  columnFour: number;
+  question: string;
+  answer: string;
+  date: string;
+  rating: number;
   index: number;
 };
 export const PackageItemForAll = (props: PackItemForAllPropsType) => {
-  const { columnOne, columnTwo, columnThree, columnFour, index } = props;
+  const { question, answer, date, rating, index } = props;
 
   const styleItem =
     index % 2 === 0
@@ -20,11 +20,11 @@ export const PackageItemForAll = (props: PackItemForAllPropsType) => {
 
   return (
     <div className={styleItem}>
-      <p className={styles.packs__itemContent}>{columnOne}</p>
-      <p className={styles.packs__itemContent}>{columnTwo}</p>
-      <p className={styles.packs__itemContent}>{columnThree}</p>
+      <p className={styles.packs__itemContent}>{question}</p>
+      <p className={styles.packs__itemContent}>{answer}</p>
+      <p className={styles.packs__itemContent}>{date}</p>
       <div className={styles.packs__itemContent}>
-        <Grade score={columnFour} />
+        <Grade score={rating} />
       </div>
     </div>
   );

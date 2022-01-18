@@ -1,24 +1,48 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { getAllCards, setPage } from '../../../bll/card-slice';
 import { AppStoreType } from '../../../bll/store';
+import { Pagination } from '../../../components/common/Pagination/Pagination';
 import styles from '../../ProfilePage/ProfilePage.module.scss';
 
 import { PackageCardsAll } from './PackageCardsAll/PackageCardsAll';
 import { PackageCardsMe } from './PackageCardsMe/PackageCardsMe';
 
 export const CardsList = () => {
+  const dispatch = useDispatch();
   const myId = useSelector<AppStoreType, string>(state => state.auth.user._id);
+  const cardsTotalCount = useSelector<AppStoreType, number>(
+    state => state.cards.data.cardsTotalCount,
+  );
+  const pageCount = useSelector<AppStoreType, number>(
+    state => state.cards.data.pageCount,
+  );
+  const currentPage = useSelector<AppStoreType, number>(state => state.cards.data.page);
   const { userId } = useParams<'userId'>();
+  const { packId } = useParams<'packId'>();
+
+  const selectPage = (page: number) => dispatch(setPage({ page }));
+
+  useEffect(() => {
+    dispatch(
+      getAllCards({ cardsPack_id: packId as string, page: currentPage, pageCount }),
+    );
+  }, [packId, currentPage, pageCount]);
   return (
     <div className={styles.packsListPage}>
       <div className="container">
         <div className={styles.packsListPage__packsList}>
           {myId === userId ? <PackageCardsMe /> : <PackageCardsAll />}
           <div className={styles.packsListPage__pagination}>
-            {/* <Pagination totalCount={1232} selectPage={() => {}} /> */}
+            <Pagination
+              totalCount={cardsTotalCount}
+              selectPage={selectPage}
+              pathToUrl={`packs-list/${userId}/pack/${packId}`}
+              pageCount={pageCount}
+            />
           </div>
         </div>
       </div>

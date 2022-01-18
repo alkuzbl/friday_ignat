@@ -1,5 +1,10 @@
 import React from 'react';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+
+import { addNewCard, CardType } from '../../../../bll/card-slice';
+import { AppStoreType } from '../../../../bll/store';
 import { Button } from '../../../../components/common/Button';
 import { SearchForm } from '../../../../components/common/SearchForm/SearchForm';
 import styles from '../../CardsPackList/CardsPackList.module.scss';
@@ -7,8 +12,20 @@ import styles from '../../CardsPackList/CardsPackList.module.scss';
 import { PackageItemForMe } from './PackageItemForMe/PackageItemForMe';
 
 export const PackageCardsMe = () => {
-  // потом удалить когда будет редакс
-  const title = 'PackageCardsMe name';
+  const cards = useSelector<AppStoreType, CardType[]>(state => state.cards.data.cards);
+  const { packId } = useParams<'packId'>();
+  const dispatch = useDispatch();
+  const title = 'Pack name';
+
+  const onAddCardButtonClick = () => {
+    dispatch(
+      addNewCard({
+        cardsPack_id: packId as string,
+        question: 'What?',
+        answer: 'Nothing',
+      }),
+    );
+  };
 
   return (
     <div className={styles.packs}>
@@ -32,7 +49,12 @@ export const PackageCardsMe = () => {
             marginLeft: '25px',
           }}
         >
-          <Button title="Add new card" type="button" view="default" />
+          <Button
+            title="Add new card"
+            type="button"
+            view="default"
+            onClick={onAddCardButtonClick}
+          />
         </div>
       </div>
 
@@ -47,63 +69,17 @@ export const PackageCardsMe = () => {
           <h4>Grade</h4>
           <h4>Actions</h4>
         </div>
-        {/* должен быть массив из редакса */}
-        <PackageItemForMe
-          columnOne={'How "This" works in JavaScript?'}
-          columnTwo={'This is how "This" works in JavaScript'}
-          columnThree="18.03.2021"
-          columnFour={3}
-          index={1}
-        />
-        <PackageItemForMe
-          columnOne={'How "This" works in JavaScript?'}
-          columnTwo={'This is how "This" works in JavaScript'}
-          columnThree="18.03.2021"
-          columnFour={4}
-          index={2}
-        />
-        <PackageItemForMe
-          columnOne={'How "This" works in JavaScript?'}
-          columnTwo={'This is how "This" works in JavaScript'}
-          columnThree="18.03.2021"
-          columnFour={1}
-          index={3}
-        />
-        <PackageItemForMe
-          columnOne={'How "This" works in JavaScript?'}
-          columnTwo={'This is how "This" works in JavaScript'}
-          columnThree="18.03.2021"
-          columnFour={5}
-          index={4}
-        />
-        <PackageItemForMe
-          columnOne={'How "This" works in JavaScript?'}
-          columnTwo={'This is how "This" works in JavaScript'}
-          columnThree="18.03.2021"
-          columnFour={3}
-          index={5}
-        />
-        <PackageItemForMe
-          columnOne={'How "This" works in JavaScript?'}
-          columnTwo={'This is how "This" works in JavaScript'}
-          columnThree="18.03.2021"
-          columnFour={3}
-          index={6}
-        />
-        <PackageItemForMe
-          columnOne={'How "This" works in JavaScript?'}
-          columnTwo={'This is how "This" works in JavaScript'}
-          columnThree="18.03.2021"
-          columnFour={2}
-          index={7}
-        />
-        <PackageItemForMe
-          columnOne={'How "This" works in JavaScript?'}
-          columnTwo={'This is how "This" works in JavaScript'}
-          columnThree="18.03.2021"
-          columnFour={4}
-          index={8}
-        />
+        {cards.map((card, i) => (
+          <PackageItemForMe
+            key={card._id}
+            cardId={card._id}
+            question={card.question}
+            answer={card.answer}
+            date={card.created.slice(0, 10).split('-').reverse().join('.')}
+            rating={card.rating}
+            index={i}
+          />
+        ))}
       </div>
     </div>
   );

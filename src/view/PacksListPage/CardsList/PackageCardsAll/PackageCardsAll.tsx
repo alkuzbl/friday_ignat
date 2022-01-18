@@ -1,12 +1,16 @@
 import React from 'react';
 
+import { useSelector } from 'react-redux';
+
+import { CardType } from '../../../../bll/card-slice';
+import { AppStoreType } from '../../../../bll/store';
 import { SearchForm } from '../../../../components/common/SearchForm/SearchForm';
 import styles from '../../CardsPackList/CardsPackList.module.scss';
 
 import { PackageItemForAll } from './PackageItemForAll/PackageItemForAll';
 
 export const PackageCardsAll = () => {
-  // потом удалить когда будет редакс
+  const cards = useSelector<AppStoreType, CardType[]>(state => state.cards.data.cards);
   const title = 'PackageCardsMe name';
 
   return (
@@ -27,63 +31,16 @@ export const PackageCardsAll = () => {
           </div>
           <h4>Grade</h4>
         </div>
-        {/* должен быть массив из редакса */}
-        <PackageItemForAll
-          columnOne={'How "This" works in JavaScript?'}
-          columnTwo={'This is how "This" works in JavaScript'}
-          columnThree="18.03.2021"
-          columnFour={3}
-          index={1}
-        />
-        <PackageItemForAll
-          columnOne={'How "This" works in JavaScript?'}
-          columnTwo={'This is how "This" works in JavaScript'}
-          columnThree="18.03.2021"
-          columnFour={4}
-          index={2}
-        />
-        <PackageItemForAll
-          columnOne={'How "This" works in JavaScript?'}
-          columnTwo={'This is how "This" works in JavaScript'}
-          columnThree="18.03.2021"
-          columnFour={1}
-          index={3}
-        />
-        <PackageItemForAll
-          columnOne={'How "This" works in JavaScript?'}
-          columnTwo={'This is how "This" works in JavaScript'}
-          columnThree="18.03.2021"
-          columnFour={5}
-          index={4}
-        />
-        <PackageItemForAll
-          columnOne={'How "This" works in JavaScript?'}
-          columnTwo={'This is how "This" works in JavaScript'}
-          columnThree="18.03.2021"
-          columnFour={3}
-          index={5}
-        />
-        <PackageItemForAll
-          columnOne={'How "This" works in JavaScript?'}
-          columnTwo={'This is how "This" works in JavaScript'}
-          columnThree="18.03.2021"
-          columnFour={3}
-          index={6}
-        />
-        <PackageItemForAll
-          columnOne={'How "This" works in JavaScript?'}
-          columnTwo={'This is how "This" works in JavaScript'}
-          columnThree="18.03.2021"
-          columnFour={2}
-          index={7}
-        />
-        <PackageItemForAll
-          columnOne={'How "This" works in JavaScript?'}
-          columnTwo={'This is how "This" works in JavaScript'}
-          columnThree="18.03.2021"
-          columnFour={4}
-          index={8}
-        />
+        {cards.map((card, i) => (
+          <PackageItemForAll
+            key={card._id}
+            question={card.question}
+            answer={card.answer}
+            date={card.created.slice(0, 10).split('-').reverse().join('.')}
+            rating={card.rating}
+            index={i}
+          />
+        ))}
       </div>
     </div>
   );

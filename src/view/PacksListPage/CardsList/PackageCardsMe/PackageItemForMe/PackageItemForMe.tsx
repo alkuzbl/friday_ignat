@@ -1,20 +1,29 @@
 import React from 'react';
 
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+
+import { deleteCard } from '../../../../../bll/card-slice';
 import { Button } from '../../../../../components/common/Button';
 import { Grade } from '../../../../../components/common/Grade/Grade';
 import styles from '../../../CardsPackList/CardsPackList.module.scss';
 
 type PackageItemForMePropsType = {
-  columnOne: string;
-  columnTwo: string;
-  columnThree: string;
-  columnFour: number;
+  question: string;
+  answer: string;
+  date: string;
+  rating: number;
   index: number;
+  cardId: string;
 };
 export const PackageItemForMe = (props: PackageItemForMePropsType) => {
-  const { columnOne, columnTwo, columnThree, columnFour, index } = props;
+  const { question, answer, date, rating, index, cardId } = props;
+  const dispatch = useDispatch();
+  const { packId } = useParams<'packId'>();
 
-  const onClickDelete = () => {};
+  const onClickDelete = () => {
+    dispatch(deleteCard({ cardsPackId: packId as string, cardId }));
+  };
   const onClickEdit = () => {};
 
   const styleItem =
@@ -24,11 +33,11 @@ export const PackageItemForMe = (props: PackageItemForMePropsType) => {
 
   return (
     <div className={styleItem}>
-      <p className={styles.packs__itemContent}>{columnOne}</p>
-      <p className={styles.packs__itemContent}>{columnTwo}</p>
-      <p className={styles.packs__itemContent}>{columnThree}</p>
+      <p className={styles.packs__itemContent}>{question}</p>
+      <p className={styles.packs__itemContent}>{answer}</p>
+      <p className={styles.packs__itemContent}>{date}</p>
       <div className={styles.packs__itemContent}>
-        <Grade score={columnFour} />
+        <Grade score={rating} />
       </div>
 
       <div className={`${styles.packs__itemButtons} ${styles.pack__itemButtons}`}>
