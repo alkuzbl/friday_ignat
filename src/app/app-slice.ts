@@ -66,7 +66,7 @@ export type ModalWindowNameType =
   | 'delete-card';
 
 export type ModalWindowPackType = {
-  id?: string;
+  _id?: string;
   name?: string;
   rating?: number;
   private?: boolean;

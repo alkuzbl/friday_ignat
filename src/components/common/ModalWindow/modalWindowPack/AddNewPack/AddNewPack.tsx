@@ -3,6 +3,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { setInactiveModalWindow } from '../../../../../app/app-slice';
+import { createNewPack } from '../../../../../bll/pack-slice';
 import { createPackValidationSchema } from '../../../../../utils/validationSchemes';
 import { Button } from '../../../Button';
 import { FormControl } from '../../../FormControl/FormControl';
@@ -11,12 +12,9 @@ import styles from '../PackDeletingForm/PopupConfirmationProcessing.module.scss'
 
 export const AddNewPack = () => {
   const dispatch = useDispatch();
-  const onSubmit = (data: { name: string }) => {
-    console.log(data);
-  };
-  const cancel = () => {
-    dispatch(setInactiveModalWindow());
-  };
+  const onSubmit = (data: { name: string }) => dispatch(createNewPack(data));
+  const cancel = () => dispatch(setInactiveModalWindow());
+
   const onClickDiv = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
     e.stopPropagation();
   return (

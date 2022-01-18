@@ -1,7 +1,13 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
 
-import { StatusType } from '../app/app-slice';
-import { packAPI, RequestGetPayloadPacksType } from '../dal/pakc-api';
+import {
+  ModalWindowPackType,
+  setInactiveModalWindow,
+  StatusType,
+} from '../app/app-slice';
+import { packAPI, RequestGetPayloadPacksType } from '../dal/pack-api';
+
+import { AppStoreType } from './store';
 
 const packInitialState: PackInitialStateType = {
   data: {
@@ -42,6 +48,9 @@ const packSlice = createSlice({
     setErrorCardsPack: (state, action: PayloadAction<string>) => {
       state.data.error = action.payload;
     },
+    clearCardPacksData: state => {
+      state.data.cardPacks = [];
+    },
   },
 });
 
@@ -55,6 +64,7 @@ export const {
   setErrorCardsPack,
   setStatusCardsPack,
   setPage,
+  clearCardPacksData,
 } = packSlice.actions;
 
 // thanks
@@ -72,6 +82,66 @@ export const getCardsPack =
       dispatch(setErrorCardsPack(error));
       dispatch(setStatusCardsPack('failed'));
     }
+  };
+// затипизировать
+export const deleteCardsPack =
+  () => async (dispatch: Dispatch<any>, getState: () => AppStoreType) => {
+    const secondState = getState();
+    // @ts-ignore
+    const { id } = secondState.app.modalWindow.modalWindowData;
+    const userId = secondState.auth.user._id;
+    const { page, pageCount } = secondState.packs.data;
+    dispatch(setStatusCardsPack('loading'));
+    try {
+      await packAPI.deletePack({ id });
+      dispatch(getCardsPack({ user_id: userId, page, pageCount }));
+      dispatch(setStatusCardsPack('succeed'));
+    } catch (e: any) {
+      const error = e.response
+        ? e.response.data.error
+        : `${e.message}, more details in the console`;
+      dispatch(setErrorCardsPack(error));
+      dispatch(setStatusCardsPack('failed'));
+    }
+    dispatch(setInactiveModalWindow());
+  };
+
+export const createNewPack =
+  (data: { name: string }) =>
+  async (dispatch: Dispatch<any>, getState: () => AppStoreType) => {
+    const secondState = getState();
+    const userId = secondState.auth.user._id;
+    const { page, pageCount } = secondState.packs.data;
+    dispatch(setStatusCardsPack('loading'));
+    try {
+      await packAPI.createNewPack(data);
+      dispatch(getCardsPack({ user_id: userId, page, pageCount }));
+      dispatch(setStatusCardsPack('succeed'));
+    } catch (e: any) {
+      const error = e.response
+        ? e.response.data.error
+        : `${e.message}, more details in the console`;
+      dispatch(setErrorCardsPack(error));
+      dispatch(setStatusCardsPack('failed'));
+    }
+    dispatch(setInactiveModalWindow());
+  };
+
+export const updateCardsPack =
+  (data: ModalWindowPackType) => async (dispatch: Dispatch) => {
+    dispatch(setStatusCardsPack('loading'));
+    try {
+      const res = await packAPI.updatePack(data);
+      dispatch(updatePack(res.data.updatedCardsPack));
+      dispatch(setStatusCardsPack('succeed'));
+    } catch (e: any) {
+      const error = e.response
+        ? e.response.data.error
+        : `${e.message}, more details in the console`;
+      dispatch(setErrorCardsPack(error));
+      dispatch(setStatusCardsPack('failed'));
+    }
+    dispatch(setInactiveModalWindow());
   };
 
 // types

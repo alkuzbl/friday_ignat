@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
+import { useDispatch, useSelector } from 'react-redux';
+
+import { setActiveModalWindow } from '../../app/app-slice';
+import { DataPackType, getCardsPack, setPage, setPageCount } from '../../bll/pack-slice';
+import { AppStoreType } from '../../bll/store';
 import { Button } from '../../components/common/Button';
 import { CardsPackTable } from '../../components/common/CardsPackTable/CardsPackTable';
 import { DoubleRange } from '../../components/common/DoubleRange/DoubleRange';
@@ -11,12 +16,29 @@ import styles from '../ProfilePage/ProfilePage.module.scss';
 import { ButtonsBoxPacksList } from './ButtonsBoxForPacksList/ButtonsBoxPacksList';
 import stylesPack from './CardsPackList/CardsPackList.module.scss';
 
-// в этой компоненте еще одна снизу!!!!!!!!!
 const PacksListPage = () => {
   // потом положить в redux, в зависимости что искать нужно
   const [valueRangeSlider, setValueRangeSlider] = useState<number[]>([0, 100]);
-  console.log('packListPage');
+  const dispatch = useDispatch();
+
   const onChangeRange = (value: number[]) => setValueRangeSlider(value);
+
+  const selectPage = (page: number) => dispatch(setPage({ page }));
+
+  const setPageCountForPacks = (pageCountValue: number) => {
+    dispatch(setPageCount({ pageCount: pageCountValue }));
+  };
+
+  // разобраться логикой - дублируется код
+  const { page, pageCount, cardPacksTotalCount } = useSelector<
+    AppStoreType,
+    DataPackType
+  >(state => state.packs.data);
+  const addNewPack = () =>
+    dispatch(setActiveModalWindow({ name: 'create-pack', modalWindowData: {} }));
+  useEffect(() => {
+    dispatch(getCardsPack({ page, pageCount }));
+  }, [pageCount, page]);
 
   return (
     <div className={styles.profilePage}>
@@ -53,7 +75,12 @@ const PacksListPage = () => {
                     marginLeft: '25px',
                   }}
                 >
-                  <Button title="Add new pack" type="button" view="default" />
+                  <Button
+                    title="Add new pack"
+                    type="button"
+                    view="default"
+                    onClick={addNewPack}
+                  />
                 </div>
               </div>
 
@@ -61,11 +88,11 @@ const PacksListPage = () => {
             </div>
             <div className={styles.profilePage__pagination}>
               <Pagination
-                totalCount={1}
-                selectPage={() => {}}
-                setCountItem={() => {}}
-                pageCount={8}
-                pathToUrl="..."
+                totalCount={cardPacksTotalCount}
+                selectPage={selectPage}
+                setCountItem={setPageCountForPacks}
+                pageCount={pageCount}
+                pathToUrl="packs-list/cards-pack/all"
                 optionValue={[1, 2, 3, 4, 5, 6, 7, 8]}
               />
             </div>

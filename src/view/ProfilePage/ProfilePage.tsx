@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import { DataPackType, setPage, setPageCount } from '../../bll/pack-slice';
 import { AppStoreType } from '../../bll/store';
@@ -18,6 +19,7 @@ const ProfilePage = () => {
   const { pageCount, cardPacksTotalCount } = useSelector<AppStoreType, DataPackType>(
     state => state.packs.data,
   );
+  const { userId }: any = useParams<'userId'>();
   const dispatch = useDispatch();
   // выбор страницы - то-есть переход постраничный
   const selectPage = (page: number) => dispatch(setPage({ page }));
@@ -47,7 +49,7 @@ const ProfilePage = () => {
                 selectPage={selectPage}
                 setCountItem={setPageCountForPacks}
                 pageCount={pageCount}
-                pathToUrl="profile/user/pack-page"
+                pathToUrl={`profile/${userId}/pack-page`}
                 optionValue={[1, 2, 3, 4, 5, 6, 7, 8]}
               />
             </div>

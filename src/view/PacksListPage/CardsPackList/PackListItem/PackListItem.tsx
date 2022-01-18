@@ -15,10 +15,10 @@ type PackListItemPropsType = {
   packName: string;
   count: number;
   myCard: boolean;
+  userId: string;
 };
 export const PackListItem = (props: PackListItemPropsType) => {
-  const { userName, date, packName, count, index, myCard, packId } = props;
-  // нужна логика
+  const { userName, date, packName, count, index, myCard, packId, userId } = props;
 
   const styleItem =
     index % 2 === 0 ? styles.packs__item : `${styles.packs__item} ${styles.dark}`;
@@ -29,7 +29,9 @@ export const PackListItem = (props: PackListItemPropsType) => {
       </p>
       <p className={styles.packs__itemContent}>{count}</p>
       <p className={styles.packs__itemContent}>{date}</p>
-      <p className={styles.packs__itemContent}>{userName}</p>
+      <p className={styles.packs__itemContent}>
+        <Link to={`/profile/${userId}/pack-page/1`}>{userName}</Link>
+      </p>
       {myCard ? (
         <ActionEditButtons packId={packId} packName={packName} />
       ) : (

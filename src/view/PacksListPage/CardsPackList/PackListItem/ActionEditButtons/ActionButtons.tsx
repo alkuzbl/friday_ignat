@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { useDispatch } from 'react-redux';
+
+import { setActiveModalWindow } from '../../../../../app/app-slice';
 import { Button } from '../../../../../components/common/Button';
 import styles from '../../CardsPackList.module.scss';
 
@@ -9,11 +12,20 @@ type ActionEditButtonsPropsType = {
 };
 export const ActionEditButtons = (props: ActionEditButtonsPropsType) => {
   const { packName, packId } = props;
-
+  const dispatch = useDispatch();
   const onClickDelete = () => {
-    console.log(`delete - packName ${packName}, packId ${packId}`);
+    dispatch(
+      setActiveModalWindow({ name: 'delete-pack', modalWindowData: { _id: packId } }),
+    );
   };
-  const onClickEdit = () => {};
+  const onClickEdit = () => {
+    dispatch(
+      setActiveModalWindow({
+        name: 'edit-pack-name',
+        modalWindowData: { _id: packId, name: packName },
+      }),
+    );
+  };
   const onClickLearn = () => {};
   return (
     <div className={styles.packs__itemButtons}>

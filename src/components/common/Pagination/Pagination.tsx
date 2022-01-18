@@ -82,7 +82,7 @@ export const Pagination = (props: PaginationPropsType) => {
               <PaginationListItem
                 key={page}
                 value={page}
-                link="profile/user/pack-page"
+                link={pathToUrl}
                 currentValue={currentPage}
                 onClick={selectPageHandler}
               />
@@ -101,7 +101,7 @@ export const Pagination = (props: PaginationPropsType) => {
           className={styles.pagination__buttonNext}
           onClick={onClickNext}
         >
-          <Link to={`/profile/user/pack-page/${setNextPage}`}>next</Link>
+          <Link to={`/${pathToUrl}/${setNextPage}`}>next</Link>
         </button>
         <div className={styles.pagination__selectBox}>
           <span className={styles.pagination__select}>Show</span>

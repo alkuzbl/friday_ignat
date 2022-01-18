@@ -59,8 +59,8 @@ export const login = (data: LoginDataType) => async (dispatch: Dispatch) => {
   dispatch(setStatus('loading'));
   try {
     const res = await authAPI.setAuth(data);
-    dispatch(setIsAuth(true));
     dispatch(setUserData(res.data));
+    dispatch(setIsAuth(true));
     dispatch(setStatus('succeed'));
   } catch (e: any) {
     const error = e.response

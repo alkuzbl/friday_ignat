@@ -1,16 +1,19 @@
 import React from 'react';
 
+import { useDispatch } from 'react-redux';
+
+import { setInactiveModalWindow } from '../../../../../app/app-slice';
+import { deleteCardsPack } from '../../../../../bll/pack-slice';
 import { Button } from '../../../Button';
 
 import styles from './PopupConfirmationProcessing.module.scss';
 
 export const PackDeletingForm = () => {
-  const deletePack = () => {
-    console.log('delete');
-  };
-  const cancel = () => {
-    console.log('cancel');
-  };
+  const dispatch = useDispatch();
+
+  const deletePack = () => dispatch(deleteCardsPack());
+  const cancel = () => dispatch(setInactiveModalWindow());
+
   const onClickDiv = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
   };

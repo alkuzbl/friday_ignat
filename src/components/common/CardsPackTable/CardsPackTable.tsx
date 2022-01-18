@@ -1,26 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { CardPackType, getCardsPack } from '../../../bll/pack-slice';
+import { CardPackType } from '../../../bll/pack-slice';
 import { AppStoreType } from '../../../bll/store';
 import styles from '../../../view/PacksListPage/CardsPackList/CardsPackList.module.scss';
 import { PackListItem } from '../../../view/PacksListPage/CardsPackList/PackListItem/PackListItem';
 
 export const CardsPackTable = () => {
+  const myId = useSelector<AppStoreType, string>(state => state.auth.user._id);
+
   const cardsPack = useSelector<AppStoreType, CardPackType[]>(
     state => state.packs.data.cardPacks,
   );
-  const myId = useSelector<AppStoreType, string>(state => state.auth.user._id);
-  const { page, pageCount } = useSelector<
-    AppStoreType,
-    { pageCount: number; page: number }
-  >(state => state.packs.data);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getCardsPack({ page, pageCount }));
-  }, [pageCount, page]);
 
   return (
     <div className={styles.packs__box}>
@@ -42,6 +34,7 @@ export const CardsPackTable = () => {
           packName={p.name}
           userName={p.user_name}
           count={p.cardsCount}
+          userId={p.user_id}
           myCard={p.user_id === myId}
           date={p.updated.slice(0, 10).split('-').reverse().join('.')}
         />

@@ -1,3 +1,4 @@
+import { ModalWindowPackType } from '../app/app-slice';
 import { CardPackType, DataPackType } from '../bll/pack-slice';
 
 import { instance } from './instance-axios';
@@ -11,12 +12,12 @@ export const packAPI = {
       cardsPack: data,
     }),
 
-  deletePack: (packId: string) =>
-    instance.delete<{ deletedCardsPack: CardPackType; error: string }>(
-      `cards/pack?id=${packId}`,
-    ),
+  deletePack: (data: { id: string }) =>
+    instance.delete<{ deletedCardsPack: CardPackType; error: string }>(`cards/pack`, {
+      params: data,
+    }),
 
-  updatePack: (data: RequestPayloadUpdatePackType) =>
+  updatePack: (data: ModalWindowPackType) =>
     instance.put<{ updatedCardsPack: CardPackType; error: string }>(`cards/pack`, {
       cardsPack: data,
     }),
@@ -34,7 +35,7 @@ export type RequestGetPayloadPacksType = {
 };
 
 export type RequestPayloadCreatePackType = {
-  name: string;
+  name?: string;
   path?: string;
   grade?: number;
   shots?: number;
@@ -44,7 +45,7 @@ export type RequestPayloadCreatePackType = {
   type?: string;
 };
 export type RequestPayloadUpdatePackType = {
-  id: string;
+  _id: string;
   name: string;
   rating?: number;
   private?: boolean;

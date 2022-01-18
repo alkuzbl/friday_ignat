@@ -47,20 +47,25 @@ const App = () => {
         <Route path="recovery" element={<RecoveryPassword />} />
         <Route path="new-password/:token" element={<NewPassword />} />
         {/* разобраться с логикой страниц, пагинацию пока не трогаем, также как и переходы по страницам в card and pack */}
+
         <Route path="packs-list" element={<Navigate to="cards-pack/all" />} />
         <Route path="packs-list/cards-pack/my" element={<PacksListPageContainer />} />
         <Route path="packs-list/cards-pack/all" element={<PacksListPageContainer />} />
+        <Route
+          path="packs-list/cards-pack/all/:currentPage"
+          element={<PacksListPageContainer />}
+        />
         <Route path="packs-list/cards-pack/:packId/1" element={<CardsList />} />
 
-        <Route path="/profile" element={<Navigate to="user/pack-page/1" />} />
-        <Route path="/profile/:userId/pack-page/1" element={<ProfilePageContainer />} />
-        <Route path="/profile/user/edit" element={<ProfileEditContainer />} />
-        <Route
-          path="profile/user/pack-page/:currentPage"
-          element={<ProfilePageContainer />}
-        />
+        <Route path="profile">
+          <Route
+            path=":userId/pack-page/:currentPage/*"
+            element={<ProfilePageContainer />}
+          />
+          <Route path="user/edit" element={<ProfileEditContainer />} />
+        </Route>
 
-        <Route path="/" element={<Navigate to="profile" />} />
+        <Route path="/" element={<Navigate to="login" />} />
         <Route path="*" element={<NotPage />} />
       </Routes>
       <ModalWindow active={activeModalWindow} setInactive={closeModalWindow} />

@@ -6,6 +6,7 @@ import {
   ModalWindowPackType,
   setInactiveModalWindow,
 } from '../../../../../app/app-slice';
+import { updateCardsPack } from '../../../../../bll/pack-slice';
 import { AppStoreType } from '../../../../../bll/store';
 import { createPackValidationSchema } from '../../../../../utils/validationSchemes';
 import { Button } from '../../../Button';
@@ -14,17 +15,15 @@ import { InputF } from '../../../InputForReactHF/InputF';
 import styles from '../PackDeletingForm/PopupConfirmationProcessing.module.scss';
 
 export const EditPackName = () => {
-  const { id, name } = useSelector<AppStoreType, ModalWindowPackType>(
+  const { _id, name } = useSelector<AppStoreType, ModalWindowPackType>(
     state => state.app.modalWindow.modalWindowData,
   );
   const dispatch = useDispatch();
-  const saveNewName = (data: any) => {
-    // заглушка - возможно логика поменяется
-    console.log(id, name, data);
-  };
-  const cancel = () => {
-    dispatch(setInactiveModalWindow());
-  };
+
+  const saveNewName = (data: ModalWindowPackType) =>
+    dispatch(updateCardsPack({ _id, ...data }));
+  const cancel = () => dispatch(setInactiveModalWindow());
+
   const onClickDiv = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
     e.stopPropagation();
   return (

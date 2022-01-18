@@ -23,6 +23,7 @@ export const Login = () => {
   const dispatch = useDispatch();
   const requestStatus = useSelector<AppStoreType, StatusType>(state => state.auth.status);
   const isAuth = useSelector<AppStoreType, boolean>(state => state.auth.isAuth);
+  const userId = useSelector<AppStoreType, string>(state => state.auth.user._id);
   const onSubmit = (data: LoginDataType) => {
     dispatch(login(data));
   };
@@ -33,7 +34,7 @@ export const Login = () => {
     requestStatus === 'loading' ? { pointerEvents: 'none', opacity: '.8' } : {};
 
   if (isAuth) {
-    return <Navigate to="/profile" />;
+    return <Navigate to={`/profile/${userId}/pack-page/1`} />;
   }
   return (
     <div className="container-center" style={disabledStyle}>
