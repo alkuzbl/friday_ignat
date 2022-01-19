@@ -4,12 +4,13 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppStoreType } from '../../../bll/store';
+import { RedirectionIfNotAuthorized } from '../../../hoc/RedirectionIfNotAuthorized';
 import styles from '../../ProfilePage/ProfilePage.module.scss';
 
 import { PackageCardsAll } from './PackageCardsAll/PackageCardsAll';
 import { PackageCardsMe } from './PackageCardsMe/PackageCardsMe';
 
-export const CardsList = () => {
+const CardsList = () => {
   const myId = useSelector<AppStoreType, string>(state => state.auth.user._id);
   const { userId } = useParams<'userId'>();
   return (
@@ -25,3 +26,5 @@ export const CardsList = () => {
     </div>
   );
 };
+
+export const CardsListContainer = RedirectionIfNotAuthorized(CardsList);

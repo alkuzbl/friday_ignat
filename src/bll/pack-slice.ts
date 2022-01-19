@@ -54,7 +54,16 @@ const packSlice = createSlice({
       state.data.cardPacks = [];
     },
     setCardsCount: (state, action: PayloadAction<CardsPackDataForRequestType>) => {
-      state.cardsPackDataForRequest = action.payload;
+      state.cardsPackDataForRequest = {
+        ...state.cardsPackDataForRequest,
+        ...action.payload,
+      };
+    },
+    setPackNameSearch: (state, action: PayloadAction<CardsPackDataForRequestType>) => {
+      state.cardsPackDataForRequest = {
+        ...state.cardsPackDataForRequest,
+        ...action.payload,
+      };
     },
   },
   extraReducers: builder => {
@@ -86,6 +95,7 @@ export const {
   setPage,
   clearCardPacksData,
   setCardsCount,
+  setPackNameSearch,
 } = packSlice.actions;
 
 // thunks
@@ -194,8 +204,9 @@ export type DataPackType = {
   error: string;
 };
 export type CardsPackDataForRequestType = {
-  min: number;
-  max: number;
+  min?: number;
+  max?: number;
+  packName?: string | undefined;
 };
 export type PackInitialStateType = {
   data: DataPackType;

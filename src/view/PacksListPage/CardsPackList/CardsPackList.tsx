@@ -18,7 +18,7 @@ export const CardsPackList = () => {
   const { page, pageCount } = useSelector<AppStoreType, DataPackType>(
     state => state.packs.data,
   );
-  const { min, max } = useSelector<AppStoreType, CardsPackDataForRequestType>(
+  const { min, max, packName } = useSelector<AppStoreType, CardsPackDataForRequestType>(
     state => state.packs.cardsPackDataForRequest,
   );
 
@@ -35,9 +35,10 @@ export const CardsPackList = () => {
         user_id: userId,
         min,
         max,
+        packName,
       }),
     );
-  }, [pageCount, page, userId, min, max]);
+  }, [pageCount, page, userId, min, max, packName]);
 
   return (
     <div className={styles.packs}>

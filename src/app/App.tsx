@@ -14,7 +14,7 @@ import { NewPassword } from '../view/Authentication/NewPassword/NewPassword';
 import { RecoveryPassword } from '../view/Authentication/RecoveryPassword/RecoveryPassword';
 import { Registration } from '../view/Authentication/Registration/Registration';
 import { Header } from '../view/Header/Header';
-import { CardsList } from '../view/PacksListPage/CardsList/CardsList';
+import { CardsListContainer } from '../view/PacksListPage/CardsList/CardsList';
 import { PacksListPageContainer } from '../view/PacksListPage/PacksListPage';
 import { ProfileEditContainer } from '../view/ProfilePage/Profile/ProfileEdit/ProfileEdit';
 import { ProfilePageContainer } from '../view/ProfilePage/ProfilePage';
@@ -49,7 +49,7 @@ const App = () => {
 
         <Route
           path="packs-list/:userId/pack/:packId/:currentPage"
-          element={<CardsList />}
+          element={<CardsListContainer />}
         />
         <Route
           path="packs-list/cards-pack/:me/:currentPage"

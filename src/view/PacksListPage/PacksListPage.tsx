@@ -27,7 +27,7 @@ const PacksListPage = () => {
   const { minCardsCount, maxCardsCount } = useSelector<AppStoreType, DataPackType>(
     state => state.packs.data,
   );
-  const { min, max } = useSelector<AppStoreType, CardsPackDataForRequestType>(
+  const { min, max, packName } = useSelector<AppStoreType, CardsPackDataForRequestType>(
     state => state.packs.cardsPackDataForRequest,
   );
   const dispatch = useDispatch();
@@ -50,12 +50,8 @@ const PacksListPage = () => {
   const addNewPack = () =>
     dispatch(setActiveModalWindow({ name: 'create-pack', modalWindowData: {} }));
   useEffect(() => {
-    // dispatch(setCardsCount({ min: minCardsCount, max: maxCardsCount }));
-    dispatch(getCardsPack({ page, pageCount, max, min }));
-    return () => {
-      dispatch(setCardsCount({ min: 0, max: 0 }));
-    };
-  }, [pageCount, page, max, min]);
+    dispatch(getCardsPack({ page, pageCount, max, min, packName }));
+  }, [pageCount, page, max, min, packName]);
 
   return (
     <div className={styles.profilePage}>
