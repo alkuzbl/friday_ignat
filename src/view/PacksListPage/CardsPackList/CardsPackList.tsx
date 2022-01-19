@@ -7,7 +7,6 @@ import {
   CardsPackDataForRequestType,
   DataPackType,
   getCardsPack,
-  setCardsCount,
 } from '../../../bll/pack-slice';
 import { AppStoreType } from '../../../bll/store';
 import { CardsPackTable } from '../../../components/common/CardsPackTable/CardsPackTable';
@@ -16,10 +15,9 @@ import { SearchForm } from '../../../components/common/SearchForm/SearchForm';
 import styles from './CardsPackList.module.scss';
 
 export const CardsPackList = () => {
-  const { page, pageCount, minCardsCount, maxCardsCount } = useSelector<
-    AppStoreType,
-    DataPackType
-  >(state => state.packs.data);
+  const { page, pageCount } = useSelector<AppStoreType, DataPackType>(
+    state => state.packs.data,
+  );
   const { min, max } = useSelector<AppStoreType, CardsPackDataForRequestType>(
     state => state.packs.cardsPackDataForRequest,
   );
