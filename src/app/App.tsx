@@ -58,7 +58,7 @@ const App = () => {
 
         <Route path="profile">
           <Route
-            path=":userId/pack-page/:currentPage/*"
+            path=":userId/pack-page/:currentPage"
             element={<ProfilePageContainer />}
           />
           <Route path="user/edit" element={<ProfileEditContainer />} />
