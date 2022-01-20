@@ -27,7 +27,6 @@ export const CardsPackList = () => {
 
   useEffect(() => {
     // лучше делать локальный стейт под range
-    // dispatch(setCardsCount({ min: minCardsCount, max: maxCardsCount }));
     dispatch(
       getCardsPack({
         page,

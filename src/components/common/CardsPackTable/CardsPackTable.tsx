@@ -6,10 +6,10 @@ import { CardPackType } from '../../../bll/pack-slice';
 import { AppStoreType } from '../../../bll/store';
 import styles from '../../../view/PacksListPage/CardsPackList/CardsPackList.module.scss';
 import { PackListItem } from '../../../view/PacksListPage/CardsPackList/PackListItem/PackListItem';
+import { SortButton } from '../SortButton/SortButton';
 
 export const CardsPackTable = () => {
   const myId = useSelector<AppStoreType, string>(state => state.auth.user._id);
-
   const cardsPack = useSelector<AppStoreType, CardPackType[]>(
     state => state.packs.data.cardPacks,
   );
@@ -21,7 +21,7 @@ export const CardsPackTable = () => {
         <h4 className={styles.packs__itemTitle}>Cards</h4>
         <div className={styles.packs__itemSort}>
           <h4 className={styles.packs__itemTitle}>Last Updated</h4>
-          <span>X</span>
+          <SortButton />
         </div>
         <h4 className={styles.packs__itemTitle}>Created by</h4>
         <h4 className={styles.packs__itemTitle}>Actions</h4>
