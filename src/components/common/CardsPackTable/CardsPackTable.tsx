@@ -6,7 +6,7 @@ import { CardPackType, setSortingByDate } from '../../../bll/pack-slice';
 import { AppStoreType } from '../../../bll/store';
 import styles from '../../../view/PacksListPage/CardsPackList/CardsPackList.module.scss';
 import { PackListItem } from '../../../view/PacksListPage/CardsPackList/PackListItem/PackListItem';
-import { SortButton } from '../SortButton/SortButton';
+import { SortButton, SortValueType } from '../SortButton/SortButton';
 
 export const CardsPackTable = () => {
   const myId = useSelector<AppStoreType, string>(state => state.auth.user._id);
@@ -14,7 +14,7 @@ export const CardsPackTable = () => {
     state => state.packs.data.cardPacks,
   );
   const dispatch = useDispatch();
-  const sortByDate = (value: 0 | 1 | undefined) => {
+  const sortByDate = (value: SortValueType) => {
     dispatch(setSortingByDate({ sortPacks: value }));
   };
 

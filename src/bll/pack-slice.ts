@@ -5,6 +5,7 @@ import {
   setInactiveModalWindow,
   StatusType,
 } from '../app/app-slice';
+import { SortValueType } from '../components/common/SortButton/SortButton';
 import { packAPI, RequestGetPayloadPacksType } from '../dal/pack-api';
 
 import { setLogout } from './auth-slice';
@@ -215,7 +216,7 @@ export type CardsPackDataForRequestType = {
   min?: number;
   max?: number;
   packName?: string | undefined;
-  sortPacks?: 0 | 1 | undefined;
+  sortPacks?: SortValueType;
 };
 export type PackInitialStateType = {
   data: DataPackType;
