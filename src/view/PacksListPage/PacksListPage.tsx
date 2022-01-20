@@ -27,9 +27,10 @@ const PacksListPage = () => {
   const { minCardsCount, maxCardsCount } = useSelector<AppStoreType, DataPackType>(
     state => state.packs.data,
   );
-  const { min, max, packName } = useSelector<AppStoreType, CardsPackDataForRequestType>(
-    state => state.packs.cardsPackDataForRequest,
-  );
+  const { min, max, packName, sortPacks } = useSelector<
+    AppStoreType,
+    CardsPackDataForRequestType
+  >(state => state.packs.cardsPackDataForRequest);
   const dispatch = useDispatch();
 
   const onChangeRange = (value: number[]) => {
@@ -41,17 +42,18 @@ const PacksListPage = () => {
   const setPageCountForPacks = (pageCountValue: number) => {
     dispatch(setPageCount({ pageCount: pageCountValue }));
   };
-
   // разобраться логикой - дублируется код
   const { page, pageCount, cardPacksTotalCount } = useSelector<
     AppStoreType,
     DataPackType
   >(state => state.packs.data);
+
   const addNewPack = () =>
     dispatch(setActiveModalWindow({ name: 'create-pack', modalWindowData: {} }));
+
   useEffect(() => {
-    dispatch(getCardsPack({ page, pageCount, max, min, packName }));
-  }, [pageCount, page, max, min, packName]);
+    dispatch(getCardsPack({ page, pageCount, max, min, packName, sortPacks }));
+  }, [pageCount, page, max, min, packName, sortPacks]);
 
   return (
     <div className={styles.profilePage}>
