@@ -6,12 +6,13 @@ import { useParams } from 'react-router-dom';
 import { getAllCards, setPage, setPageCount } from '../../../bll/card-slice';
 import { AppStoreType } from '../../../bll/store';
 import { Pagination } from '../../../components/common/Pagination/Pagination';
+import { RedirectionIfNotAuthorized } from '../../../hoc/RedirectionIfNotAuthorized';
 import styles from '../../ProfilePage/ProfilePage.module.scss';
 
 import { PackageCardsAll } from './PackageCardsAll/PackageCardsAll';
 import { PackageCardsMe } from './PackageCardsMe/PackageCardsMe';
 
-export const CardsList = () => {
+const CardsList = () => {
   const dispatch = useDispatch();
   const myId = useSelector<AppStoreType, string>(state => state.auth.user._id);
   const cardsTotalCount = useSelector<AppStoreType, number>(
@@ -53,3 +54,5 @@ export const CardsList = () => {
     </div>
   );
 };
+
+export const CardsListContainer = RedirectionIfNotAuthorized(CardsList);
