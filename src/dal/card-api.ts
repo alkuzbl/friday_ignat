@@ -33,7 +33,7 @@ export type RequestPayloadGetCardType = {
   cardQuestion?: string;
   min?: number;
   max?: number;
-  sortCards?: string;
+  sortCards?: SortCardsType;
 };
 
 export type RequestPayloadCreateCardType = {
@@ -54,3 +54,5 @@ export type RequestPayloadUpdateCardType = {
   question?: string;
   answer?: string;
 };
+
+export type SortCardsType = '0grade' | '1grade' | undefined;

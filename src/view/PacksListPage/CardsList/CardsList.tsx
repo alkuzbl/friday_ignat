@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom';
 import { getAllCards, setPage, setPageCount } from '../../../bll/card-slice';
 import { AppStoreType } from '../../../bll/store';
 import { Pagination } from '../../../components/common/Pagination/Pagination';
+import { SearchCardsForm } from '../../../components/common/SearchForm/SearchCardsForm';
+import { SortCardsType } from '../../../dal/card-api';
 import { RedirectionIfNotAuthorized } from '../../../hoc/RedirectionIfNotAuthorized';
 import styles from '../../ProfilePage/ProfilePage.module.scss';
 
@@ -22,6 +24,12 @@ const CardsList = () => {
     state => state.cards.data.pageCount,
   );
   const currentPage = useSelector<AppStoreType, number>(state => state.cards.data.page);
+  const sortCards = useSelector<AppStoreType, SortCardsType>(
+    state => state.cards.sortCards,
+  );
+  const cardQuestion = useSelector<AppStoreType, string | undefined>(
+    state => state.cards.cardQuestion,
+  );
   const { userId } = useParams<'userId'>();
   const { packId } = useParams<'packId'>();
 
@@ -31,14 +39,23 @@ const CardsList = () => {
   };
   useEffect(() => {
     dispatch(
-      getAllCards({ cardsPack_id: packId as string, page: currentPage, pageCount }),
+      getAllCards({
+        cardsPack_id: packId as string,
+        page: currentPage,
+        pageCount,
+        sortCards,
+        cardQuestion,
+      }),
     );
-  }, [packId, currentPage, pageCount]);
+  }, [packId, currentPage, pageCount, sortCards, cardQuestion]);
   return (
     <div className={styles.packsListPage}>
       <div className="container">
         <div className={styles.packsListPage__packsList}>
+          <SearchCardsForm />
+
           {myId === userId ? <PackageCardsMe /> : <PackageCardsAll />}
+
           <div className={styles.packsListPage__pagination}>
             <Pagination
               totalCount={cardsTotalCount}

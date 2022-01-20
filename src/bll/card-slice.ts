@@ -5,6 +5,7 @@ import {
   cardAPI,
   RequestPayloadCreateCardType,
   RequestPayloadGetCardType,
+  SortCardsType,
 } from '../dal/card-api';
 
 import { AppStoreType } from './store';
@@ -22,6 +23,8 @@ const cardsInitialState: CardsInitialStateType = {
     tokenDeathTime: null as never as number,
     error: null,
   },
+  sortCards: '0grade',
+  cardQuestion: '',
   status: 'idle',
 };
 
@@ -44,6 +47,12 @@ const cardsSlice = createSlice({
     setStatusCard: (state, action: PayloadAction<StatusType>) => {
       state.status = action.payload;
     },
+    setSortingByGrade: (state, action: PayloadAction<SortCardsType>) => {
+      state.sortCards = action.payload;
+    },
+    setCardQuestionSearch: (state, action: PayloadAction<string | undefined>) => {
+      state.cardQuestion = action.payload;
+    },
   },
 });
 
@@ -51,8 +60,15 @@ const cardsSlice = createSlice({
 export const cardsReducer = cardsSlice.reducer;
 
 // actions
-export const { setCards, setStatusCard, setErrorCard, setPage, setPageCount } =
-  cardsSlice.actions;
+export const {
+  setCards,
+  setStatusCard,
+  setErrorCard,
+  setPage,
+  setPageCount,
+  setSortingByGrade,
+  setCardQuestionSearch,
+} = cardsSlice.actions;
 
 type CardsActionsType =
   | ReturnType<typeof cardsSlice.actions.setCards>
@@ -155,5 +171,7 @@ export type CardsType = {
 };
 export type CardsInitialStateType = {
   data: CardsType;
+  sortCards?: SortCardsType;
+  cardQuestion?: string | undefined;
   status: StatusType;
 };

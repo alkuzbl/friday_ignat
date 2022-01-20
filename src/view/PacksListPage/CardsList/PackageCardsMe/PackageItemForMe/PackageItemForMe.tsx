@@ -12,12 +12,12 @@ type PackageItemForMePropsType = {
   question: string;
   answer: string;
   date: string;
-  rating: number;
+  grade: number;
   index: number;
   cardId: string;
 };
 export const PackageItemForMe = (props: PackageItemForMePropsType) => {
-  const { question, answer, date, rating, index, cardId } = props;
+  const { question, answer, date, grade, index, cardId } = props;
   const dispatch = useDispatch();
   const { packId } = useParams<'packId'>();
 
@@ -49,7 +49,7 @@ export const PackageItemForMe = (props: PackageItemForMePropsType) => {
       <p className={styles.packs__itemContent}>{answer}</p>
       <p className={styles.packs__itemContent}>{date}</p>
       <div className={styles.packs__itemContent}>
-        <Grade score={rating} />
+        <Grade score={grade} />
       </div>
 
       <div className={`${styles.packs__itemButtons} ${styles.pack__itemButtons}`}>

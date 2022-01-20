@@ -7,11 +7,11 @@ type PackItemForAllPropsType = {
   question: string;
   answer: string;
   date: string;
-  rating: number;
+  grade: number;
   index: number;
 };
 export const PackageItemForAll = (props: PackItemForAllPropsType) => {
-  const { question, answer, date, rating, index } = props;
+  const { question, answer, date, grade, index } = props;
 
   const styleItem =
     index % 2 === 0
@@ -24,7 +24,7 @@ export const PackageItemForAll = (props: PackItemForAllPropsType) => {
       <p className={styles.packs__itemContent}>{answer}</p>
       <p className={styles.packs__itemContent}>{date}</p>
       <div className={styles.packs__itemContent}>
-        <Grade score={rating} />
+        <Grade score={grade} />
       </div>
     </div>
   );

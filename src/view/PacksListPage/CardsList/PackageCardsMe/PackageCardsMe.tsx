@@ -3,11 +3,11 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { addNewCard, CardType } from '../../../../bll/card-slice';
+import { addNewCard, CardType, setSortingByGrade } from '../../../../bll/card-slice';
 import { AppStoreType } from '../../../../bll/store';
 import { Button } from '../../../../components/common/Button';
-import { SearchForm } from '../../../../components/common/SearchForm/SearchForm';
-import { SortButton } from '../../../../components/common/SortButton/SortButton';
+import { SortCardsButton } from '../../../../components/common/SortButton/SortCardsButton';
+import { SortCardsType } from '../../../../dal/card-api';
 import styles from '../../CardsPackList/CardsPackList.module.scss';
 
 import { PackageItemForMe } from './PackageItemForMe/PackageItemForMe';
@@ -18,12 +18,17 @@ export const PackageCardsMe = () => {
   const dispatch = useDispatch();
   const title = 'Pack name';
 
+  const sortByGrade = (value: SortCardsType) => {
+    dispatch(setSortingByGrade(value));
+  };
+
   const onAddCardButtonClick = () => {
     dispatch(
       addNewCard({
         cardsPack_id: packId as string,
-        question: 'What?',
+        question: 'DDD',
         answer: 'Nothing',
+        grade: 3,
       }),
     );
   };
@@ -38,10 +43,6 @@ export const PackageCardsMe = () => {
           marginBottom: '20px',
         }}
       >
-        <div style={{ width: '100%' }}>
-          <SearchForm />
-        </div>
-
         <div
           style={{
             height: '35px',
@@ -63,11 +64,11 @@ export const PackageCardsMe = () => {
         <div className={`${styles.packs__itemsTitle} ${styles.pack__itemsTitle}`}>
           <h4>Question</h4>
           <h4>Answer</h4>
+          <h4>Last Updated</h4>
           <div className={styles.packs__itemSort}>
-            <h4>Last Updated</h4>
-            <SortButton />
+            <h4>Grade</h4>
+            <SortCardsButton onClick={sortByGrade} />
           </div>
-          <h4>Grade</h4>
           <h4>Actions</h4>
         </div>
         {cards.map((card, i) => (
@@ -77,7 +78,7 @@ export const PackageCardsMe = () => {
             question={card.question}
             answer={card.answer}
             date={card.created.slice(0, 10).split('-').reverse().join('.')}
-            rating={card.rating}
+            grade={card.grade}
             index={i}
           />
         ))}
