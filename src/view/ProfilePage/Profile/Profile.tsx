@@ -24,9 +24,15 @@ export const Profile = () => {
   // реализовать логику показа кнопки редактирования своего профайла
 
   useEffect(() => {
+    // заглушка в виде setTimeout чтобы одновременно не шли запросы
+    // eslint-disable-next-line no-undef
+    let idTimer: NodeJS.Timeout;
     if (userId) {
-      dispatch(getUserProfile({ id: userId }));
+      idTimer = setTimeout(() => {
+        dispatch(getUserProfile({ id: userId }));
+      }, 1000);
     }
+    return () => clearTimeout(idTimer);
   }, [userId]);
 
   return (

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import { setActiveModalWindow } from '../../app/app-slice';
 import {
@@ -31,6 +32,17 @@ const PacksListPage = () => {
     AppStoreType,
     CardsPackDataForRequestType
   >(state => state.packs.cardsPackDataForRequest);
+
+  // в зависимости от параметра URL присваиваю userId для запроса (all | my)
+  let userId = useSelector<AppStoreType, string | undefined>(
+    state => state.auth.user._id,
+  );
+  const { me } = useParams<'me'>();
+
+  if (me === 'all') {
+    userId = undefined;
+  }
+  //
   const dispatch = useDispatch();
 
   const onChangeRange = (value: number[]) => {
@@ -52,8 +64,10 @@ const PacksListPage = () => {
     dispatch(setActiveModalWindow({ name: 'create-pack', modalWindowData: {} }));
 
   useEffect(() => {
-    dispatch(getCardsPack({ page, pageCount, max, min, packName, sortPacks }));
-  }, [pageCount, page, max, min, packName, sortPacks]);
+    dispatch(
+      getCardsPack({ page, pageCount, max, min, packName, sortPacks, user_id: userId }),
+    );
+  }, [pageCount, page, max, min, packName, sortPacks, userId]);
 
   return (
     <div className={styles.profilePage}>
