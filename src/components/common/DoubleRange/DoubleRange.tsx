@@ -11,27 +11,24 @@ const Slider = require('rc-slider');
 const { createSliderWithTooltip } = Slider;
 const Range = createSliderWithTooltip(Slider.Range);
 
-type DoubleRangePropsType = {
-  onChangeRange: (value: number[]) => void;
-  value: number[];
-} & RangeProps;
+type DoubleRangePropsType = RangeProps;
 
 export const DoubleRange = (props: DoubleRangePropsType) => {
-  const { value, onChangeRange, ...restProps } = props;
+  const { min, max, ...restProps } = props;
 
   return (
     <div className={styles.range}>
       <div className={styles.range__box}>
-        <span className={styles.range__spanMin}>{value[0]}</span>
-        <span className={styles.range__spanMax}>{value[1]}</span>
+        <span className={styles.range__spanMin}>{min}</span>
+        <span className={styles.range__spanMax}>{max}</span>
       </div>
 
       <Range
         handleStyle={[{ backgroundColor: '#21268F' }]}
         trackStyle={[{ backgroundColor: '#21268F' }]}
         className={styles.range__input}
-        value={value}
-        onChange={onChangeRange}
+        min={min}
+        max={max}
         {...restProps}
       />
     </div>

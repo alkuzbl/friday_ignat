@@ -23,6 +23,7 @@ const packInitialState: PackInitialStateType = {
     error: null as unknown as string,
   },
   status: 'idle',
+  cardsPackDataForRequest: {} as CardsPackDataForRequestType,
 };
 
 const packSlice = createSlice({
@@ -51,6 +52,18 @@ const packSlice = createSlice({
     },
     clearCardPacksData: state => {
       state.data.cardPacks = [];
+    },
+    setCardsCount: (state, action: PayloadAction<CardsPackDataForRequestType>) => {
+      state.cardsPackDataForRequest = {
+        ...state.cardsPackDataForRequest,
+        ...action.payload,
+      };
+    },
+    setPackNameSearch: (state, action: PayloadAction<CardsPackDataForRequestType>) => {
+      state.cardsPackDataForRequest = {
+        ...state.cardsPackDataForRequest,
+        ...action.payload,
+      };
     },
   },
   extraReducers: builder => {
@@ -81,9 +94,11 @@ export const {
   setStatusCardsPack,
   setPage,
   clearCardPacksData,
+  setCardsCount,
+  setPackNameSearch,
 } = packSlice.actions;
 
-// thanks
+// thunks
 export const getCardsPack =
   (data: RequestGetPayloadPacksType) => async (dispatch: Dispatch) => {
     dispatch(setStatusCardsPack('loading'));
@@ -188,7 +203,13 @@ export type DataPackType = {
   tokenDeathTime: number;
   error: string;
 };
+export type CardsPackDataForRequestType = {
+  min?: number;
+  max?: number;
+  packName?: string | undefined;
+};
 export type PackInitialStateType = {
   data: DataPackType;
   status: StatusType;
+  cardsPackDataForRequest: CardsPackDataForRequestType;
 };

@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { CardType } from '../../../../bll/card-slice';
 import { AppStoreType } from '../../../../bll/store';
 import { SearchForm } from '../../../../components/common/SearchForm/SearchForm';
+import { SortButton } from '../../../../components/common/SortButton/SortButton';
 import styles from '../../CardsPackList/CardsPackList.module.scss';
 
 import { PackageItemForAll } from './PackageItemForAll/PackageItemForAll';
@@ -27,7 +28,7 @@ export const PackageCardsAll = () => {
           <h4>Answer</h4>
           <div className={styles.packs__itemSort}>
             <h4>Last Updated</h4>
-            <span>X</span>
+            <SortButton />
           </div>
           <h4>Grade</h4>
         </div>

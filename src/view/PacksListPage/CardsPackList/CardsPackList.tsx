@@ -3,7 +3,11 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { getCardsPack } from '../../../bll/pack-slice';
+import {
+  CardsPackDataForRequestType,
+  DataPackType,
+  getCardsPack,
+} from '../../../bll/pack-slice';
 import { AppStoreType } from '../../../bll/store';
 import { CardsPackTable } from '../../../components/common/CardsPackTable/CardsPackTable';
 import { SearchForm } from '../../../components/common/SearchForm/SearchForm';
@@ -11,17 +15,29 @@ import { SearchForm } from '../../../components/common/SearchForm/SearchForm';
 import styles from './CardsPackList.module.scss';
 
 export const CardsPackList = () => {
-  const { page, pageCount } = useSelector<
-    AppStoreType,
-    { pageCount: number; page: number }
-  >(state => state.packs.data);
+  const { page, pageCount } = useSelector<AppStoreType, DataPackType>(
+    state => state.packs.data,
+  );
+  const { min, max, packName } = useSelector<AppStoreType, CardsPackDataForRequestType>(
+    state => state.packs.cardsPackDataForRequest,
+  );
 
   const { userId } = useParams<'userId'>();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getCardsPack({ page, pageCount, user_id: userId }));
-  }, [pageCount, page, userId]);
+    // лучше делать локальный стейт под range
+    dispatch(
+      getCardsPack({
+        page,
+        pageCount,
+        user_id: userId,
+        min,
+        max,
+        packName,
+      }),
+    );
+  }, [pageCount, page, userId, min, max, packName]);
 
   return (
     <div className={styles.packs}>

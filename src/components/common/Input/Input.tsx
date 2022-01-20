@@ -3,17 +3,15 @@ import React, {
   CSSProperties,
   DetailedHTMLProps,
   InputHTMLAttributes,
-  TextareaHTMLAttributes,
 } from 'react';
 
 import styles from './Input.module.scss';
 
-export type InputChangeEventType = ChangeEvent<HTMLTextAreaElement | HTMLInputElement>;
+export type InputChangeEventType = ChangeEvent<HTMLInputElement>;
 type DefaultType = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
-> &
-  DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>;
+>;
 
 type InputPropsType = DefaultType & {
   label?: string;

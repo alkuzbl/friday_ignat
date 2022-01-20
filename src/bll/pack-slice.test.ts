@@ -1,4 +1,5 @@
 import {
+  CardsPackDataForRequestType,
   DataPackType,
   PackInitialStateType,
   packReducer,
@@ -59,6 +60,7 @@ beforeEach(() => {
       error: '',
     },
     status: 'idle',
+    cardsPackDataForRequest: {} as CardsPackDataForRequestType,
   };
   return packInitialState;
 });

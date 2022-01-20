@@ -7,6 +7,7 @@ import { addNewCard, CardType } from '../../../../bll/card-slice';
 import { AppStoreType } from '../../../../bll/store';
 import { Button } from '../../../../components/common/Button';
 import { SearchForm } from '../../../../components/common/SearchForm/SearchForm';
+import { SortButton } from '../../../../components/common/SortButton/SortButton';
 import styles from '../../CardsPackList/CardsPackList.module.scss';
 
 import { PackageItemForMe } from './PackageItemForMe/PackageItemForMe';
@@ -64,7 +65,7 @@ export const PackageCardsMe = () => {
           <h4>Answer</h4>
           <div className={styles.packs__itemSort}>
             <h4>Last Updated</h4>
-            <span>X</span>
+            <SortButton />
           </div>
           <h4>Grade</h4>
           <h4>Actions</h4>

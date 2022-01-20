@@ -1,9 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setActiveModalWindow } from '../../app/app-slice';
-import { DataPackType, getCardsPack, setPage, setPageCount } from '../../bll/pack-slice';
+import {
+  CardsPackDataForRequestType,
+  DataPackType,
+  getCardsPack,
+  setCardsCount,
+  setPage,
+  setPageCount,
+} from '../../bll/pack-slice';
 import { AppStoreType } from '../../bll/store';
 import { Button } from '../../components/common/Button';
 import { CardsPackTable } from '../../components/common/CardsPackTable/CardsPackTable';
@@ -17,11 +24,17 @@ import { ButtonsBoxPacksList } from './ButtonsBoxForPacksList/ButtonsBoxPacksLis
 import stylesPack from './CardsPackList/CardsPackList.module.scss';
 
 const PacksListPage = () => {
-  // потом положить в redux, в зависимости что искать нужно
-  const [valueRangeSlider, setValueRangeSlider] = useState<number[]>([0, 100]);
+  const { minCardsCount, maxCardsCount } = useSelector<AppStoreType, DataPackType>(
+    state => state.packs.data,
+  );
+  const { min, max, packName } = useSelector<AppStoreType, CardsPackDataForRequestType>(
+    state => state.packs.cardsPackDataForRequest,
+  );
   const dispatch = useDispatch();
 
-  const onChangeRange = (value: number[]) => setValueRangeSlider(value);
+  const onChangeRange = (value: number[]) => {
+    dispatch(setCardsCount({ min: value[0], max: value[1] }));
+  };
 
   const selectPage = (page: number) => dispatch(setPage({ page }));
 
@@ -37,8 +50,8 @@ const PacksListPage = () => {
   const addNewPack = () =>
     dispatch(setActiveModalWindow({ name: 'create-pack', modalWindowData: {} }));
   useEffect(() => {
-    dispatch(getCardsPack({ page, pageCount }));
-  }, [pageCount, page]);
+    dispatch(getCardsPack({ page, pageCount, max, min, packName }));
+  }, [pageCount, page, max, min, packName]);
 
   return (
     <div className={styles.profilePage}>
@@ -50,7 +63,13 @@ const PacksListPage = () => {
             </div>
             <div className={styles.profilePage__range}>
               <h4 className={styles.profilePage__rangeTitle}>Number of cards</h4>
-              <DoubleRange onChangeRange={onChangeRange} value={valueRangeSlider} />
+              <DoubleRange
+                onAfterChange={onChangeRange}
+                allowCross={false}
+                min={minCardsCount}
+                max={maxCardsCount}
+                defaultValue={[minCardsCount, maxCardsCount]}
+              />
             </div>
           </div>
           <div className={styles.profilePage__packsList}>
