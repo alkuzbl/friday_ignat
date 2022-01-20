@@ -6,18 +6,22 @@ import {
   ModalWindowCardType,
   setInactiveModalWindow,
 } from '../../../../../app/app-slice';
+import { deleteCard } from '../../../../../bll/card-slice';
 import { AppStoreType } from '../../../../../bll/store';
 import { Button } from '../../../Button';
 import styles from '../../modalWindowPack/PackDeletingForm/PopupConfirmationProcessing.module.scss';
 
 export const CardDeletingForm = () => {
-  const { question, cardId } = useSelector<AppStoreType, ModalWindowCardType>(
-    state => state.app.modalWindow.modalWindowData,
-  );
+  const { question, cardId, cardsPackId } = useSelector<
+    AppStoreType,
+    ModalWindowCardType
+  >(state => state.app.modalWindow.modalWindowData);
 
   const dispatch = useDispatch();
-  const deleteCard = () => {
-    console.log(cardId);
+  const onDeleteCardClick = () => {
+    dispatch(
+      deleteCard({ cardsPackId: cardsPackId as string, cardId: cardId as string }),
+    );
   };
   const cancel = () => dispatch(setInactiveModalWindow());
   const onClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
@@ -43,7 +47,7 @@ export const CardDeletingForm = () => {
           title="Delete"
           type="button"
           view="delete-for-pack-name"
-          onClick={deleteCard}
+          onClick={onDeleteCardClick}
         />
       </div>
     </div>

@@ -35,6 +35,9 @@ const cardsSlice = createSlice({
     setPage: (state, action: PayloadAction<{ page: number }>) => {
       state.data.page = action.payload.page;
     },
+    setPageCount: (state, action: PayloadAction<{ pageCount: number }>) => {
+      state.data.pageCount = action.payload.pageCount;
+    },
     setErrorCard: (state, action) => {
       state.data.error = action.payload;
     },
@@ -48,7 +51,8 @@ const cardsSlice = createSlice({
 export const cardsReducer = cardsSlice.reducer;
 
 // actions
-export const { setCards, setStatusCard, setErrorCard, setPage } = cardsSlice.actions;
+export const { setCards, setStatusCard, setErrorCard, setPage, setPageCount } =
+  cardsSlice.actions;
 
 type CardsActionsType =
   | ReturnType<typeof cardsSlice.actions.setCards>

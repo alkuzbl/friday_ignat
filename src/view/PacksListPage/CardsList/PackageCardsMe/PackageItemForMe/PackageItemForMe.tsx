@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { deleteCard } from '../../../../../bll/card-slice';
+import { setActiveModalWindow } from '../../../../../app/app-slice';
 import { Button } from '../../../../../components/common/Button';
 import { Grade } from '../../../../../components/common/Grade/Grade';
 import styles from '../../../CardsPackList/CardsPackList.module.scss';
@@ -22,9 +22,21 @@ export const PackageItemForMe = (props: PackageItemForMePropsType) => {
   const { packId } = useParams<'packId'>();
 
   const onClickDelete = () => {
-    dispatch(deleteCard({ cardsPackId: packId as string, cardId }));
+    dispatch(
+      setActiveModalWindow({
+        name: 'delete-card',
+        modalWindowData: { cardsPackId: packId as string, cardId, question },
+      }),
+    );
   };
-  const onClickEdit = () => {};
+  const onClickEdit = () => {
+    dispatch(
+      setActiveModalWindow({
+        name: 'edit-card',
+        modalWindowData: { _id: cardId, question, answer },
+      }),
+    );
+  };
 
   const styleItem =
     index % 2 === 0
