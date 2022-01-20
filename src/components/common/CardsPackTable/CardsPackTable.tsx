@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { CardPackType } from '../../../bll/pack-slice';
+import { CardPackType, setSortingByDate } from '../../../bll/pack-slice';
 import { AppStoreType } from '../../../bll/store';
 import styles from '../../../view/PacksListPage/CardsPackList/CardsPackList.module.scss';
 import { PackListItem } from '../../../view/PacksListPage/CardsPackList/PackListItem/PackListItem';
@@ -13,6 +13,10 @@ export const CardsPackTable = () => {
   const cardsPack = useSelector<AppStoreType, CardPackType[]>(
     state => state.packs.data.cardPacks,
   );
+  const dispatch = useDispatch();
+  const sortByDate = (value: 0 | 1 | undefined) => {
+    dispatch(setSortingByDate({ sortPacks: value }));
+  };
 
   return (
     <div className={styles.packs__box}>
@@ -21,7 +25,7 @@ export const CardsPackTable = () => {
         <h4 className={styles.packs__itemTitle}>Cards</h4>
         <div className={styles.packs__itemSort}>
           <h4 className={styles.packs__itemTitle}>Last Updated</h4>
-          <SortButton />
+          <SortButton onClick={sortByDate} />
         </div>
         <h4 className={styles.packs__itemTitle}>Created by</h4>
         <h4 className={styles.packs__itemTitle}>Actions</h4>

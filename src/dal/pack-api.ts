@@ -4,9 +4,13 @@ import { CardPackType, DataPackType } from '../bll/pack-slice';
 import { instance } from './instance-axios';
 
 export const packAPI = {
-  getCardsPack: (data: RequestGetPayloadPacksType) =>
-    instance.get<DataPackType>(`cards/pack`, { params: data }),
-
+  getCardsPack: (data: RequestGetPayloadPacksType) => {
+    const sortPacks = data.sortPacks
+      ? { sortPacks: `${data.sortPacks}updated` }
+      : data.sortPacks;
+    const payload = { ...data, ...sortPacks };
+    return instance.get<DataPackType>(`cards/pack`, { params: payload });
+  },
   createNewPack: (data: RequestPayloadCreatePackType) =>
     instance.post<{ newCardsPack: CardPackType; error: string }>(`cards/pack`, {
       cardsPack: data,
@@ -28,7 +32,7 @@ export type RequestGetPayloadPacksType = {
   packName?: string;
   min?: number;
   max?: number;
-  sortPacks?: 0;
+  sortPacks?: 0 | 1 | undefined;
   page?: number;
   pageCount?: number;
   user_id?: string;

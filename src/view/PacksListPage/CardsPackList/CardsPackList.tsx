@@ -18,9 +18,10 @@ export const CardsPackList = () => {
   const { page, pageCount } = useSelector<AppStoreType, DataPackType>(
     state => state.packs.data,
   );
-  const { min, max, packName } = useSelector<AppStoreType, CardsPackDataForRequestType>(
-    state => state.packs.cardsPackDataForRequest,
-  );
+  const { min, max, packName, sortPacks } = useSelector<
+    AppStoreType,
+    CardsPackDataForRequestType
+  >(state => state.packs.cardsPackDataForRequest);
 
   const { userId } = useParams<'userId'>();
   const dispatch = useDispatch();
@@ -35,9 +36,10 @@ export const CardsPackList = () => {
         min,
         max,
         packName,
+        sortPacks,
       }),
     );
-  }, [pageCount, page, userId, min, max, packName]);
+  }, [pageCount, page, userId, min, max, packName, sortPacks]);
 
   return (
     <div className={styles.packs}>

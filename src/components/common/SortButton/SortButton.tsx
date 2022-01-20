@@ -5,12 +5,13 @@ import arrowIcon from '../../../assets/images/arrow.svg';
 import styles from './SortButton.module.scss';
 
 type SortButtonPropsType = {
-  onClick?: (value: 0 | 1) => void;
-  defaultValue?: 0 | 1;
+  onClick?: (value: 0 | 1 | undefined) => void;
+  defaultValue?: 0 | 1 | undefined;
 };
 export const SortButton = (props: SortButtonPropsType) => {
   const { onClick, defaultValue = 0 } = props;
-  const [sort, setSort] = useState<0 | 1>(defaultValue);
+  const [sort, setSort] = useState<0 | 1 | undefined>(defaultValue);
+  // стоит поиграться с логикой касаемо запроса...
   const onClickSortHandler = () => {
     if (sort === 0) {
       setSort(1);
@@ -20,6 +21,7 @@ export const SortButton = (props: SortButtonPropsType) => {
       onClick && onClick(0);
     }
   };
+
   return (
     <button className={styles.button} type="button" onClick={onClickSortHandler}>
       <img

@@ -65,6 +65,12 @@ const packSlice = createSlice({
         ...action.payload,
       };
     },
+    setSortingByDate: (state, action: PayloadAction<CardsPackDataForRequestType>) => {
+      state.cardsPackDataForRequest = {
+        ...state.cardsPackDataForRequest,
+        ...action.payload,
+      };
+    },
   },
   extraReducers: builder => {
     builder.addCase(setLogout, state => {
@@ -96,6 +102,7 @@ export const {
   clearCardPacksData,
   setCardsCount,
   setPackNameSearch,
+  setSortingByDate,
 } = packSlice.actions;
 
 // thunks
@@ -143,10 +150,11 @@ export const createNewPack =
     const secondState = getState();
     const userId = secondState.auth.user._id;
     const { page, pageCount } = secondState.packs.data;
+    const { sortPacks } = secondState.packs.cardsPackDataForRequest;
     dispatch(setStatusCardsPack('loading'));
     try {
       await packAPI.createNewPack(data);
-      dispatch(getCardsPack({ user_id: userId, page, pageCount }));
+      dispatch(getCardsPack({ user_id: userId, page, pageCount, sortPacks }));
       dispatch(setStatusCardsPack('succeed'));
     } catch (e: any) {
       const error = e.response
@@ -207,6 +215,7 @@ export type CardsPackDataForRequestType = {
   min?: number;
   max?: number;
   packName?: string | undefined;
+  sortPacks?: 0 | 1 | undefined;
 };
 export type PackInitialStateType = {
   data: DataPackType;
