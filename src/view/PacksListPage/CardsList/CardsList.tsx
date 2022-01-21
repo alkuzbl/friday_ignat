@@ -25,10 +25,10 @@ const CardsList = () => {
   );
   const currentPage = useSelector<AppStoreType, number>(state => state.cards.data.page);
   const sortCards = useSelector<AppStoreType, SortCardsType>(
-    state => state.cards.sortCards,
+    state => state.cards.cardsDataForRequest.sortCards,
   );
   const cardQuestion = useSelector<AppStoreType, string | undefined>(
-    state => state.cards.cardQuestion,
+    state => state.cards.cardsDataForRequest.cardQuestion,
   );
   const { userId } = useParams<'userId'>();
   const { packId } = useParams<'packId'>();

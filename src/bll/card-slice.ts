@@ -23,8 +23,7 @@ const cardsInitialState: CardsInitialStateType = {
     tokenDeathTime: null as never as number,
     error: null,
   },
-  sortCards: '0grade',
-  cardQuestion: '',
+  cardsDataForRequest: {},
   status: 'idle',
 };
 
@@ -48,10 +47,10 @@ const cardsSlice = createSlice({
       state.status = action.payload;
     },
     setSortingByGrade: (state, action: PayloadAction<SortCardsType>) => {
-      state.sortCards = action.payload;
+      state.cardsDataForRequest.sortCards = action.payload;
     },
     setCardQuestionSearch: (state, action: PayloadAction<string | undefined>) => {
-      state.cardQuestion = action.payload;
+      state.cardsDataForRequest.cardQuestion = action.payload;
     },
   },
 });
@@ -169,9 +168,14 @@ export type CardsType = {
   tokenDeathTime: number;
   error: null | string;
 };
-export type CardsInitialStateType = {
-  data: CardsType;
+
+export type CardsDataForRequestType = {
   sortCards?: SortCardsType;
   cardQuestion?: string | undefined;
+};
+
+export type CardsInitialStateType = {
+  data: CardsType;
   status: StatusType;
+  cardsDataForRequest: CardsDataForRequestType;
 };
