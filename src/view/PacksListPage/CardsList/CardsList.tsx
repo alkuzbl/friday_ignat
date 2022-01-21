@@ -30,9 +30,11 @@ const CardsList = () => {
   const cardQuestion = useSelector<AppStoreType, string | undefined>(
     state => state.cards.cardsDataForRequest.cardQuestion,
   );
+  const cardAnswer = useSelector<AppStoreType, string | undefined>(
+    state => state.cards.cardsDataForRequest.cardAnswer,
+  );
   const { userId } = useParams<'userId'>();
   const { packId } = useParams<'packId'>();
-
   const selectPage = (page: number) => dispatch(setPage({ page }));
   const setPageCountForCards = (pageCountValue: number) => {
     dispatch(setPageCount({ pageCount: pageCountValue }));
@@ -45,14 +47,16 @@ const CardsList = () => {
         pageCount,
         sortCards,
         cardQuestion,
+        cardAnswer,
       }),
     );
-  }, [packId, currentPage, pageCount, sortCards, cardQuestion]);
+  }, [packId, currentPage, pageCount, sortCards, cardQuestion, cardAnswer]);
   return (
     <div className={styles.packsListPage}>
       <div className="container">
         <div className={styles.packsListPage__packsList}>
-          <SearchCardsForm />
+          <SearchCardsForm searchParam="question" />
+          <SearchCardsForm searchParam="answer" />
 
           {myId === userId ? <PackageCardsMe /> : <PackageCardsAll />}
 

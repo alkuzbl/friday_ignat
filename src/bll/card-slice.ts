@@ -52,6 +52,9 @@ const cardsSlice = createSlice({
     setCardQuestionSearch: (state, action: PayloadAction<string | undefined>) => {
       state.cardsDataForRequest.cardQuestion = action.payload;
     },
+    setCardAnswerSearch: (state, action: PayloadAction<string | undefined>) => {
+      state.cardsDataForRequest.cardAnswer = action.payload;
+    },
   },
 });
 
@@ -67,6 +70,7 @@ export const {
   setPageCount,
   setSortingByGrade,
   setCardQuestionSearch,
+  setCardAnswerSearch,
 } = cardsSlice.actions;
 
 type CardsActionsType =
@@ -124,7 +128,19 @@ export const deleteCard =
       await cardAPI.deleteCard(data);
       const { page } = getState().cards.data;
       const { pageCount } = getState().cards.data;
-      dispatch(getAllCards({ cardsPack_id: data.cardsPackId, page, pageCount }));
+      const { sortCards } = getState().cards.cardsDataForRequest;
+      const { cardAnswer } = getState().cards.cardsDataForRequest;
+      const { cardQuestion } = getState().cards.cardsDataForRequest;
+      dispatch(
+        getAllCards({
+          cardsPack_id: data.cardsPackId,
+          page,
+          pageCount,
+          sortCards,
+          cardAnswer,
+          cardQuestion,
+        }),
+      );
       dispatch(setStatusCard('succeed'));
     } catch (e: any) {
       const error = e.response
@@ -172,6 +188,7 @@ export type CardsType = {
 export type CardsDataForRequestType = {
   sortCards?: SortCardsType;
   cardQuestion?: string | undefined;
+  cardAnswer?: string | undefined;
 };
 
 export type CardsInitialStateType = {

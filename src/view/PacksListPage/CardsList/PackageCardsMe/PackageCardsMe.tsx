@@ -26,9 +26,9 @@ export const PackageCardsMe = () => {
     dispatch(
       addNewCard({
         cardsPack_id: packId as string,
-        question: 'DDD',
-        answer: 'Nothing',
-        grade: 3,
+        question: 'aaa',
+        answer: 'bbb',
+        grade: 4,
       }),
     );
   };
