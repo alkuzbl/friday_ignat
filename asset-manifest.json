@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/friday_ignat/static/css/main.33de09ea.css",
-    "main.js": "/friday_ignat/static/js/main.475d6b2b.js",
+    "main.css": "/friday_ignat/static/css/main.79f3adac.css",
+    "main.js": "/friday_ignat/static/js/main.ad12f17c.js",
     "static/js/787.3f60aab4.chunk.js": "/friday_ignat/static/js/787.3f60aab4.chunk.js",
     "static/media/card.svg": "/friday_ignat/static/media/card.95b09153bd3e7087d1bc916fa9116422.svg",
     "static/media/logo.png": "/friday_ignat/static/media/logo.1b4c94fff68583c25478.png",
@@ -11,12 +11,13 @@
     "static/media/profile.svg": "/friday_ignat/static/media/profile.36eee9e3fa481afa11bd88bcc1945353.svg",
     "static/media/edit_icon.svg": "/friday_ignat/static/media/edit_icon.da0773a9b1f44d8e656b8e17aa467b43.svg",
     "static/media/edit_icon-error.svg": "/friday_ignat/static/media/edit_icon-error.19fc4f245a1afc028973a798934754e1.svg",
-    "main.33de09ea.css.map": "/friday_ignat/static/css/main.33de09ea.css.map",
-    "main.475d6b2b.js.map": "/friday_ignat/static/js/main.475d6b2b.js.map",
+    "static/media/arrow.svg": "/friday_ignat/static/media/arrow.f30a3c93800d45e28b3fd57be8ec4b46.svg",
+    "main.79f3adac.css.map": "/friday_ignat/static/css/main.79f3adac.css.map",
+    "main.ad12f17c.js.map": "/friday_ignat/static/js/main.ad12f17c.js.map",
     "787.3f60aab4.chunk.js.map": "/friday_ignat/static/js/787.3f60aab4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.33de09ea.css",
-    "static/js/main.475d6b2b.js"
+    "static/css/main.79f3adac.css",
+    "static/js/main.ad12f17c.js"
   ]
 }
