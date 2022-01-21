@@ -11,12 +11,10 @@ import { SortCardsType } from '../../../dal/card-api';
 import { RedirectionIfNotAuthorized } from '../../../hoc/RedirectionIfNotAuthorized';
 import styles from '../../ProfilePage/ProfilePage.module.scss';
 
-import { PackageCardsAll } from './PackageCardsAll/PackageCardsAll';
-import { PackageCardsMe } from './PackageCardsMe/PackageCardsMe';
+import { PackageCards } from './PackageCards/PackageCards';
 
 const CardsList = () => {
   const dispatch = useDispatch();
-  const myId = useSelector<AppStoreType, string>(state => state.auth.user._id);
   const cardsTotalCount = useSelector<AppStoreType, number>(
     state => state.cards.data.cardsTotalCount,
   );
@@ -33,8 +31,9 @@ const CardsList = () => {
   const cardAnswer = useSelector<AppStoreType, string | undefined>(
     state => state.cards.cardsDataForRequest.cardAnswer,
   );
-  const { userId } = useParams<'userId'>();
   const { packId } = useParams<'packId'>();
+  const { userId } = useParams<'userId'>();
+
   const selectPage = (page: number) => dispatch(setPage({ page }));
   const setPageCountForCards = (pageCountValue: number) => {
     dispatch(setPageCount({ pageCount: pageCountValue }));
@@ -58,7 +57,7 @@ const CardsList = () => {
           <SearchCardsForm searchParam="question" />
           <SearchCardsForm searchParam="answer" />
 
-          {myId === userId ? <PackageCardsMe /> : <PackageCardsAll />}
+          <PackageCards />
 
           <div className={styles.packsListPage__pagination}>
             <Pagination

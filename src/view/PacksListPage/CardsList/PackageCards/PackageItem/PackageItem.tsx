@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import { setActiveModalWindow } from '../../../../../app/app-slice';
 import { Button } from '../../../../../components/common/Button';
@@ -15,11 +14,12 @@ type PackageItemForMePropsType = {
   grade: number;
   index: number;
   cardId: string;
+  packId: string | undefined;
+  isMyCards: boolean;
 };
-export const PackageItemForMe = (props: PackageItemForMePropsType) => {
-  const { question, answer, date, grade, index, cardId } = props;
+export const PackageItem = (props: PackageItemForMePropsType) => {
+  const { question, answer, date, grade, index, cardId, packId, isMyCards } = props;
   const dispatch = useDispatch();
-  const { packId } = useParams<'packId'>();
 
   const onClickDelete = () => {
     dispatch(
@@ -51,21 +51,22 @@ export const PackageItemForMe = (props: PackageItemForMePropsType) => {
       <div className={styles.packs__itemContent}>
         <Grade score={grade} />
       </div>
-
-      <div className={`${styles.packs__itemButtons} ${styles.pack__itemButtons}`}>
-        <Button
-          title="Delete"
-          type="button"
-          view="delete-for-packsList"
-          onClick={onClickDelete}
-        />
-        <Button
-          title="Edit"
-          type="button"
-          view="default-for-packsList"
-          onClick={onClickEdit}
-        />
-      </div>
+      {isMyCards && (
+        <div className={`${styles.packs__itemButtons} ${styles.pack__itemButtons}`}>
+          <Button
+            title="Delete"
+            type="button"
+            view="delete-for-packsList"
+            onClick={onClickDelete}
+          />
+          <Button
+            title="Edit"
+            type="button"
+            view="default-for-packsList"
+            onClick={onClickEdit}
+          />
+        </div>
+      )}
     </div>
   );
 };
