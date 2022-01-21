@@ -21,7 +21,6 @@ export const Profile = () => {
   );
   const { userId } = useParams<'userId'>();
   const dispatch = useDispatch();
-  // реализовать логику показа кнопки редактирования своего профайла
 
   useEffect(() => {
     // заглушка в виде setTimeout чтобы одновременно не шли запросы

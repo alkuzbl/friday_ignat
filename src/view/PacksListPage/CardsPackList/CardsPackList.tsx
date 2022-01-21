@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 
 import {
   CardsPackDataForRequestType,
+  clearCardsPackDataForRequest,
   DataPackType,
   getCardsPack,
 } from '../../../bll/pack-slice';
@@ -39,6 +40,9 @@ export const CardsPackList = () => {
         sortPacks,
       }),
     );
+    return () => {
+      dispatch(clearCardsPackDataForRequest());
+    };
   }, [pageCount, page, userId, min, max, packName, sortPacks]);
 
   return (

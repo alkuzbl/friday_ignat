@@ -51,8 +51,8 @@ const packSlice = createSlice({
     setErrorCardsPack: (state, action: PayloadAction<string>) => {
       state.data.error = action.payload;
     },
-    clearCardPacksData: state => {
-      state.data.cardPacks = [];
+    clearCardsPackDataForRequest: state => {
+      state.cardsPackDataForRequest = {};
     },
     setCardsPackDataForRequest: (
       state,
@@ -91,7 +91,7 @@ export const {
   setErrorCardsPack,
   setStatusCardsPack,
   setPage,
-  clearCardPacksData,
+  clearCardsPackDataForRequest,
   setCardsPackDataForRequest,
 } = packSlice.actions;
 

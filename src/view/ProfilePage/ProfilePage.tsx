@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -29,9 +29,9 @@ const ProfilePage = () => {
   // выбор страницы - то-есть переход постраничный
   const selectPage = (page: number) => dispatch(setPage({ page }));
   // для выбора количества карточек (double-range)
-  const onChangeRange = (value: number[]) => {
+  const onChangeRange = useCallback((value: number[]) => {
     dispatch(setCardsPackDataForRequest({ min: value[0], max: value[1] }));
-  };
+  }, []);
   // выбор количества элементов на странице (select)
   const setPageCountForPacks = (pageCountValue: number) => {
     dispatch(setPageCount({ pageCount: pageCountValue }));
@@ -50,7 +50,6 @@ const ProfilePage = () => {
                 allowCross={false}
                 min={minCardsCount}
                 max={maxCardsCount}
-                defaultValue={[minCardsCount, maxCardsCount]}
               />
             </div>
           </div>

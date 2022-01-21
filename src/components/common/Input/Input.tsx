@@ -49,7 +49,7 @@ export const Input = (props: InputPropsType) => {
     value,
     onBlur,
   } = props;
-  console.log('input');
+
   const onKeyPressHandler = (e: DefaultType) => {
     onKeyPress && onKeyPress(e);
     onEnter && e.key === 'Enter' && onEnter();
