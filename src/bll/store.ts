@@ -8,12 +8,14 @@ import { appReducer } from '../app/app-slice';
 import { authReducer } from './auth-slice';
 import { cardsReducer } from './card-slice';
 import { packReducer } from './pack-slice';
+import { userProfileReducer } from './userProfile-slice';
 
 const rootReducer = combineReducers({
   auth: authReducer,
   app: appReducer,
   packs: packReducer,
   cards: cardsReducer,
+  userProfile: userProfileReducer,
 });
 
 export const store = configureStore({
