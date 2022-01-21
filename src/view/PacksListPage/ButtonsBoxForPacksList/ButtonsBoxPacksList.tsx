@@ -1,27 +1,10 @@
 import React from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-
-import { AppStoreType } from '../../../bll/store';
 
 import styles from './ButtonsBoxPacksList.module.scss';
 
 export const ButtonsBoxPacksList = () => {
-  const myId = useSelector<AppStoreType, string>(state => state.auth.user._id);
-  const pageCount = useSelector<AppStoreType, number>(
-    state => state.packs.data.pageCount,
-  );
-
-  const dispatch = useDispatch();
-
-  const getMyCards = () => {
-    console.log(dispatch, myId, pageCount);
-    // dispatch нужных параметров
-  };
-  const getAllCards = () => {
-    // dispatch нужных параметров
-  };
   const setActiveStylesForMenu = (isActive: {}) =>
     isActive ? `${styles.buttonBox__btn} ${styles.active}` : styles.buttonBox__btn;
 
@@ -32,7 +15,6 @@ export const ButtonsBoxPacksList = () => {
         <NavLink
           className={({ isActive }) => setActiveStylesForMenu(isActive)}
           type="button"
-          onClick={getMyCards}
           to="/packs-list/cards-pack/my/1"
         >
           My
@@ -40,7 +22,6 @@ export const ButtonsBoxPacksList = () => {
         <NavLink
           className={({ isActive }) => setActiveStylesForMenu(isActive)}
           type="button"
-          onClick={getAllCards}
           to="/packs-list/cards-pack/all/1"
         >
           All

@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 
 import {
   CardsPackDataForRequestType,
+  clearCardsPackDataForRequest,
   DataPackType,
   getCardsPack,
 } from '../../../bll/pack-slice';
@@ -18,16 +19,16 @@ export const CardsPackList = () => {
   const { page, pageCount } = useSelector<AppStoreType, DataPackType>(
     state => state.packs.data,
   );
-  const { min, max, packName } = useSelector<AppStoreType, CardsPackDataForRequestType>(
-    state => state.packs.cardsPackDataForRequest,
-  );
+  const { min, max, packName, sortPacks } = useSelector<
+    AppStoreType,
+    CardsPackDataForRequestType
+  >(state => state.packs.cardsPackDataForRequest);
 
   const { userId } = useParams<'userId'>();
   const dispatch = useDispatch();
 
   useEffect(() => {
     // лучше делать локальный стейт под range
-    // dispatch(setCardsCount({ min: minCardsCount, max: maxCardsCount }));
     dispatch(
       getCardsPack({
         page,
@@ -36,9 +37,13 @@ export const CardsPackList = () => {
         min,
         max,
         packName,
+        sortPacks,
       }),
     );
-  }, [pageCount, page, userId, min, max, packName]);
+    return () => {
+      dispatch(clearCardsPackDataForRequest());
+    };
+  }, [pageCount, page, userId, min, max, packName, sortPacks]);
 
   return (
     <div className={styles.packs}>

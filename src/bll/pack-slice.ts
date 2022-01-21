@@ -5,6 +5,7 @@ import {
   setInactiveModalWindow,
   StatusType,
 } from '../app/app-slice';
+import { SortValueType } from '../components/common/SortButton/SortButton';
 import { packAPI, RequestGetPayloadPacksType } from '../dal/pack-api';
 
 import { setLogout } from './auth-slice';
@@ -50,16 +51,13 @@ const packSlice = createSlice({
     setErrorCardsPack: (state, action: PayloadAction<string>) => {
       state.data.error = action.payload;
     },
-    clearCardPacksData: state => {
-      state.data.cardPacks = [];
+    clearCardsPackDataForRequest: state => {
+      state.cardsPackDataForRequest = {};
     },
-    setCardsCount: (state, action: PayloadAction<CardsPackDataForRequestType>) => {
-      state.cardsPackDataForRequest = {
-        ...state.cardsPackDataForRequest,
-        ...action.payload,
-      };
-    },
-    setPackNameSearch: (state, action: PayloadAction<CardsPackDataForRequestType>) => {
+    setCardsPackDataForRequest: (
+      state,
+      action: PayloadAction<CardsPackDataForRequestType>,
+    ) => {
       state.cardsPackDataForRequest = {
         ...state.cardsPackDataForRequest,
         ...action.payload,
@@ -93,9 +91,8 @@ export const {
   setErrorCardsPack,
   setStatusCardsPack,
   setPage,
-  clearCardPacksData,
-  setCardsCount,
-  setPackNameSearch,
+  clearCardsPackDataForRequest,
+  setCardsPackDataForRequest,
 } = packSlice.actions;
 
 // thunks
@@ -143,10 +140,11 @@ export const createNewPack =
     const secondState = getState();
     const userId = secondState.auth.user._id;
     const { page, pageCount } = secondState.packs.data;
+    const { sortPacks } = secondState.packs.cardsPackDataForRequest;
     dispatch(setStatusCardsPack('loading'));
     try {
       await packAPI.createNewPack(data);
-      dispatch(getCardsPack({ user_id: userId, page, pageCount }));
+      dispatch(getCardsPack({ user_id: userId, page, pageCount, sortPacks }));
       dispatch(setStatusCardsPack('succeed'));
     } catch (e: any) {
       const error = e.response
@@ -207,6 +205,7 @@ export type CardsPackDataForRequestType = {
   min?: number;
   max?: number;
   packName?: string | undefined;
+  sortPacks?: SortValueType;
 };
 export type PackInitialStateType = {
   data: DataPackType;

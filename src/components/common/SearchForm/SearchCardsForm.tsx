@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { setCardsPackDataForRequest } from '../../../bll/pack-slice';
+import { setCardAnswerSearch, setCardQuestionSearch } from '../../../bll/card-slice';
 import useDebounce from '../../../utils/useDebounce';
 import styles from '../../../view/ProfilePage/ProfilePage.module.scss';
 import { Input, InputChangeEventType } from '../Input/Input';
 
-export const SearchForm = () => {
+type SearchCardsFormPropsType = {
+  searchParam: 'question' | 'answer';
+};
+
+export const SearchCardsForm: FC<SearchCardsFormPropsType> = ({ searchParam }) => {
   const [value, setValue] = useState<string>('');
   const debouncedValue: string = useDebounce(value, 500);
 
@@ -15,14 +19,21 @@ export const SearchForm = () => {
   const onChangeSearch = (e: InputChangeEventType) => {
     setValue(e.currentTarget.value);
   };
-  const onBlurHandler = () => setValue('');
 
   useEffect(() => {
-    if (debouncedValue) {
-      dispatch(setCardsPackDataForRequest({ packName: debouncedValue }));
-    } else {
-      // чтобы запрос не шел вида .../?packName=
-      dispatch(setCardsPackDataForRequest({ packName: undefined }));
+    if (searchParam === 'question') {
+      if (debouncedValue) {
+        dispatch(setCardQuestionSearch(debouncedValue));
+      } else {
+        dispatch(setCardQuestionSearch(undefined));
+      }
+    }
+    if (searchParam === 'answer') {
+      if (debouncedValue) {
+        dispatch(setCardAnswerSearch(debouncedValue));
+      } else {
+        dispatch(setCardAnswerSearch(undefined));
+      }
     }
   }, [debouncedValue]);
   return (
@@ -32,8 +43,7 @@ export const SearchForm = () => {
         type="text"
         onChange={onChangeSearch}
         value={value}
-        placeholder="Search..."
-        onBlur={onBlurHandler}
+        placeholder={`Search by ${searchParam}`}
       />
     </div>
   );

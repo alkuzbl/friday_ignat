@@ -3,6 +3,7 @@ import {
   DataPackType,
   PackInitialStateType,
   packReducer,
+  setCardsPackDataForRequest,
   setErrorCardsPack,
   setPacks,
   setPage,
@@ -190,4 +191,22 @@ test('The page should be updated', () => {
 
   expect(testState.data.page).toBe(123);
   expect(packInitialState.data.page).toBe(1);
+});
+
+test('The data for the request to the server should be updated', () => {
+  const testState = packReducer(
+    packInitialState,
+    setCardsPackDataForRequest({
+      min: 3,
+      max: 25,
+      sortPacks: '1updated',
+      packName: 'TestTest Name',
+    }),
+  );
+
+  expect(testState.cardsPackDataForRequest.max).toBe(25);
+  expect(testState.cardsPackDataForRequest.min).toBe(3);
+  expect(testState.cardsPackDataForRequest.packName).toBe('TestTest Name');
+  expect(testState.cardsPackDataForRequest.sortPacks).toBe('1updated');
+  expect(packInitialState.cardsPackDataForRequest.max).toBe(undefined);
 });

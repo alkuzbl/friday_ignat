@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import { setActiveModalWindow } from '../../app/app-slice';
 import {
   CardsPackDataForRequestType,
   DataPackType,
   getCardsPack,
-  setCardsCount,
+  setCardsPackDataForRequest,
   setPage,
   setPageCount,
 } from '../../bll/pack-slice';
@@ -27,13 +28,25 @@ const PacksListPage = () => {
   const { minCardsCount, maxCardsCount } = useSelector<AppStoreType, DataPackType>(
     state => state.packs.data,
   );
-  const { min, max, packName } = useSelector<AppStoreType, CardsPackDataForRequestType>(
-    state => state.packs.cardsPackDataForRequest,
+  const { min, max, packName, sortPacks } = useSelector<
+    AppStoreType,
+    CardsPackDataForRequestType
+  >(state => state.packs.cardsPackDataForRequest);
+
+  // в зависимости от параметра URL присваиваю userId для запроса (all | my)
+  let userId = useSelector<AppStoreType, string | undefined>(
+    state => state.auth.user._id,
   );
+  const { me } = useParams<'me'>();
+
+  if (me === 'all') {
+    userId = undefined;
+  }
+  //
   const dispatch = useDispatch();
 
   const onChangeRange = (value: number[]) => {
-    dispatch(setCardsCount({ min: value[0], max: value[1] }));
+    dispatch(setCardsPackDataForRequest({ min: value[0], max: value[1] }));
   };
 
   const selectPage = (page: number) => dispatch(setPage({ page }));
@@ -41,17 +54,20 @@ const PacksListPage = () => {
   const setPageCountForPacks = (pageCountValue: number) => {
     dispatch(setPageCount({ pageCount: pageCountValue }));
   };
-
   // разобраться логикой - дублируется код
   const { page, pageCount, cardPacksTotalCount } = useSelector<
     AppStoreType,
     DataPackType
   >(state => state.packs.data);
+
   const addNewPack = () =>
     dispatch(setActiveModalWindow({ name: 'create-pack', modalWindowData: {} }));
+
   useEffect(() => {
-    dispatch(getCardsPack({ page, pageCount, max, min, packName }));
-  }, [pageCount, page, max, min, packName]);
+    dispatch(
+      getCardsPack({ page, pageCount, max, min, packName, sortPacks, user_id: userId }),
+    );
+  }, [pageCount, page, max, min, packName, sortPacks, userId]);
 
   return (
     <div className={styles.profilePage}>

@@ -7,6 +7,7 @@ import {
   LoginDataType,
   NewPasswordDataType,
   RegisterUserDataType,
+  UpdateUserDataType,
   UserType,
 } from '../dal/auth-api';
 
@@ -130,6 +131,21 @@ export const setNewPassword =
   (data: NewPasswordDataType) => async (dispatch: Dispatch) => {
     try {
       await authAPI.setNewPassword(data);
+      dispatch(setStatus('succeed'));
+    } catch (e: any) {
+      const error = e.response
+        ? e.response.data.error
+        : `${e.message}, more details in the console`;
+      dispatch(setAuthError(error));
+      dispatch(setStatus('failed'));
+    }
+  };
+
+export const updatedUserData =
+  (data: UpdateUserDataType) => async (dispatch: Dispatch) => {
+    try {
+      const res = await authAPI.setUpdatedUserData(data);
+      dispatch(setUserData(res.data.updatedUser));
       dispatch(setStatus('succeed'));
     } catch (e: any) {
       const error = e.response

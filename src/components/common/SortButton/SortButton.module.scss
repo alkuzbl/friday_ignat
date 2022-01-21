@@ -1,0 +1,13 @@
+.button{
+  background-color: transparent;
+  padding: 0;
+  margin-left: 3px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  img{
+    width: 10px;
+    height: 8px;
+    transform: translateY(3px);
+  }
+}
