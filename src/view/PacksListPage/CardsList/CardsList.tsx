@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom';
 import { getAllCards, setPage, setPageCount } from '../../../bll/card-slice';
 import { AppStoreType } from '../../../bll/store';
 import { Pagination } from '../../../components/common/Pagination/Pagination';
-import { SearchCardsForm } from '../../../components/common/SearchForm/SearchCardsForm';
 import { SortCardsType } from '../../../dal/card-api';
 import { RedirectionIfNotAuthorized } from '../../../hoc/RedirectionIfNotAuthorized';
 import styles from '../../ProfilePage/ProfilePage.module.scss';
@@ -54,11 +53,7 @@ const CardsList = () => {
     <div className={styles.packsListPage}>
       <div className="container">
         <div className={styles.packsListPage__packsList}>
-          <SearchCardsForm searchParam="question" />
-          <SearchCardsForm searchParam="answer" />
-
           <PackageCards />
-
           <div className={styles.packsListPage__pagination}>
             <Pagination
               totalCount={cardsTotalCount}

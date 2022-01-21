@@ -12,6 +12,7 @@ type FormControlPropsType = {
 
 export const FormControl = (props: FormControlPropsType) => {
   const { children, onSubmit, defaultValues } = props;
+
   const {
     register,
     handleSubmit,

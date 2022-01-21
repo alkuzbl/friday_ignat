@@ -106,7 +106,8 @@ export const addNewCard =
       await cardAPI.createCard(data);
       const { page } = getState().cards.data;
       const { pageCount } = getState().cards.data;
-      dispatch(getAllCards({ cardsPack_id: data.cardsPack_id, page, pageCount }));
+      await dispatch(getAllCards({ cardsPack_id: data.cardsPack_id, page, pageCount }));
+      dispatch(setInactiveModalWindow());
       dispatch(setStatusCard('succeed'));
     } catch (e: any) {
       const error = e.response
@@ -131,7 +132,7 @@ export const deleteCard =
       const { sortCards } = getState().cards.cardsDataForRequest;
       const { cardAnswer } = getState().cards.cardsDataForRequest;
       const { cardQuestion } = getState().cards.cardsDataForRequest;
-      dispatch(
+      await dispatch(
         getAllCards({
           cardsPack_id: data.cardsPackId,
           page,
