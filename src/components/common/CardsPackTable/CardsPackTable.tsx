@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { CardPackType, setSortingByDate } from '../../../bll/pack-slice';
+import { CardPackType, setCardsPackDataForRequest } from '../../../bll/pack-slice';
 import { AppStoreType } from '../../../bll/store';
 import styles from '../../../view/PacksListPage/CardsPackList/CardsPackList.module.scss';
 import { PackListItem } from '../../../view/PacksListPage/CardsPackList/PackListItem/PackListItem';
@@ -15,7 +15,7 @@ export const CardsPackTable = () => {
   );
   const dispatch = useDispatch();
   const sortByDate = (value: SortValueType) => {
-    dispatch(setSortingByDate({ sortPacks: value }));
+    dispatch(setCardsPackDataForRequest({ sortPacks: value }));
   };
 
   return (

@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 
-import avatar from '../../../../assets/images/user_icon.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import { updatedUserData } from '../../../../bll/auth-slice';
+import { AppStoreType } from '../../../../bll/store';
 import { Button } from '../../../../components/common/Button';
 import { EditableSpan } from '../../../../components/common/EditableSpan/EditableSpan';
 import { FormControl } from '../../../../components/common/Form/FormControl/FormControl';
+import { UserType } from '../../../../dal/auth-api';
 import { RedirectionIfNotAuthorized } from '../../../../hoc/RedirectionIfNotAuthorized';
 import { FormStateType } from '../../../Authentication/Login/Login';
 import { UserImageBox } from '../UserImageBox/UserImageBox';
@@ -11,13 +16,21 @@ import { UserImageBox } from '../UserImageBox/UserImageBox';
 import styles from './ProfileEdit.module.scss';
 
 const ProfileEdit = () => {
-  const [value, setValue] = useState<FormStateType>({ name: 'Sasha' });
+  const { name, avatar } = useSelector<AppStoreType, UserType>(state => state.auth.user);
+  const [value, setValue] = useState<FormStateType>({ name });
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
   const savingEditableUserData = () => {
-    console.log(value);
+    dispatch(updatedUserData(value));
   };
+
   const onChangeFormValue = (val: FormStateType) => {
     setValue({ ...value, ...val });
   };
+
+  const goBack = () => navigate(-1);
 
   return (
     <div className={styles.profileEdit}>
@@ -38,7 +51,7 @@ const ProfileEdit = () => {
           </div>
           <div className={styles.editBox__buttonBox}>
             <div className={styles.editBox__button}>
-              <Button title="Cancel" type="link" view="transparent" path="/profile" />
+              <Button title="Cancel" type="button" view="transparent" onClick={goBack} />
             </div>
             <div className={styles.editBox__button}>
               <Button

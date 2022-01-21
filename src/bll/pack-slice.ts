@@ -54,19 +54,10 @@ const packSlice = createSlice({
     clearCardPacksData: state => {
       state.data.cardPacks = [];
     },
-    setCardsCount: (state, action: PayloadAction<CardsPackDataForRequestType>) => {
-      state.cardsPackDataForRequest = {
-        ...state.cardsPackDataForRequest,
-        ...action.payload,
-      };
-    },
-    setPackNameSearch: (state, action: PayloadAction<CardsPackDataForRequestType>) => {
-      state.cardsPackDataForRequest = {
-        ...state.cardsPackDataForRequest,
-        ...action.payload,
-      };
-    },
-    setSortingByDate: (state, action: PayloadAction<CardsPackDataForRequestType>) => {
+    setCardsPackDataForRequest: (
+      state,
+      action: PayloadAction<CardsPackDataForRequestType>,
+    ) => {
       state.cardsPackDataForRequest = {
         ...state.cardsPackDataForRequest,
         ...action.payload,
@@ -101,9 +92,7 @@ export const {
   setStatusCardsPack,
   setPage,
   clearCardPacksData,
-  setCardsCount,
-  setPackNameSearch,
-  setSortingByDate,
+  setCardsPackDataForRequest,
 } = packSlice.actions;
 
 // thunks

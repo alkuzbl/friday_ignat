@@ -8,7 +8,7 @@ import {
   CardsPackDataForRequestType,
   DataPackType,
   getCardsPack,
-  setCardsCount,
+  setCardsPackDataForRequest,
   setPage,
   setPageCount,
 } from '../../bll/pack-slice';
@@ -46,7 +46,7 @@ const PacksListPage = () => {
   const dispatch = useDispatch();
 
   const onChangeRange = (value: number[]) => {
-    dispatch(setCardsCount({ min: value[0], max: value[1] }));
+    dispatch(setCardsPackDataForRequest({ min: value[0], max: value[1] }));
   };
 
   const selectPage = (page: number) => dispatch(setPage({ page }));

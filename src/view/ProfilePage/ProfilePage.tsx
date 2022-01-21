@@ -3,7 +3,12 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { DataPackType, setCardsCount, setPage, setPageCount } from '../../bll/pack-slice';
+import {
+  DataPackType,
+  setCardsPackDataForRequest,
+  setPage,
+  setPageCount,
+} from '../../bll/pack-slice';
 import { AppStoreType } from '../../bll/store';
 import { DoubleRange } from '../../components/common/DoubleRange/DoubleRange';
 import { Pagination } from '../../components/common/Pagination/Pagination';
@@ -25,7 +30,7 @@ const ProfilePage = () => {
   const selectPage = (page: number) => dispatch(setPage({ page }));
   // для выбора количества карточек (double-range)
   const onChangeRange = (value: number[]) => {
-    dispatch(setCardsCount({ min: value[0], max: value[1] }));
+    dispatch(setCardsPackDataForRequest({ min: value[0], max: value[1] }));
   };
   // выбор количества элементов на странице (select)
   const setPageCountForPacks = (pageCountValue: number) => {
