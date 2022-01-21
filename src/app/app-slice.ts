@@ -73,8 +73,8 @@ export type ModalWindowPackType = {
 };
 
 export type ModalWindowCardType = {
-  cardsPack_id?: string; // можно ли пользоваться не camelCase - спросить в поддержке
-  cardId?: string; // у Игната card_id (на деструктаризацию ругается esLint)
+  cardsPackId?: string;
+  cardId?: string;
   question?: string;
   answer?: string;
   grade?: 0 | 1 | 2 | 3 | 4 | 5;
