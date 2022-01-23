@@ -2,14 +2,12 @@ import React from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { setActiveModalWindow } from '../../../../app/app-slice';
-import styles from '../../../../view/PacksListPage/CardsPackList/CardsPackList.module.scss';
-import { Button } from '../../Button';
+import { ActionEditButtonsPropsType } from './types';
 
-type ActionEditButtonsPropsType = {
-  packId: string;
-  packName: string;
-};
+import { setActiveModalWindow } from 'app/app-slice';
+import { Button } from 'components/common/Button';
+import styles from 'view/PacksListPage/CardsPackList/style/CardsPackList.module.scss';
+
 export const ActionEditButtons = (props: ActionEditButtonsPropsType) => {
   const { packName, packId } = props;
   const dispatch = useDispatch();

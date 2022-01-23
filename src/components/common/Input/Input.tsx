@@ -1,41 +1,9 @@
-import React, {
-  ChangeEvent,
-  CSSProperties,
-  DetailedHTMLProps,
-  InputHTMLAttributes,
-} from 'react';
+import React, { FC } from 'react';
 
-import styles from './Input.module.scss';
+import styles from './style/Input.module.scss';
+import { DefaultType, InputChangeEventType, InputPropsType } from './types';
 
-export type InputChangeEventType = ChangeEvent<HTMLInputElement>;
-type DefaultType = DetailedHTMLProps<
-  InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
->;
-
-type InputPropsType = DefaultType & {
-  label?: string;
-  classNameElement?: string;
-  style?: CSSProperties;
-  type:
-    | 'text'
-    | 'email'
-    | 'password'
-    | 'radio'
-    | 'checkbox'
-    | 'hidden'
-    | 'button'
-    | 'submit';
-  placeholder?: string;
-  name?: string;
-  onChange?: (value: InputChangeEventType) => void;
-  onEnter?: () => void;
-  onKeyPress?: (e: DefaultType) => void;
-  value?: string;
-  onBlur?: () => void;
-};
-
-export const Input = (props: InputPropsType) => {
+export const Input: FC<InputPropsType> = props => {
   const {
     classNameElement,
     label,
@@ -58,6 +26,7 @@ export const Input = (props: InputPropsType) => {
   const onChangeHandler = (e: InputChangeEventType) => {
     onChange && onChange(e);
   };
+
   const onBlurHandler = () => {
     onBlur && onBlur();
   };

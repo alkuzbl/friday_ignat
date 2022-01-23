@@ -1,31 +1,31 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { setInactiveModalWindow } from '../../../../../app/app-slice';
-import { cardInfoValidationSchema } from '../../../../../utils/validationSchemes';
 import { Button } from '../../../Button';
-import { FormControl } from '../../../FormControl/FormControl';
 import { InputF } from '../../../InputForReactHF/InputF';
 
-import styles from './CardInfo.module.scss';
+import styles from './style/CardInfo.module.scss';
+import { CardInfoPropsType, DataCardFormType } from './types';
 
-export type DataCardFormType = { question: string; answer: string };
-type CardInfoPropsType = {
-  onSubmit: (data: DataCardFormType) => void;
-};
+import { setInactiveModalWindow } from 'app/app-slice';
+import { FormControl } from 'components/common/FormControl';
+import { cardInfoValidationSchema } from 'utils/validationSchemes';
 
-export const CardInfo = (props: CardInfoPropsType) => {
+export const CardInfo: FC<CardInfoPropsType> = props => {
   const { onSubmit } = props;
+
   const dispatch = useDispatch();
+
   const onSubmitHandler = (data: DataCardFormType) => {
     onSubmit(data);
   };
-  const onClickCancel = () => {
-    dispatch(setInactiveModalWindow());
-  };
+
+  const onClickCancel = () => dispatch(setInactiveModalWindow());
+
   const onClickDiv = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
     e.stopPropagation();
+
   return (
     <div className={styles.popup} role="presentation" onClick={onClickDiv}>
       <h3 className={styles.popup__title}>Card info</h3>

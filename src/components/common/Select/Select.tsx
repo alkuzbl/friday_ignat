@@ -1,19 +1,16 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, FC } from 'react';
 
-import styles from '../Pagination/Pagination.module.scss';
+import { SelectPropsType } from './types';
 
-// import styles from '../../../view/PacksListPage/Pagination/Pagination.module.scss';
+import styles from 'components/common/Pagination/style/Pagination.module.scss';
 
-type SelectPropsType = {
-  value: string[] | number[];
-  onChange: (value: number) => void;
-  defaultValue: number;
-};
-export const Select = (props: SelectPropsType) => {
+export const Select: FC<SelectPropsType> = props => {
   const { value, onChange, defaultValue } = props;
+
   const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     onChange(+e.currentTarget.value);
   };
+
   return (
     <select
       className={styles.pagination__selectInput}

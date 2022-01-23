@@ -8,12 +8,11 @@ import {
   clearCardsPackDataForRequest,
   DataPackType,
   getCardsPack,
-} from '../../../bll/pack-slice';
-import { AppStoreType } from '../../../bll/store';
-import { CardsPackTable } from '../../../components/common/CardsPackTable/CardsPackTable';
-import { SearchForm } from '../../../components/common/SearchForm/SearchForm';
-
-import styles from './CardsPackList.module.scss';
+} from 'bll/pack-slice';
+import { AppStoreType } from 'bll/store';
+import { CardsPackTable } from 'components/common/CardsPackTable';
+import { SearchForm } from 'components/common/SearchForm/SeachForm/SearchForm';
+import styles from 'view/PacksListPage/CardsPackList/style/CardsPackList.module.scss';
 
 export const CardsPackList = () => {
   const { page, pageCount } = useSelector<AppStoreType, DataPackType>(
@@ -24,11 +23,11 @@ export const CardsPackList = () => {
     CardsPackDataForRequestType
   >(state => state.packs.cardsPackDataForRequest);
 
-  const { userId } = useParams<'userId'>();
   const dispatch = useDispatch();
 
+  const { userId } = useParams<'userId'>();
+
   useEffect(() => {
-    // лучше делать локальный стейт под range
     dispatch(
       getCardsPack({
         page,

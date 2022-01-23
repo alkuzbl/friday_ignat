@@ -1,15 +1,11 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
 
-import {
-  ModalWindowPackType,
-  setInactiveModalWindow,
-  StatusType,
-} from '../app/app-slice';
-import { SortValueType } from '../components/common/SortButton/SortButton';
-import { packAPI, RequestGetPayloadPacksType } from '../dal/pack-api';
-
 import { setLogout } from './auth-slice';
 import { AppStoreType } from './store';
+
+import { ModalWindowPackType, setInactiveModalWindow, StatusType } from 'app/app-slice';
+import { SortValueType } from 'components/common/SortButton/SortButton/types';
+import { packAPI, RequestGetPayloadPacksType } from 'dal/pack-api';
 
 const packInitialState: PackInitialStateType = {
   data: {

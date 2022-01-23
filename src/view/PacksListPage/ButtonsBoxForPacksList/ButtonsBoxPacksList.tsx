@@ -2,7 +2,7 @@ import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import styles from './ButtonsBoxPacksList.module.scss';
+import styles from 'view/PacksListPage/ButtonsBoxForPacksList/style/ButtonsBoxPacksList.module.scss';
 
 export const ButtonsBoxPacksList = () => {
   const setActiveStylesForMenu = (isActive: {}) =>

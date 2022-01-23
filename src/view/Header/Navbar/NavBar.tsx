@@ -5,14 +5,16 @@ import { NavLink } from 'react-router-dom';
 
 import iconCard from '../../../assets/images/card.svg';
 import iconProfile from '../../../assets/images/profile.svg';
-import { AppStoreType } from '../../../bll/store';
-import styles from '../Header.module.scss';
+
+import { AppStoreType } from 'bll/store';
+import styles from 'view/Header/style/Header.module.scss';
 
 const setActiveStylesForMenu = (isActive: {}) =>
   isActive ? `${styles.navbar__item} ${styles.active}` : styles.navbar__item;
 
 export const NavBar = () => {
   const userId = useSelector<AppStoreType, string>(state => state.auth.user._id);
+
   return (
     <div className={styles.navbar}>
       <NavLink

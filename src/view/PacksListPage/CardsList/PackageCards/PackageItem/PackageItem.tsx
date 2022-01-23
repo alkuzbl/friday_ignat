@@ -1,24 +1,15 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { setActiveModalWindow } from '../../../../../app/app-slice';
-import { Button } from '../../../../../components/common/Button';
-import { Grade } from '../../../../../components/common/Grade/Grade';
-import styles from '../../../CardsPackList/CardsPackList.module.scss';
+import { setActiveModalWindow } from 'app/app-slice';
+import { Button, Grade } from 'components';
+import { PackageItemForMePropsType } from 'view/PacksListPage/CardsList/PackageCards/PackageItem/types';
+import styles from 'view/PacksListPage/CardsPackList/style/CardsPackList.module.scss';
 
-type PackageItemForMePropsType = {
-  question: string;
-  answer: string;
-  date: string;
-  grade: number;
-  index: number;
-  cardId: string;
-  packId: string | undefined;
-  isMyCards: boolean;
-};
-export const PackageItem = (props: PackageItemForMePropsType) => {
+export const PackageItem: FC<PackageItemForMePropsType> = props => {
   const { question, answer, date, grade, index, cardId, packId, isMyCards } = props;
+
   const dispatch = useDispatch();
 
   const onClickDelete = () => {
@@ -29,6 +20,7 @@ export const PackageItem = (props: PackageItemForMePropsType) => {
       }),
     );
   };
+
   const onClickEdit = () => {
     dispatch(
       setActiveModalWindow({

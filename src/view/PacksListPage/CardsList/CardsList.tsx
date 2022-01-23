@@ -3,17 +3,16 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { getAllCards, setPage, setPageCount } from '../../../bll/card-slice';
-import { AppStoreType } from '../../../bll/store';
-import { Pagination } from '../../../components/common/Pagination/Pagination';
-import { SortCardsType } from '../../../dal/card-api';
-import { RedirectionIfNotAuthorized } from '../../../hoc/RedirectionIfNotAuthorized';
-import styles from '../../ProfilePage/ProfilePage.module.scss';
-
 import { PackageCards } from './PackageCards/PackageCards';
 
+import { getAllCards, setPage, setPageCount } from 'bll/card-slice';
+import { AppStoreType } from 'bll/store';
+import { Pagination } from 'components';
+import { SortCardsType } from 'dal/card-api';
+import { RedirectionIfNotAuthorized } from 'hoc/RedirectionIfNotAuthorized';
+import styles from 'view/ProfilePage/style/ProfilePage.module.scss';
+
 const CardsList = () => {
-  const dispatch = useDispatch();
   const cardsTotalCount = useSelector<AppStoreType, number>(
     state => state.cards.data.cardsTotalCount,
   );
@@ -30,10 +29,14 @@ const CardsList = () => {
   const cardAnswer = useSelector<AppStoreType, string | undefined>(
     state => state.cards.cardsDataForRequest.cardAnswer,
   );
+
+  const dispatch = useDispatch();
+
   const { packId } = useParams<'packId'>();
   const { userId } = useParams<'userId'>();
 
   const selectPage = (page: number) => dispatch(setPage({ page }));
+
   const setPageCountForCards = (pageCountValue: number) => {
     dispatch(setPageCount({ pageCount: pageCountValue }));
   };

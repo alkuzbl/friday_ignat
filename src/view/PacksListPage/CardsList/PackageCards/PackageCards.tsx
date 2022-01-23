@@ -3,23 +3,27 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { setActiveModalWindow } from '../../../../app/app-slice';
-import { CardType, setSortingByGrade } from '../../../../bll/card-slice';
-import { AppStoreType } from '../../../../bll/store';
-import { Button } from '../../../../components/common/Button';
-import { SearchCardsForm } from '../../../../components/common/SearchForm/SearchCardsForm';
-import { SortCardsButton } from '../../../../components/common/SortButton/SortCardsButton';
-import { SortCardsType } from '../../../../dal/card-api';
-import styles from '../../CardsPackList/CardsPackList.module.scss';
-
 import { PackageItem } from './PackageItem/PackageItem';
+
+import { setActiveModalWindow } from 'app/app-slice';
+import { CardType, setSortingByGrade } from 'bll/card-slice';
+import { AppStoreType } from 'bll/store';
+import { Button } from 'components/common/Button';
+import { SearchCardsForm } from 'components/common/SearchForm/SearchCardForm/SearchCardsForm';
+import { SortCardsButton } from 'components/common/SortButton/SortCardsButton/SortCardsButton';
+import { SortCardsType } from 'dal/card-api';
+import styles from 'view/PacksListPage/CardsPackList/style/CardsPackList.module.scss';
 
 export const PackageCards = () => {
   const cards = useSelector<AppStoreType, CardType[]>(state => state.cards.data.cards);
   const myId = useSelector<AppStoreType, string>(state => state.auth.user._id);
+
+  const dispatch = useDispatch();
+
   const { packId } = useParams<'packId'>();
   const { userId } = useParams<'userId'>();
-  const dispatch = useDispatch();
+
+  // далее дописать логику
   const title = 'Pack name';
   const isMyCards = myId === userId;
 

@@ -1,21 +1,13 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
-import iconEditError from '../../../assets/images/edit_icon-error.svg';
-import iconEdit from '../../../assets/images/edit_icon.svg';
-import { FormStateType } from '../../../view/Authentication/Login/Login';
-import { InputChangeEventType } from '../Input/Input';
+import styles from './style/EditableSpan.module.scss';
+import { EditableSpanPropsType } from './types';
 
-import styles from './EditableSpan.module.scss';
+import iconEditError from 'assets/images/edit_icon-error.svg';
+import iconEdit from 'assets/images/edit_icon.svg';
+import { InputChangeEventType } from 'components/common/Input/types';
 
-type EditableSpanPropsType = {
-  value: string;
-  onClick?: (value: string) => void;
-  name: string;
-  onChange: (value: FormStateType) => void;
-  placeholder: string;
-  iconEditButton?: boolean;
-};
-export const EditableSpan = (props: EditableSpanPropsType) => {
+export const EditableSpan: FC<EditableSpanPropsType> = props => {
   const { value, onClick, onChange, name, placeholder, iconEditButton } = props;
 
   const [edit, setEdit] = useState<boolean>(false);

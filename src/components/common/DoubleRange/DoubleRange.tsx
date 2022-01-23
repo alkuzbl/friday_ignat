@@ -2,20 +2,19 @@ import React, { useEffect, useState } from 'react';
 
 import 'rc-slider/assets/index.css';
 
-import { RangeProps } from 'rc-slider';
-
-import styles from './DoubleRange.module.scss';
+import styles from './style/DoubleRange.module.scss';
+import { DoubleRangePropsType } from './types';
 
 const Slider = require('rc-slider');
 
 const { createSliderWithTooltip } = Slider;
 const Range = createSliderWithTooltip(Slider.Range);
 
-type DoubleRangePropsType = RangeProps;
-
 export const DoubleRange = (props: DoubleRangePropsType) => {
   const { min, max, ...restProps } = props;
+
   const [value, setValue] = useState([0, 0]);
+
   useEffect(() => {
     if (min !== undefined && max !== undefined && min !== null && max !== null) {
       setValue([min, max]);

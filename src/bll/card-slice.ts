@@ -1,14 +1,14 @@
 import { createSlice, Dispatch, PayloadAction, ThunkDispatch } from '@reduxjs/toolkit';
 
-import { setInactiveModalWindow, StatusType } from '../app/app-slice';
+import { AppStoreType } from './store';
+
+import { setInactiveModalWindow, StatusType } from 'app/app-slice';
 import {
   cardAPI,
   RequestPayloadCreateCardType,
   RequestPayloadGetCardType,
   SortCardsType,
-} from '../dal/card-api';
-
-import { AppStoreType } from './store';
+} from 'dal/card-api';
 
 const cardsInitialState: CardsInitialStateType = {
   data: {

@@ -3,23 +3,19 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useParams } from 'react-router-dom';
 
-import { StatusType } from '../../../app/app-slice';
-import { setNewPassword } from '../../../bll/auth-slice';
-import { AppStoreType } from '../../../bll/store';
-import { AuthBox } from '../../../components/common/AuthBox/AuthBox';
-import { Button } from '../../../components/common/Button';
-import { FormControl } from '../../../components/common/FormControl/FormControl';
-import { InputF } from '../../../components/common/InputForReactHF/InputF';
-import { newPasswordValidationSchema } from '../../../utils/validationSchemes';
-
-import styles from './NewPassword.module.scss';
+import { StatusType } from 'app/app-slice';
+import { setNewPassword } from 'bll/auth-slice';
+import { AppStoreType } from 'bll/store';
+import { AuthBox, Button, FormControl, InputF } from 'components';
+import { newPasswordValidationSchema } from 'utils/validationSchemes';
+import styles from 'view/Authentication/NewPassword/style/NewPassword.module.scss';
 
 export const NewPassword = () => {
   const requestStatus = useSelector<AppStoreType, StatusType>(state => state.auth.status);
 
-  const { token } = useParams<'token' | 'id'>();
-
   const dispatch = useDispatch();
+
+  const { token } = useParams<'token' | 'id'>();
 
   const onSubmit = (data: { password: string }) => {
     dispatch(setNewPassword({ password: data.password, resetPasswordToken: token }));

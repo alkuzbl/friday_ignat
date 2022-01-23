@@ -1,10 +1,8 @@
 import React from 'react';
 
-import styles from './AuthBox.module.scss';
+import styles from './style/AuthBox.module.scss';
+import { AuthBoxPropsType } from './types';
 
-type AuthBoxPropsType = {
-  children: React.ReactNode;
-};
 export const AuthBox = (props: AuthBoxPropsType) => {
   const { children } = props;
   return (

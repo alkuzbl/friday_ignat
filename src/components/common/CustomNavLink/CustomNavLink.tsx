@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
+import { NavLinkPropsType } from 'components/common/CustomNavLink/types';
+
 const activeStyleNavLink = (isActive: boolean) =>
   isActive ? { fontWeight: 'bold' } : {};
-type NavLinkPropsType = {
-  path: string;
-  title: string;
-};
-export const CustomNavLink = (props: NavLinkPropsType) => {
+
+export const CustomNavLink: FC<NavLinkPropsType> = props => {
   const { path, title } = props;
 
   return (

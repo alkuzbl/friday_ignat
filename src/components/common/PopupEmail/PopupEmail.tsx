@@ -3,7 +3,7 @@ import React from 'react';
 import icon from '../../../assets/images/iconEmail.svg';
 import { AuthBox } from '../AuthBox/AuthBox';
 
-import styles from './PopupEmail.module.scss';
+import styles from './style/PopupEmail.module.scss';
 
 export const PopupEmail = () => (
   <div className={styles.popup}>

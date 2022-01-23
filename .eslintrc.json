@@ -29,14 +29,15 @@
     "no-plusplus": "off",
     "no-debugger": "error",
     "no-unused-vars": "off",
+    "no-magic-numbers": "off",
+    "default-param-last": "off",
     "no-unused-expressions": "off",
     "no-use-before-define": "off",
     "no-underscore-dangle": "off",
     "no-multiple-empty-lines": [
       "error",
       {
-        "max": 1,
-        "maxBOF": 1
+        "max": 1
       }
     ],
     "@typescript-eslint/no-shadow": [
@@ -54,8 +55,22 @@
         "allowExpressions": true
       }
     ],
-    //"prettier/prettier": "error",
-    "prettier/prettier": ["error", { "endOfLine":"auto" }],
+    //    плавный рефакторинг - магические числа - конец
+//    "@typescript-eslint/no-magic-numbers": [
+//      "error",
+//      {
+//        "ignoreEnums": true,
+//        "ignoreNumericLiteralTypes": true,
+//        "ignoreArrayIndexes": true,
+//        "ignoreDefaultValues": true
+//      }
+//    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "jsx-a11y/label-has-for": "off",
     "jsx-a11y/label-has-associated-control": "off",
     "react/prop-types": 0,
@@ -63,14 +78,14 @@
     "react/react-in-jsx-scope": "off",
     "react/destructuring-assignment": "off",
     "jsx-a11y/no-autofocus": "off",
-    "no-param-reassign": ["error", {
-      "props": true,
-      "ignorePropertyModificationsFor": [
-        "state"
-      ]
-    }],
-    "default-param-last": [
-      "warn"
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": [
+          "state"
+        ]
+      }
     ],
     "react/jsx-filename-extension": [
       1,
@@ -137,6 +152,7 @@
     "react/require-default-props": [
       0
     ]
+
   },
   "settings": {
     "import/resolver": {
@@ -154,3 +170,49 @@
     }
   }
 }
+
+
+
+//  "rules": {
+
+
+//
+//
+
+//
+//
+
+//    "react/destructuring-assignment": "error",
+//    "react/jsx-filename-extension": [
+//      1,
+//      {
+//        "extensions": [
+//          ".jsx",
+//          ".tsx"
+//        ]
+//      }
+//    ],
+
+
+
+
+
+
+//  },
+//  "settings": {
+//    "import/resolver": {
+//      "node": {
+//        "paths": [
+//          "src"
+//        ],
+//        "extensions": [
+//          ".js",
+//          ".jsx",
+//          ".ts",
+//          ".tsx"
+//        ]
+//      }
+//    }
+//  }
+//}
+

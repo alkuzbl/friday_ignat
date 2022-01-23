@@ -1,22 +1,14 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import { Link, useParams } from 'react-router-dom';
 
 import { Select } from '../Select/Select';
 
-import styles from './Pagination.module.scss';
 import { PaginationListItem } from './PaginationListItem/PaginationListItem';
+import styles from './style/Pagination.module.scss';
+import { PaginationPropsType } from './types';
 
-type PaginationPropsType = {
-  totalCount: number; // общее количество страниц которое приходит с сервера
-  selectPage: (page: number) => void; // колбэк в который передается следующая страница
-  portionSize?: number; // количество отображенных страниц в пагинации // если не передано, то 7 (PREV 1 2 3 4 5 6 7 ... 342 NEXT)
-  setCountItem?: (pageCount: number) => void; // установить количество элементов (pageCount) на странице (select)
-  pageCount?: number; // количество элементов на странице (select)
-  optionValue?: number[]; // массив данных для select
-  pathToUrl: string; // строка, которая отображается в URL
-};
-export const Pagination = (props: PaginationPropsType) => {
+export const Pagination: FC<PaginationPropsType> = props => {
   const {
     totalCount,
     portionSize = 7,
@@ -26,17 +18,15 @@ export const Pagination = (props: PaginationPropsType) => {
     optionValue,
     pathToUrl,
   } = props;
-
-  const { currentPage } = useParams();
   const [portionNumber, setPortionNumber] = useState(1);
 
+  const { currentPage } = useParams();
   // создание массива страниц
   const pagesCount = Math.ceil(totalCount / pageCount);
   const pages = [];
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
-
   // создание количества отрисованных страниц в pagination
   const portionCount = Math.ceil(pagesCount / portionSize);
   const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
@@ -50,13 +40,16 @@ export const Pagination = (props: PaginationPropsType) => {
     setPortionNumber(portionNumber - 1);
     selectPage(setPrevPage);
   };
+
   const onClickNext = () => {
     setPortionNumber(portionNumber + 1);
     selectPage(setNextPage);
   };
+
   const selectPageHandler = (value: number) => {
     selectPage(value);
   };
+
   const setCountItemHandler = (value: number) => {
     setCountItem && setCountItem(value);
   };

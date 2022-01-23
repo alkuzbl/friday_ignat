@@ -3,12 +3,13 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import logo from '../../assets/images/logo.png';
-import { logout } from '../../bll/auth-slice';
-import { AppStoreType } from '../../bll/store';
-import { Button } from '../../components/common/Button';
 
-import styles from './Header.module.scss';
 import { NavBar } from './Navbar/NavBar';
+
+import { logout } from 'bll/auth-slice';
+import { AppStoreType } from 'bll/store';
+import { Button } from 'components';
+import styles from 'view/Header/style/Header.module.scss';
 
 export const Header = () => {
   const isAuth = useSelector<AppStoreType, boolean>(state => state.auth.isAuth);

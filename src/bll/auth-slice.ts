@@ -1,6 +1,6 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
 
-import { setIsInitialized, StatusType } from '../app/app-slice';
+import { setIsInitialized, StatusType } from 'app/app-slice';
 import {
   authAPI,
   ForgotDataType,
@@ -9,7 +9,7 @@ import {
   RegisterUserDataType,
   UpdateUserDataType,
   UserType,
-} from '../dal/auth-api';
+} from 'dal/auth-api';
 
 const initialState: InitialStateType = {
   user: {} as UserType,

@@ -1,16 +1,11 @@
-// form for Registration
-import React from 'react';
+import React, { FC } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 
-type FormControlPropsType = {
-  children: any;
-  onSubmit: any;
-  defaultValues: any;
-};
+import { FormControlPropsType } from './types';
 
-export const FormControl = (props: FormControlPropsType) => {
+export const FormControl: FC<FormControlPropsType> = props => {
   const { children, onSubmit, defaultValues } = props;
 
   const {

@@ -1,8 +1,8 @@
-import { ModalWindowPackType } from '../app/app-slice';
-import { CardPackType, DataPackType } from '../bll/pack-slice';
-import { SortValueType } from '../components/common/SortButton/SortButton';
-
 import { instance } from './instance-axios';
+
+import { ModalWindowPackType } from 'app/app-slice';
+import { CardPackType, DataPackType } from 'bll/pack-slice';
+import { SortValueType } from 'components/common/SortButton/SortButton/types';
 
 export const packAPI = {
   getCardsPack: (data: RequestGetPayloadPacksType) =>

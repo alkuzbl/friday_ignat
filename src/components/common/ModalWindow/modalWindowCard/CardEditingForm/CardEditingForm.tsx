@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { CardInfo, DataCardFormType } from '../CardInfo/CardInfo';
+import { CardInfo } from '../CardInfo/CardInfo';
+
+import { DataCardFormType } from 'components/common/ModalWindow/modalWindowCard/CardInfo/types';
 
 export const CardEditingForm = () => {
   const updateCard = (data: DataCardFormType) => {

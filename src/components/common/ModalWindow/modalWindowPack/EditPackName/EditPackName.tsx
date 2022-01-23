@@ -2,17 +2,15 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  ModalWindowPackType,
-  setInactiveModalWindow,
-} from '../../../../../app/app-slice';
-import { updateCardsPack } from '../../../../../bll/pack-slice';
-import { AppStoreType } from '../../../../../bll/store';
-import { createPackValidationSchema } from '../../../../../utils/validationSchemes';
 import { Button } from '../../../Button';
-import { FormControl } from '../../../FormControl/FormControl';
 import { InputF } from '../../../InputForReactHF/InputF';
-import styles from '../PackDeletingForm/PopupConfirmationProcessing.module.scss';
+
+import { ModalWindowPackType, setInactiveModalWindow } from 'app/app-slice';
+import { updateCardsPack } from 'bll/pack-slice';
+import { AppStoreType } from 'bll/store';
+import { FormControl } from 'components/common/FormControl';
+import styles from 'components/common/ModalWindow/modalWindowPack/PackDeletingForm/style/PackDeletingForm.module.scss';
+import { createPackValidationSchema } from 'utils/validationSchemes';
 
 export const EditPackName = () => {
   const { _id, name } = useSelector<AppStoreType, ModalWindowPackType>(

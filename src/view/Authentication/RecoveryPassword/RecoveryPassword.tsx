@@ -3,18 +3,15 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, NavLink } from 'react-router-dom';
 
-import { forgotPassword } from '../../../bll/auth-slice';
-import { AppStoreType } from '../../../bll/store';
-import { AuthBox } from '../../../components/common/AuthBox/AuthBox';
-import { Button } from '../../../components/common/Button';
-import { FormControl } from '../../../components/common/FormControl/FormControl';
-import { InputF } from '../../../components/common/InputForReactHF/InputF';
-import { recoveryValidationSchema } from '../../../utils/validationSchemes';
-
-import styles from './RecoveryPassword.module.scss';
+import { forgotPassword } from 'bll/auth-slice';
+import { AppStoreType } from 'bll/store';
+import { AuthBox, Button, FormControl, InputF } from 'components';
+import { recoveryValidationSchema } from 'utils/validationSchemes';
+import styles from 'view/Authentication/RecoveryPassword/style/RecoveryPassword.module.scss';
 
 export const RecoveryPassword = () => {
   const isAuth = useSelector<AppStoreType, boolean>(state => state.auth.isAuth);
+
   const dispatch = useDispatch();
 
   const message = `<div style='background-color: lime; padding: 15px'>

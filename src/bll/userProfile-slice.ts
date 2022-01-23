@@ -1,6 +1,6 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
 
-import { userAPI } from '../dal/user-api';
+import { userAPI } from 'dal/user-api';
 
 const userProfileInitialState: UserProfileInitialStateType = {
   data: {

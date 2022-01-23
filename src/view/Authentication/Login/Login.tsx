@@ -3,39 +3,40 @@ import React, { CSSProperties } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, NavLink } from 'react-router-dom';
 
-import { StatusType } from '../../../app/app-slice';
-import { login, setStatus } from '../../../bll/auth-slice';
-import { AppStoreType } from '../../../bll/store';
-import { AuthBox } from '../../../components/common/AuthBox/AuthBox';
-import { Button } from '../../../components/common/Button';
-import { FormControl } from '../../../components/common/FormControl/FormControl';
-import { InputF } from '../../../components/common/InputForReactHF/InputF';
-import { LoginDataType } from '../../../dal/auth-api';
-import { loginValidationSchema } from '../../../utils/validationSchemes';
-
-import styles from './Login.module.scss';
+import { StatusType } from 'app/app-slice';
+import { login, setStatus } from 'bll/auth-slice';
+import { AppStoreType } from 'bll/store';
+import { AuthBox, Button, FormControl, InputF } from 'components';
+import { LoginDataType } from 'dal/auth-api';
+import { loginValidationSchema } from 'utils/validationSchemes';
+import styles from 'view/Authentication/Login/style/Login.module.scss';
 // удалить
 export type FormStateType = {
   [key: string]: string;
 };
 
 export const Login = () => {
-  const dispatch = useDispatch();
   const requestStatus = useSelector<AppStoreType, StatusType>(state => state.auth.status);
   const isAuth = useSelector<AppStoreType, boolean>(state => state.auth.isAuth);
   const userId = useSelector<AppStoreType, string>(state => state.auth.user._id);
+
+  const dispatch = useDispatch();
+
   const onSubmit = (data: LoginDataType) => {
     dispatch(login(data));
   };
+
   const resetAuthStatus = () => {
     dispatch(setStatus('idle'));
   };
+
   const disabledStyle: CSSProperties =
     requestStatus === 'loading' ? { pointerEvents: 'none', opacity: '.8' } : {};
 
   if (isAuth) {
     return <Navigate to={`/profile/${userId}/pack-page/1`} />;
   }
+
   return (
     <div className="container-center" style={disabledStyle}>
       <div className={styles.login}>

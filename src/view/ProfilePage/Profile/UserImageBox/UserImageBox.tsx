@@ -1,13 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-import userIcon from '../../../../assets/images/user_icon.svg';
+import userIcon from 'assets/images/user_icon.svg';
+import styles from 'view/ProfilePage/Profile/UserImageBox/style/UserImageBox.module.scss';
+import { UserImageBoxPropsType } from 'view/ProfilePage/Profile/UserImageBox/types';
 
-import styles from './UserImageBox.module.scss';
-
-type UserImageBoxPropsType = {
-  icon?: string;
-};
-export const UserImageBox = (props: UserImageBoxPropsType) => {
+export const UserImageBox: FC<UserImageBoxPropsType> = props => {
   const { icon } = props;
 
   return (

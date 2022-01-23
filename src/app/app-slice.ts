@@ -9,7 +9,14 @@ const initialState: InitialStateType = {
     modalWindowData: {},
   },
 };
-
+enum GradeLevel {
+  noRating = 0,
+  dontKnow = 1,
+  dontKnowVeryWell = 2,
+  KnowWell = 3,
+  KnowVeryWell = 4,
+  KnowPerfectly = 5,
+}
 const appSlice = createSlice({
   name: 'app',
   initialState,
@@ -77,7 +84,7 @@ export type ModalWindowCardType = {
   cardId?: string;
   question?: string;
   answer?: string;
-  grade?: 0 | 1 | 2 | 3 | 4 | 5;
+  grade?: GradeLevel;
   shots?: number;
   rating?: number;
   answerImg?: string;

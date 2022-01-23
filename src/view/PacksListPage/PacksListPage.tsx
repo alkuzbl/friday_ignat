@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { setActiveModalWindow } from '../../app/app-slice';
+import { setActiveModalWindow } from 'app/app-slice';
 import {
   CardsPackDataForRequestType,
   DataPackType,
@@ -11,18 +11,13 @@ import {
   setCardsPackDataForRequest,
   setPage,
   setPageCount,
-} from '../../bll/pack-slice';
-import { AppStoreType } from '../../bll/store';
-import { Button } from '../../components/common/Button';
-import { CardsPackTable } from '../../components/common/CardsPackTable/CardsPackTable';
-import { DoubleRange } from '../../components/common/DoubleRange/DoubleRange';
-import { Pagination } from '../../components/common/Pagination/Pagination';
-import { SearchForm } from '../../components/common/SearchForm/SearchForm';
-import { RedirectionIfNotAuthorized } from '../../hoc/RedirectionIfNotAuthorized';
-import styles from '../ProfilePage/ProfilePage.module.scss';
-
-import { ButtonsBoxPacksList } from './ButtonsBoxForPacksList/ButtonsBoxPacksList';
-import stylesPack from './CardsPackList/CardsPackList.module.scss';
+} from 'bll/pack-slice';
+import { AppStoreType } from 'bll/store';
+import { Button, CardsPackTable, Pagination, SearchForm, DoubleRange } from 'components';
+import { RedirectionIfNotAuthorized } from 'hoc/RedirectionIfNotAuthorized';
+import { ButtonsBoxPacksList } from 'view';
+import stylesPack from 'view/PacksListPage/CardsPackList/style/CardsPackList.module.scss';
+import styles from 'view/ProfilePage/style/ProfilePage.module.scss';
 
 const PacksListPage = () => {
   const { minCardsCount, maxCardsCount } = useSelector<AppStoreType, DataPackType>(
@@ -32,18 +27,19 @@ const PacksListPage = () => {
     AppStoreType,
     CardsPackDataForRequestType
   >(state => state.packs.cardsPackDataForRequest);
-
   // в зависимости от параметра URL присваиваю userId для запроса (all | my)
   let userId = useSelector<AppStoreType, string | undefined>(
     state => state.auth.user._id,
   );
+
+  const dispatch = useDispatch();
+
   const { me } = useParams<'me'>();
 
   if (me === 'all') {
     userId = undefined;
   }
   //
-  const dispatch = useDispatch();
 
   const onChangeRange = (value: number[]) => {
     dispatch(setCardsPackDataForRequest({ min: value[0], max: value[1] }));
@@ -60,14 +56,14 @@ const PacksListPage = () => {
     DataPackType
   >(state => state.packs.data);
 
-  const addNewPack = () =>
-    dispatch(setActiveModalWindow({ name: 'create-pack', modalWindowData: {} }));
-
   useEffect(() => {
     dispatch(
       getCardsPack({ page, pageCount, max, min, packName, sortPacks, user_id: userId }),
     );
   }, [pageCount, page, max, min, packName, sortPacks, userId]);
+
+  const addNewPack = () =>
+    dispatch(setActiveModalWindow({ name: 'create-pack', modalWindowData: {} }));
 
   return (
     <div className={styles.profilePage}>

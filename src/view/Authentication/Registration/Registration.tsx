@@ -3,16 +3,12 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-import { StatusType } from '../../../app/app-slice';
-import { registerUser } from '../../../bll/auth-slice';
-import { AppStoreType } from '../../../bll/store';
-import { AuthBox } from '../../../components/common/AuthBox/AuthBox';
-import { Button } from '../../../components/common/Button';
-import { FormControl } from '../../../components/common/FormControl/FormControl';
-import { InputF } from '../../../components/common/InputForReactHF/InputF';
-import { registrationValidationSchema } from '../../../utils/validationSchemes';
-
-import styles from './Registration.module.scss';
+import { StatusType } from 'app/app-slice';
+import { registerUser } from 'bll/auth-slice';
+import { AppStoreType } from 'bll/store';
+import { AuthBox, Button, FormControl, InputF } from 'components';
+import { registrationValidationSchema } from 'utils/validationSchemes';
+import styles from 'view/Authentication/Registration/style/Registration.module.scss';
 
 type RegistrationFormValuesType = {
   email: string;
@@ -21,8 +17,10 @@ type RegistrationFormValuesType = {
 };
 
 export const Registration = () => {
-  const dispatch = useDispatch();
   const requestStatus = useSelector<AppStoreType, StatusType>(state => state.auth.status);
+
+  const dispatch = useDispatch();
+
   const onSubmit = (data: RegistrationFormValuesType) => {
     if (data.password === data.confirmPassword) {
       dispatch(registerUser(data));
