@@ -1,4 +1,4 @@
-export { getUserProfile } from './getUserProfile';
+export { getUserProfile } from './userProfileThunks';
 export {
   logout,
   login,
@@ -8,3 +8,9 @@ export {
   forgotPassword,
   setNewPassword,
 } from './authThunks';
+export {
+  updateCardsPack,
+  getCardsPack,
+  createNewPack,
+  deleteCardsPack,
+} from './packThunks';

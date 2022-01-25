@@ -3,11 +3,11 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { getCardsPack } from 'bll/middlewares/packThunks/getCardsPack';
 import {
   CardsPackDataForRequestType,
   clearCardsPackDataForRequest,
   DataPackType,
-  getCardsPack,
 } from 'bll/reducers/pack-slice';
 import { AppStoreType } from 'bll/store';
 import { CardsPackTable } from 'components/common/CardsPackTable';

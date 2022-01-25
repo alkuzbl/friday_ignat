@@ -6,7 +6,7 @@ import { Button } from '../../../Button';
 import { InputF } from '../../../InputForReactHF/InputF';
 
 import { setInactiveModalWindow } from 'app/app-slice';
-import { createNewPack } from 'bll/reducers/pack-slice';
+import { createNewPack } from 'bll/middlewares/packThunks/createNewPack';
 import { FormControl } from 'components/common/FormControl';
 import styles from 'components/common/ModalWindow/modalWindowPack/PackDeletingForm/style/PackDeletingForm.module.scss';
 import { createPackValidationSchema } from 'utils/validationSchemes';

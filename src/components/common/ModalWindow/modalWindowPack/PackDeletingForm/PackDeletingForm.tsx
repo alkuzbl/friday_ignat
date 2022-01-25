@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { ModalWindowPackType, setInactiveModalWindow } from 'app/app-slice';
-import { deleteCardsPack } from 'bll/reducers/pack-slice';
+import { deleteCardsPack } from 'bll/middlewares/packThunks/deleteCardsPack';
 import { AppStoreType } from 'bll/store';
 import { Button } from 'components/common/Button';
 import styles from 'components/common/ModalWindow/modalWindowPack/PackDeletingForm/style/PackDeletingForm.module.scss';

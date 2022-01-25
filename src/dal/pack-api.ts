@@ -12,7 +12,7 @@ export const packAPI = {
       cardsPack: data,
     }),
 
-  deletePack: (data: { id: string }) =>
+  deletePack: (data: { id: string | undefined }) =>
     instance.delete<{ deletedCardsPack: CardPackType; error: string }>(`cards/pack`, {
       params: data,
     }),

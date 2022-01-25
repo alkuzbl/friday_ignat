@@ -1,8 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { getAuthUser } from 'bll/middlewares';
+import { createNewPack } from 'bll/middlewares/packThunks/createNewPack';
+import { deleteCardsPack } from 'bll/middlewares/packThunks/deleteCardsPack';
 
-const initialState: InitialStateType = {
+const initialState: AppInitialStateType = {
   isInitialized: false,
   error: null,
   modalWindow: {
@@ -50,6 +52,16 @@ const appSlice = createSlice({
     builder.addCase(getAuthUser.fulfilled, state => {
       state.isInitialized = true;
     });
+    builder.addCase(getAuthUser.rejected, state => {
+      state.isInitialized = true;
+    });
+    // очищение сделать после получения новых пакетов и логику в принципе по ошибкам пересмореть
+    builder.addCase(deleteCardsPack.fulfilled, state => {
+      state.modalWindow.modalWindowStatus = false;
+    });
+    builder.addCase(createNewPack.fulfilled, state => {
+      state.modalWindow.modalWindowStatus = false;
+    });
   },
 });
 
@@ -65,7 +77,7 @@ export const {
 // thunks
 
 // types
-type InitialStateType = {
+export type AppInitialStateType = {
   isInitialized: boolean;
   error: string | null;
   modalWindow: ModalWindowType;
@@ -87,6 +99,7 @@ export type ModalWindowPackType = {
 };
 
 export type ModalWindowCardType = {
+  _id?: string;
   cardsPackId?: string;
   cardId?: string;
   question?: string;

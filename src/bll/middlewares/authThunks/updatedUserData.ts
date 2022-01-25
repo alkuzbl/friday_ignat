@@ -6,7 +6,7 @@ import { authAPI, UpdateUserDataType } from 'dal/auth-api';
 
 export const updatedUserData = createAsyncThunk(
   'auth/updateUserData',
-  async (data: UpdateUserDataType, { rejectWithValue, dispatch }) => {
+  async (data: UpdateUserDataType, { dispatch, rejectWithValue }) => {
     dispatch(setAuthStatus('loading'));
     try {
       const res = await authAPI.setUpdatedUserData(data);

@@ -1,10 +1,14 @@
-import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { ModalWindowPackType, setInactiveModalWindow, StatusType } from 'app/app-slice';
-import { logout } from 'bll/middlewares';
-import { AppStoreType } from 'bll/store';
+import { StatusType } from 'app/app-slice';
+import {
+  createNewPack,
+  deleteCardsPack,
+  getCardsPack,
+  logout,
+  updateCardsPack,
+} from 'bll/middlewares';
 import { SortValueType } from 'components/common/SortButton/SortButton/types';
-import { packAPI, RequestGetPayloadPacksType } from 'dal/pack-api';
 
 const packInitialState: PackInitialStateType = {
   data: {
@@ -73,6 +77,30 @@ const packSlice = createSlice({
         error: null as unknown as string,
       };
     });
+    builder.addCase(getCardsPack.fulfilled, (state, action) => {
+      state.data = action.payload;
+      state.status = 'succeed';
+    });
+    builder.addCase(getCardsPack.rejected, (state, action) => {
+      state.data.error = action.payload;
+      state.status = 'failed';
+    });
+
+    builder.addCase(deleteCardsPack.fulfilled, state => {
+      state.status = 'succeed';
+    });
+    builder.addCase(deleteCardsPack.rejected, (state, action) => {
+      state.data.error = action.payload;
+      state.status = 'failed';
+    });
+
+    builder.addCase(createNewPack.fulfilled, state => {
+      state.status = 'succeed';
+    });
+
+    builder.addCase(updateCardsPack.fulfilled, state => {
+      state.status = 'succeed';
+    });
   },
 });
 
@@ -89,84 +117,6 @@ export const {
   clearCardsPackDataForRequest,
   setCardsPackDataForRequest,
 } = packSlice.actions;
-
-// thunks
-export const getCardsPack =
-  (data: RequestGetPayloadPacksType) => async (dispatch: Dispatch) => {
-    dispatch(setStatusCardsPack('loading'));
-    try {
-      const res = await packAPI.getCardsPack(data);
-      dispatch(setPacks(res.data));
-      dispatch(setStatusCardsPack('succeed'));
-    } catch (e: any) {
-      const error = e.response
-        ? e.response.data.error
-        : `${e.message}, more details in the console`;
-      dispatch(setErrorCardsPack(error));
-      dispatch(setStatusCardsPack('failed'));
-    }
-  };
-// затипизировать
-export const deleteCardsPack =
-  () => async (dispatch: Dispatch<any>, getState: () => AppStoreType) => {
-    const secondState = getState();
-    // @ts-ignore
-    const { _id } = secondState.app.modalWindow.modalWindowData;
-    const userId = secondState.auth.user._id;
-    const { page, pageCount } = secondState.packs.data;
-    dispatch(setStatusCardsPack('loading'));
-    try {
-      await packAPI.deletePack({ id: _id });
-      dispatch(getCardsPack({ user_id: userId, page, pageCount }));
-      dispatch(setStatusCardsPack('succeed'));
-    } catch (e: any) {
-      const error = e.response
-        ? e.response.data.error
-        : `${e.message}, more details in the console`;
-      dispatch(setErrorCardsPack(error));
-      dispatch(setStatusCardsPack('failed'));
-    }
-    dispatch(setInactiveModalWindow());
-  };
-
-export const createNewPack =
-  (data: { name: string }) =>
-  async (dispatch: Dispatch<any>, getState: () => AppStoreType) => {
-    const secondState = getState();
-    const userId = secondState.auth.user._id;
-    const { page, pageCount } = secondState.packs.data;
-    const { sortPacks } = secondState.packs.cardsPackDataForRequest;
-    dispatch(setStatusCardsPack('loading'));
-    try {
-      await packAPI.createNewPack(data);
-      dispatch(getCardsPack({ user_id: userId, page, pageCount, sortPacks }));
-      dispatch(setStatusCardsPack('succeed'));
-    } catch (e: any) {
-      const error = e.response
-        ? e.response.data.error
-        : `${e.message}, more details in the console`;
-      dispatch(setErrorCardsPack(error));
-      dispatch(setStatusCardsPack('failed'));
-    }
-    dispatch(setInactiveModalWindow());
-  };
-
-export const updateCardsPack =
-  (data: ModalWindowPackType) => async (dispatch: Dispatch) => {
-    dispatch(setStatusCardsPack('loading'));
-    try {
-      const res = await packAPI.updatePack(data);
-      dispatch(updatePack(res.data.updatedCardsPack));
-      dispatch(setStatusCardsPack('succeed'));
-    } catch (e: any) {
-      const error = e.response
-        ? e.response.data.error
-        : `${e.message}, more details in the console`;
-      dispatch(setErrorCardsPack(error));
-      dispatch(setStatusCardsPack('failed'));
-    }
-    dispatch(setInactiveModalWindow());
-  };
 
 // types
 export type CardPackType = {
@@ -194,7 +144,7 @@ export type DataPackType = {
   maxCardsCount: number;
   token: string;
   tokenDeathTime: number;
-  error: string;
+  error: string | unknown;
 };
 export type CardsPackDataForRequestType = {
   min?: number;

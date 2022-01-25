@@ -26,5 +26,7 @@ export const store = configureStore({
 // types
 export type AppStoreType = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+// странная типизация - но работает для thunk
+export type AppAction = ReturnType<typeof store.dispatch>;
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();

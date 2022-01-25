@@ -19,16 +19,11 @@ const initialState: InitialStateAuthType = {
   error: null,
   status: 'idle',
 };
-// перенести в утилиты
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setAuthError: (state, action) => {
-      state.error = action.payload;
-      state.status = 'failed';
-    },
     setAuthStatus: (state, action: PayloadAction<StatusType>) => {
       state.status = action.payload;
     },
@@ -98,6 +93,6 @@ const authSlice = createSlice({
 });
 
 // actions
-export const { setAuthStatus, setAuthError } = authSlice.actions;
+export const { setAuthStatus } = authSlice.actions;
 // reducer
 export const authReducer = authSlice.reducer;

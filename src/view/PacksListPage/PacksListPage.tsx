@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { setActiveModalWindow } from 'app/app-slice';
+import { getCardsPack } from 'bll/middlewares/packThunks/getCardsPack';
 import {
   CardsPackDataForRequestType,
   DataPackType,
-  getCardsPack,
   setCardsPackDataForRequest,
   setPage,
   setPageCount,
