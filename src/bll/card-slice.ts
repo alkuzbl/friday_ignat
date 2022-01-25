@@ -7,6 +7,7 @@ import {
   cardAPI,
   RequestPayloadCreateCardType,
   RequestPayloadGetCardType,
+  RequestPayloadPutCardGrade,
   RequestPayloadUpdateCardType,
   SortCardsType,
 } from 'dal/card-api';
@@ -167,6 +168,22 @@ export const updateCard =
       dispatch(setStatusCard('failed'));
     } finally {
       dispatch(setInactiveModalWindow());
+    }
+  };
+
+export const putCardGrade =
+  (data: RequestPayloadPutCardGrade) =>
+  async (dispatch: ThunkDispatch<AppStoreType, undefined, CardsActionsType>) => {
+    dispatch(setStatusCard('loading'));
+    try {
+      await cardAPI.putCardGrade(data);
+      dispatch(setStatusCard('succeed'));
+    } catch (e: any) {
+      const error = e.response
+        ? e.response.data.error
+        : `${e.message}, more details in the console`;
+      dispatch(setErrorCard(error));
+      dispatch(setStatusCard('failed'));
     }
   };
 

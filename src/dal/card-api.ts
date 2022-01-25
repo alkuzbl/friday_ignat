@@ -14,6 +14,8 @@ export const cardAPI = {
 
   updateCard: (data: RequestPayloadUpdateCardType) =>
     instance.put<{ updatedCard: CardType }>(`cards/card`, { card: data }),
+
+  putCardGrade: (data: RequestPayloadPutCardGrade) => instance.put(`cards/grade`, data),
 };
 
 // types response
@@ -25,6 +27,11 @@ type ResponseCreateCardType = {
 };
 
 // types request
+export type RequestPayloadPutCardGrade = {
+  grade: 1 | 2 | 3 | 4 | 5;
+  card_id: string;
+};
+
 export type RequestPayloadGetCardType = {
   cardsPack_id: string;
   page?: number;
