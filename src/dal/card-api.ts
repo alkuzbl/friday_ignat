@@ -27,8 +27,8 @@ type ResponseCreateCardType = {
 // types request
 export type RequestPayloadGetCardType = {
   cardsPack_id: string;
-  page: number;
-  pageCount: number;
+  page?: number;
+  pageCount?: number;
   cardAnswer?: string;
   cardQuestion?: string;
   min?: number;
@@ -50,7 +50,7 @@ export type RequestPayloadCreateCardType = {
   type?: string;
 };
 export type RequestPayloadUpdateCardType = {
-  card_id: string;
+  _id: string;
   question?: string;
   answer?: string;
 };
