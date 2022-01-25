@@ -1,9 +1,8 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
 
-import { setLogout } from './auth-slice';
-import { AppStoreType } from './store';
-
 import { ModalWindowPackType, setInactiveModalWindow, StatusType } from 'app/app-slice';
+import { logout } from 'bll/middlewares';
+import { AppStoreType } from 'bll/store';
 import { SortValueType } from 'components/common/SortButton/SortButton/types';
 import { packAPI, RequestGetPayloadPacksType } from 'dal/pack-api';
 
@@ -61,7 +60,7 @@ const packSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(setLogout, state => {
+    builder.addCase(logout.fulfilled, state => {
       state.data = {
         cardPacks: [],
         page: 1,

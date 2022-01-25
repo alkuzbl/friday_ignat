@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, NavLink } from 'react-router-dom';
 
 import { StatusType } from 'app/app-slice';
-import { login, setStatus } from 'bll/auth-slice';
+import { login } from 'bll/middlewares/authThunks/login';
 import { AppStoreType } from 'bll/store';
 import { AuthBox, Button, FormControl, InputF } from 'components';
 import { LoginDataType } from 'dal/auth-api';
@@ -24,10 +24,6 @@ export const Login = () => {
 
   const onSubmit = (data: LoginDataType) => {
     dispatch(login(data));
-  };
-
-  const resetAuthStatus = () => {
-    dispatch(setStatus('idle'));
   };
 
   const disabledStyle: CSSProperties =
@@ -72,11 +68,7 @@ export const Login = () => {
             <div>
               <span className={styles.login__span}>Don’t have an account?</span>
               {/* // это с react-router dom */}
-              <NavLink
-                to="/registration"
-                className={styles.login__registrationLink}
-                onClick={resetAuthStatus}
-              >
+              <NavLink to="/registration" className={styles.login__registrationLink}>
                 Sign Up
               </NavLink>
             </div>

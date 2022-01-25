@@ -6,7 +6,7 @@ import { Button } from '../../../Button';
 import { InputF } from '../../../InputForReactHF/InputF';
 
 import { ModalWindowPackType, setInactiveModalWindow } from 'app/app-slice';
-import { updateCardsPack } from 'bll/pack-slice';
+import { updateCardsPack } from 'bll/reducers/pack-slice';
 import { AppStoreType } from 'bll/store';
 import { FormControl } from 'components/common/FormControl';
 import styles from 'components/common/ModalWindow/modalWindowPack/PackDeletingForm/style/PackDeletingForm.module.scss';

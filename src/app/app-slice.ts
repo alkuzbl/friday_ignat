@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { getAuthUser } from 'bll/middlewares';
+
 const initialState: InitialStateType = {
   isInitialized: false,
   error: null,
@@ -43,6 +45,11 @@ const appSlice = createSlice({
       state.modalWindow.modalWindowName = null;
       state.modalWindow.modalWindowData = {};
     },
+  },
+  extraReducers: builder => {
+    builder.addCase(getAuthUser.fulfilled, state => {
+      state.isInitialized = true;
+    });
   },
 });
 

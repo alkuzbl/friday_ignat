@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { setCardsPackDataForRequest } from 'bll/pack-slice';
+import { setCardsPackDataForRequest } from 'bll/reducers/pack-slice';
 import { Input } from 'components/common/Input/Input';
 import { InputChangeEventType } from 'components/common/Input/types';
 import useDebounce from 'utils/useDebounce';

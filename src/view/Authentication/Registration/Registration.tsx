@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
 import { StatusType } from 'app/app-slice';
-import { registerUser } from 'bll/auth-slice';
+import { registerUser } from 'bll/middlewares';
 import { AppStoreType } from 'bll/store';
 import { AuthBox, Button, FormControl, InputF } from 'components';
 import { registrationValidationSchema } from 'utils/validationSchemes';

@@ -1,8 +1,7 @@
 import { createSlice, Dispatch, PayloadAction, ThunkDispatch } from '@reduxjs/toolkit';
 
-import { AppStoreType } from './store';
-
 import { setInactiveModalWindow, StatusType } from 'app/app-slice';
+import { AppStoreType } from 'bll/store';
 import {
   cardAPI,
   RequestPayloadCreateCardType,

@@ -7,7 +7,7 @@ import './App.css';
 
 import { setInactiveModalWindow } from './app-slice';
 
-import { getAuthUser } from 'bll/auth-slice';
+import { getAuthUser } from 'bll/middlewares';
 import { AppStoreType } from 'bll/store';
 import { ModalWindow, Spinner } from 'components';
 import {

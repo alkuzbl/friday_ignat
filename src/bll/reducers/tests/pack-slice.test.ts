@@ -10,7 +10,7 @@ import {
   setPageCount,
   setStatusCardsPack,
   updatePack,
-} from './pack-slice';
+} from 'bll/reducers/pack-slice';
 
 let packInitialState: PackInitialStateType;
 

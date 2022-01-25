@@ -10,7 +10,7 @@ import {
   setCardsPackDataForRequest,
   setPage,
   setPageCount,
-} from 'bll/pack-slice';
+} from 'bll/reducers/pack-slice';
 import { AppStoreType } from 'bll/store';
 import { Pagination, DoubleRange } from 'components';
 import { RedirectionIfNotAuthorized } from 'hoc/RedirectionIfNotAuthorized';

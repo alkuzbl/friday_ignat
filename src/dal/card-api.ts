@@ -1,6 +1,6 @@
-import { CardsType, CardType } from '../bll/card-slice';
-
 import { instance } from './instance-axios';
+
+import { CardsType, CardType } from 'bll/reducers/card-slice';
 
 export const cardAPI = {
   getAllCards: (data: RequestPayloadGetCardType) =>

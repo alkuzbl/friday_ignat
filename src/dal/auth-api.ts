@@ -47,6 +47,6 @@ export type UserType = {
   verified: boolean; // подтвердил ли почту
   rememberMe: boolean;
 
-  error?: string;
+  // error?: string;
 };
 type ResponseType = { info: string; error: string };

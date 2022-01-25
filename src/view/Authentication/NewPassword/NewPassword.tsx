@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useParams } from 'react-router-dom';
 
 import { StatusType } from 'app/app-slice';
-import { setNewPassword } from 'bll/auth-slice';
+import { setNewPassword } from 'bll/middlewares';
 import { AppStoreType } from 'bll/store';
 import { AuthBox, Button, FormControl, InputF } from 'components';
 import { newPasswordValidationSchema } from 'utils/validationSchemes';

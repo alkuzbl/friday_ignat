@@ -5,8 +5,9 @@ import { Link, useParams } from 'react-router-dom';
 
 import { UserImageBox } from './UserImageBox/UserImageBox';
 
+import { getUserProfile } from 'bll/middlewares';
+import { UserProfileType } from 'bll/reducers/types';
 import { AppStoreType } from 'bll/store';
-import { getUserProfile, UserProfileType } from 'bll/userProfile-slice';
 import styles from 'view/ProfilePage/Profile/style/Profile.module.scss';
 
 const DELAY_TIME = 1000;

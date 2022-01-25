@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { UserImageBox } from '../UserImageBox/UserImageBox';
 
-import { updatedUserData } from 'bll/auth-slice';
+import { updatedUserData } from 'bll/middlewares';
 import { AppStoreType } from 'bll/store';
 import { Button } from 'components/common/Button';
 import { EditableSpan } from 'components/common/EditableSpan/EditableSpan';

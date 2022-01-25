@@ -11,7 +11,7 @@ import {
   setCardsPackDataForRequest,
   setPage,
   setPageCount,
-} from 'bll/pack-slice';
+} from 'bll/reducers/pack-slice';
 import { AppStoreType } from 'bll/store';
 import { Button, CardsPackTable, Pagination, SearchForm, DoubleRange } from 'components';
 import { RedirectionIfNotAuthorized } from 'hoc/RedirectionIfNotAuthorized';

@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, NavLink } from 'react-router-dom';
 
-import { forgotPassword } from 'bll/auth-slice';
+import { forgotPassword } from 'bll/middlewares';
 import { AppStoreType } from 'bll/store';
 import { AuthBox, Button, FormControl, InputF } from 'components';
 import { recoveryValidationSchema } from 'utils/validationSchemes';

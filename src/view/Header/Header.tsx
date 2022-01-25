@@ -6,7 +6,7 @@ import logo from '../../assets/images/logo.png';
 
 import { NavBar } from './Navbar/NavBar';
 
-import { logout } from 'bll/auth-slice';
+import { logout } from 'bll/middlewares/authThunks/logout';
 import { AppStoreType } from 'bll/store';
 import { Button } from 'components';
 import styles from 'view/Header/style/Header.module.scss';
@@ -15,7 +15,7 @@ export const Header = () => {
   const isAuth = useSelector<AppStoreType, boolean>(state => state.auth.isAuth);
   const dispatch = useDispatch();
   const logOut = () => {
-    dispatch(logout());
+    dispatch(logout({}));
   };
   return (
     <div className={styles.header}>

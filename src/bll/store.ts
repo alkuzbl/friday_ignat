@@ -3,12 +3,11 @@ import { useDispatch } from 'react-redux';
 import { combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 
-import { authReducer } from './auth-slice';
-import { cardsReducer } from './card-slice';
-import { packReducer } from './pack-slice';
-import { userProfileReducer } from './userProfile-slice';
-
 import { appReducer } from 'app/app-slice';
+import { authReducer } from 'bll/reducers/auth-slice';
+import { cardsReducer } from 'bll/reducers/card-slice';
+import { packReducer } from 'bll/reducers/pack-slice';
+import { userProfileReducer } from 'bll/reducers/userProfile-slice';
 
 const rootReducer = combineReducers({
   auth: authReducer,
