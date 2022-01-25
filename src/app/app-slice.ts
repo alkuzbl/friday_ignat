@@ -70,7 +70,8 @@ export type ModalWindowNameType =
   | 'edit-pack-name'
   | 'create-card'
   | 'edit-card'
-  | 'delete-card';
+  | 'delete-card'
+  | 'learn';
 
 export type ModalWindowPackType = {
   _id?: string;
