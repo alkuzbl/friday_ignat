@@ -2,7 +2,8 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ModalWindowCardType, setInactiveModalWindow } from 'app/app-slice';
+import { setInactiveModalWindow } from 'app/app-slice';
+import { ModalWindowCardType } from 'app/types';
 import { deleteCard } from 'bll/reducers/cardReducer/card-slice';
 import { AppStoreType } from 'bll/store';
 import { Button } from 'components/common/Button';

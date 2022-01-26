@@ -8,7 +8,7 @@ import { AddNewPack } from './modalWindowPack/AddNewPack/AddNewPack';
 import { EditPackName } from './modalWindowPack/EditPackName/EditPackName';
 import { ModalWindowPropsType } from './types';
 
-import { ModalWindowNameType } from 'app/app-slice';
+import { ModalWindowNameType } from 'app/types';
 import { AppStoreType } from 'bll/store';
 import { PackDeletingForm } from 'components/common/ModalWindow/modalWindowPack';
 import { PopupEmail } from 'components/common/PopupEmail';

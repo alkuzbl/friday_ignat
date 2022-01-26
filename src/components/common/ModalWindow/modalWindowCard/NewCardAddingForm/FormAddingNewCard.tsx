@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { CardInfo } from '../CardInfo/CardInfo';
 
-import { ModalWindowCardType } from 'app/app-slice';
+import { ModalWindowCardType } from 'app/types';
 import { addNewCard } from 'bll/reducers/cardReducer/card-slice';
 import { AppStoreType } from 'bll/store';
 

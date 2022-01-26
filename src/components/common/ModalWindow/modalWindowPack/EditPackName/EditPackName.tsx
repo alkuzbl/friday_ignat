@@ -5,11 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '../../../Button';
 import { InputF } from '../../../InputForReactHF/InputF';
 
-import {
-  ModalWindowCardType,
-  ModalWindowPackType,
-  setInactiveModalWindow,
-} from 'app/app-slice';
+import { setInactiveModalWindow } from 'app/app-slice';
+import { ModalWindowCardType, ModalWindowPackType } from 'app/types';
 import { updateCardsPack } from 'bll/middlewares';
 import { AppStoreType } from 'bll/store';
 import { FormControl } from 'components/common/FormControl';

@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { getUserProfile } from 'bll/middlewares';
 import {
   UserProfileDataType,
   UserProfileInitialStateType,
@@ -11,7 +10,6 @@ const userProfileInitialState: UserProfileInitialStateType = {
   data: {
     user: {} as UserProfileType,
   },
-  error: null,
 };
 
 const userProfileSlice = createSlice({
@@ -21,14 +19,6 @@ const userProfileSlice = createSlice({
     setUserProfile: (state, action: PayloadAction<UserProfileDataType>) => {
       state.data = action.payload;
     },
-  },
-  extraReducers: builder => {
-    builder.addCase(getUserProfile.fulfilled, (state, { payload }) => {
-      state.data.user = payload.user;
-    });
-    builder.addCase(getUserProfile.rejected, (state, action) => {
-      state.error = action.payload;
-    });
   },
 });
 

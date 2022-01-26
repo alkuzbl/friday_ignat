@@ -3,7 +3,7 @@ import React, { CSSProperties } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, NavLink } from 'react-router-dom';
 
-import { StatusType } from 'app/app-slice';
+import { StatusType } from 'app/types';
 import { login } from 'bll/middlewares/authThunks/login';
 import { AppStoreType } from 'bll/store';
 import { AuthBox, Button, FormControl, InputF } from 'components';
@@ -16,7 +16,7 @@ export type FormStateType = {
 };
 
 export const Login = () => {
-  const requestStatus = useSelector<AppStoreType, StatusType>(state => state.auth.status);
+  const requestStatus = useSelector<AppStoreType, StatusType>(state => state.app.status);
   const isAuth = useSelector<AppStoreType, boolean>(state => state.auth.isAuth);
   const userId = useSelector<AppStoreType, string>(state => state.auth.user._id);
 
@@ -39,9 +39,7 @@ export const Login = () => {
         <AuthBox>
           <h3 className={styles.login__subtitle}>Sign In</h3>
           <div>
-            {/* Этот FormControl только для react-hook-form - это общая универсальная обертка для инпутов (инпуты вкладывать в дивки или иные блоки нельзя - не будет работать). Инпут также только для использывания с данным FormControl */}
             <FormControl onSubmit={onSubmit} defaultValues={loginValidationSchema}>
-              {/* // пропсы, которые принимает инпут смотрите внутри компоненты */}
               <InputF type="email" label="Email" name="email" autoComplete="username" />
               <InputF
                 type="password"
@@ -55,19 +53,15 @@ export const Login = () => {
                 name="rememberMe"
                 className={styles.login__checkbox}
               />
-
               <div className={styles.login__forgotInner}>
                 <NavLink to="/recovery" className={styles.login__forgotLink}>
                   Forgot Password
                 </NavLink>
               </div>
-              {/* // кнопка универсальная - поиграйтесь с ней */}
               <Button title="login" type="submit" />
             </FormControl>
-
             <div>
               <span className={styles.login__span}>Don’t have an account?</span>
-              {/* // это с react-router dom */}
               <NavLink to="/registration" className={styles.login__registrationLink}>
                 Sign Up
               </NavLink>

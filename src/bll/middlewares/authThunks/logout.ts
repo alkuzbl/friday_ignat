@@ -1,16 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { getResponseError } from 'bll/middlewares/utils';
+import { setResponseError } from 'bll/middlewares/utils/getResponseError';
+import { setLogout } from 'bll/reducers/authReducer/auth-slice';
 import { authAPI } from 'dal/auth-api';
 
 export const logout = createAsyncThunk(
   'login/logout',
-  async (data: any, { rejectWithValue }) => {
+  async (data: any, { dispatch }) => {
     try {
       await authAPI.setLogOut(data);
-      return true;
+      dispatch(setLogout());
     } catch (e: any) {
-      return rejectWithValue(getResponseError(e));
+      setResponseError(e, dispatch);
     }
   },
 );

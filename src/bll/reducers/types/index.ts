@@ -1,5 +1,4 @@
 // userProfile types
-import { StatusType } from 'app/app-slice';
 import { UserType } from 'dal/auth-api';
 
 export type UserProfileType = {
@@ -20,12 +19,9 @@ export type UserProfileDataType = {
 };
 export type UserProfileInitialStateType = {
   data: UserProfileDataType;
-  error: null | string | unknown;
 };
 // auth-slice types
 export type InitialStateAuthType = {
   user: UserType;
   isAuth: boolean;
-  error: string | null | unknown;
-  status: StatusType;
 };

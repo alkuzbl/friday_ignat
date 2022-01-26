@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-import { StatusType } from 'app/app-slice';
+import { StatusType } from 'app/types';
 import { registerUser } from 'bll/middlewares';
 import { AppStoreType } from 'bll/store';
 import { AuthBox, Button, FormControl, InputF } from 'components';
@@ -17,7 +17,7 @@ type RegistrationFormValuesType = {
 };
 
 export const Registration = () => {
-  const requestStatus = useSelector<AppStoreType, StatusType>(state => state.auth.status);
+  const requestStatus = useSelector<AppStoreType, StatusType>(state => state.app.status);
 
   const dispatch = useDispatch();
 
@@ -34,7 +34,7 @@ export const Registration = () => {
     <div className="container-center">
       <div className={styles.registration}>
         <AuthBox>
-          <h3 className={styles.registration__subtitle}>Sign In</h3>
+          <h3 className={styles.registration__subtitle}>Sign up</h3>
           <div>
             <FormControl defaultValues={registrationValidationSchema} onSubmit={onSubmit}>
               <InputF

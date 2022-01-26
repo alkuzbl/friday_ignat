@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useParams } from 'react-router-dom';
 
-import { StatusType } from 'app/app-slice';
+import { StatusType } from 'app/types';
 import { setNewPassword } from 'bll/middlewares';
 import { AppStoreType } from 'bll/store';
 import { AuthBox, Button, FormControl, InputF } from 'components';
@@ -11,7 +11,7 @@ import { newPasswordValidationSchema } from 'utils/validationSchemes';
 import styles from 'view/Authentication/NewPassword/style/NewPassword.module.scss';
 
 export const NewPassword = () => {
-  const requestStatus = useSelector<AppStoreType, StatusType>(state => state.auth.status);
+  const requestStatus = useSelector<AppStoreType, StatusType>(state => state.app.status);
 
   const dispatch = useDispatch();
 

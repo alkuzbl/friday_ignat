@@ -1,18 +1,21 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
+import { setStatusApp } from 'app/app-slice';
+import { setResponseError } from 'bll/middlewares/utils/getResponseError';
+import { setUserProfile } from 'bll/reducers/userProfileReducer/userProfile-slice';
 import { userAPI } from 'dal/user-api';
 
 export const getUserProfile = createAsyncThunk(
   'userProfile/getUserProfile',
-  async (data: { id: string }, { rejectWithValue }) => {
+  async (data: { id: string }, { dispatch }) => {
+    dispatch(setStatusApp('loading'));
     try {
       const res = await userAPI.getUser(data);
-      return res.data;
+      dispatch(setUserProfile(res.data));
+      dispatch(setStatusApp('succeed'));
     } catch (e: any) {
-      const error: string = e.response
-        ? e.response.data.error
-        : `${e.message}, more details in the console`;
-      return rejectWithValue(error);
+      setResponseError(e, dispatch);
     }
+    dispatch(setStatusApp('idle'));
   },
 );

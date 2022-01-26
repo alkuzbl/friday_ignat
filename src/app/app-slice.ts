@@ -1,5 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import {
+  AppInitialStateType,
+  ModalWindowCardType,
+  ModalWindowNameType,
+  ModalWindowPackType,
+  StatusType,
+} from 'app/types';
 import { getAuthUser } from 'bll/middlewares';
 import { createNewPack } from 'bll/middlewares/packThunks/createNewPack';
 import { deleteCardsPack } from 'bll/middlewares/packThunks/deleteCardsPack';
@@ -14,7 +21,7 @@ const initialState: AppInitialStateType = {
     modalWindowData: {},
   },
 };
-enum GradeLevel {
+export enum GradeLevel {
   dontKnow = 1,
   dontKnowVeryWell = 2,
   KnowWell = 3,
@@ -25,9 +32,6 @@ const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    setIsInitialized: (state, action: PayloadAction<boolean>) => {
-      state.isInitialized = action.payload;
-    },
     setErrorApp: (state, action) => {
       state.error = action.payload;
       state.status = 'failed';
@@ -56,10 +60,7 @@ const appSlice = createSlice({
     builder.addCase(getAuthUser.fulfilled, state => {
       state.isInitialized = true;
     });
-    builder.addCase(getAuthUser.rejected, state => {
-      state.isInitialized = true;
-    });
-    // очищение сделать после получения новых пакетов и логику в принципе по ошибкам пересмореть
+    // очищение сделать после получения новых пакетов и логику в принципе по ошибкам пересмотреть
     builder.addCase(deleteCardsPack.fulfilled, state => {
       state.modalWindow.modalWindowStatus = false;
     });
@@ -71,61 +72,5 @@ const appSlice = createSlice({
 
 export const appReducer = appSlice.reducer;
 
-export const {
-  setIsInitialized,
-  setErrorApp,
-  setActiveModalWindow,
-  setInactiveModalWindow,
-  setStatusApp,
-} = appSlice.actions;
-
-// thunks
-
-// types
-export type AppInitialStateType = {
-  isInitialized: boolean;
-  error: string | null;
-  status: StatusType;
-  modalWindow: ModalWindowType;
-};
-export type ModalWindowNameType =
-  | null
-  | 'delete-pack'
-  | 'create-pack'
-  | 'edit-pack-name'
-  | 'create-card'
-  | 'edit-card'
-  | 'delete-card'
-  | 'password-recovery-message';
-
-export type ModalWindowPackType = {
-  _id?: string;
-  name?: string;
-  rating?: number;
-  private?: boolean;
-};
-
-export type ModalWindowCardType = {
-  _id?: string;
-  cardsPackId?: string;
-  cardId?: string;
-  question?: string;
-  answer?: string;
-  grade?: GradeLevel;
-  shots?: number;
-  rating?: number;
-  answerImg?: string;
-  questionImg?: string;
-  questionVideo?: string;
-  answerVideo?: string;
-  type?: string;
-  email?: string;
-};
-export type ModalWindowDataType = ModalWindowPackType | ModalWindowCardType;
-
-type ModalWindowType = {
-  modalWindowStatus: boolean;
-  modalWindowName: ModalWindowNameType;
-  modalWindowData: ModalWindowDataType;
-};
-export type StatusType = 'idle' | 'loading' | 'succeed' | 'failed';
+export const { setErrorApp, setActiveModalWindow, setInactiveModalWindow, setStatusApp } =
+  appSlice.actions;

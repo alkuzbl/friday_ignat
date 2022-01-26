@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { ModalWindowPackType, setInactiveModalWindow, setStatusApp } from 'app/app-slice';
+import { setInactiveModalWindow, setStatusApp } from 'app/app-slice';
+import { ModalWindowPackType } from 'app/types';
 import { setResponseError } from 'bll/middlewares/utils/getResponseError';
 import { updatePack } from 'bll/reducers/packReducer/pack-slice';
 import { packAPI } from 'dal/pack-api';

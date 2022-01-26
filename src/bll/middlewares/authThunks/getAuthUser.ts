@@ -1,16 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { getResponseError } from 'bll/middlewares/utils';
+import { setResponseError } from 'bll/middlewares/utils/getResponseError';
 import { authAPI } from 'dal/auth-api';
 
 export const getAuthUser = createAsyncThunk(
   'auth/getAuthUser',
-  async (data, { rejectWithValue }) => {
+  async (data, { dispatch }) => {
     try {
-      const res = await authAPI.getAuthMe({});
-      return res.data;
+      await authAPI.getAuthMe({});
     } catch (e: any) {
-      return rejectWithValue(getResponseError(e));
+      if (e.response.status !== 401) {
+        setResponseError(e, dispatch);
+      }
     }
   },
 );

@@ -1,18 +1,21 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { getResponseError } from 'bll/middlewares/utils';
-import { setAuthStatus } from 'bll/reducers/authReducer/auth-slice';
+import { setStatusApp } from 'app/app-slice';
+import { setResponseError } from 'bll/middlewares/utils/getResponseError';
+import { setUserData } from 'bll/reducers/authReducer/auth-slice';
 import { authAPI, UpdateUserDataType } from 'dal/auth-api';
 
 export const updatedUserData = createAsyncThunk(
   'auth/updateUserData',
-  async (data: UpdateUserDataType, { dispatch, rejectWithValue }) => {
-    dispatch(setAuthStatus('loading'));
+  async (data: UpdateUserDataType, { dispatch }) => {
+    dispatch(setStatusApp('loading'));
     try {
       const res = await authAPI.setUpdatedUserData(data);
-      return res.data.updatedUser;
+      dispatch(setUserData(res.data.updatedUser));
+      dispatch(setStatusApp('succeed'));
     } catch (e: any) {
-      return rejectWithValue(getResponseError(e));
+      setResponseError(e, dispatch);
     }
+    dispatch(setStatusApp('idle'));
   },
 );

@@ -7,7 +7,8 @@ import { AuthBox } from '../AuthBox/AuthBox';
 
 import styles from './style/PopupEmail.module.scss';
 
-import { ModalWindowCardType, setInactiveModalWindow } from 'app/app-slice';
+import { setInactiveModalWindow } from 'app/app-slice';
+import { ModalWindowCardType } from 'app/types';
 import { AppStoreType } from 'bll/store';
 
 export const PopupEmail = () => {

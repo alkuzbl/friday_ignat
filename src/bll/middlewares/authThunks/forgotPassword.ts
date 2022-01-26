@@ -1,14 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { setActiveModalWindow } from 'app/app-slice';
-import { getResponseError } from 'bll/middlewares/utils';
-import { setAuthStatus } from 'bll/reducers/authReducer/auth-slice';
+import { setActiveModalWindow, setStatusApp } from 'app/app-slice';
+import { setResponseError } from 'bll/middlewares/utils/getResponseError';
 import { authAPI, ForgotDataType } from 'dal/auth-api';
 
 export const forgotPassword = createAsyncThunk(
   'auth/forgotPassword',
-  async (data: ForgotDataType, { rejectWithValue, dispatch }) => {
-    dispatch(setAuthStatus('loading'));
+  async (data: ForgotDataType, { dispatch }) => {
+    dispatch(setStatusApp('loading'));
     try {
       await authAPI.getForgotPassword(data);
       dispatch(
@@ -17,9 +16,10 @@ export const forgotPassword = createAsyncThunk(
           modalWindowData: { email: data.email },
         }),
       );
-      return true;
+      dispatch(setStatusApp('succeed'));
     } catch (e: any) {
-      return rejectWithValue(getResponseError(e));
+      setResponseError(e, dispatch);
     }
+    dispatch(setStatusApp('idle'));
   },
 );
