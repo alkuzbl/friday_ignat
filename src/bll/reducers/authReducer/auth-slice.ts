@@ -27,6 +27,10 @@ const authSlice = createSlice({
     setAuthStatus: (state, action: PayloadAction<StatusType>) => {
       state.status = action.payload;
     },
+    setLogout: state => {
+      state.user = {} as UserType;
+      state.isAuth = false;
+    },
   },
   extraReducers: builder => {
     builder.addCase(login.fulfilled, (state, action) => {
@@ -93,6 +97,6 @@ const authSlice = createSlice({
 });
 
 // actions
-export const { setAuthStatus } = authSlice.actions;
+export const { setAuthStatus, setLogout } = authSlice.actions;
 // reducer
 export const authReducer = authSlice.reducer;

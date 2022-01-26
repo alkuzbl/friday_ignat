@@ -10,7 +10,7 @@ import { PaginationPropsType } from './types';
 
 export const Pagination: FC<PaginationPropsType> = props => {
   const {
-    totalCount,
+    totalCount = 0,
     portionSize = 7,
     selectPage,
     setCountItem,
@@ -22,6 +22,7 @@ export const Pagination: FC<PaginationPropsType> = props => {
 
   const { currentPage } = useParams();
   // создание массива страниц
+
   const pagesCount = Math.ceil(totalCount / pageCount);
   const pages = [];
   for (let i = 1; i <= pagesCount; i++) {

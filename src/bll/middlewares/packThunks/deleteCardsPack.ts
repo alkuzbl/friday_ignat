@@ -1,8 +1,8 @@
 import { createAsyncThunk, ThunkDispatch } from '@reduxjs/toolkit';
 
+import { setInactiveModalWindow, setStatusApp } from 'app/app-slice';
 import { getCardsPack } from 'bll/middlewares/packThunks/getCardsPack';
-import { getResponseError } from 'bll/middlewares/utils';
-import { setStatusCardsPack } from 'bll/reducers/pack-slice';
+import { setResponseError } from 'bll/middlewares/utils/getResponseError';
 import { AppAction, AppStoreType } from 'bll/store';
 import { packAPI } from 'dal/pack-api';
 // dispatch: AsyncThunkAction<any, any, any>;
@@ -13,17 +13,18 @@ export const deleteCardsPack = createAsyncThunk<
     dispatch: ThunkDispatch<AppStoreType, void, AppAction>;
     state: AppStoreType;
   }
->('pack/deleteCardsPack', async (_, { dispatch, getState, rejectWithValue }) => {
-  dispatch(setStatusCardsPack('loading'));
+>('pack/deleteCardsPack', async (_, { dispatch, getState }) => {
   const secondState = getState();
   const { _id: id } = secondState.app.modalWindow.modalWindowData;
   const { page, pageCount } = secondState.packs.data;
   const userId = secondState.auth.user._id;
+  dispatch(setStatusApp('loading'));
   try {
     await packAPI.deletePack({ id });
+    dispatch(setStatusApp('succeed'));
     dispatch(getCardsPack({ user_id: userId, page, pageCount }));
-    return true;
   } catch (e: any) {
-    return rejectWithValue(getResponseError(e));
+    setResponseError(e, dispatch);
   }
+  dispatch(setInactiveModalWindow());
 });

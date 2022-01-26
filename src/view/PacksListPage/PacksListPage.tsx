@@ -6,12 +6,14 @@ import { useParams } from 'react-router-dom';
 import { setActiveModalWindow } from 'app/app-slice';
 import { getCardsPack } from 'bll/middlewares/packThunks/getCardsPack';
 import {
-  CardsPackDataForRequestType,
-  DataPackType,
   setCardsPackDataForRequest,
   setPage,
   setPageCount,
-} from 'bll/reducers/pack-slice';
+} from 'bll/reducers/packReducer/pack-slice';
+import {
+  CardsPackDataForRequestType,
+  DataPackType,
+} from 'bll/reducers/packReducer/types';
 import { AppStoreType } from 'bll/store';
 import { Button, CardsPackTable, Pagination, SearchForm, DoubleRange } from 'components';
 import { RedirectionIfNotAuthorized } from 'hoc/RedirectionIfNotAuthorized';
@@ -80,7 +82,7 @@ const PacksListPage = () => {
                 allowCross={false}
                 min={minCardsCount}
                 max={maxCardsCount}
-                defaultValue={[minCardsCount, maxCardsCount]}
+                // defaultValue={[minCardsCount, maxCardsCount]}
               />
             </div>
           </div>

@@ -11,6 +11,7 @@ import { ModalWindowPropsType } from './types';
 import { ModalWindowNameType } from 'app/app-slice';
 import { AppStoreType } from 'bll/store';
 import { PackDeletingForm } from 'components/common/ModalWindow/modalWindowPack';
+import { PopupEmail } from 'components/common/PopupEmail';
 
 export const ModalWindow = (props: ModalWindowPropsType) => {
   const { active, setInactive } = props;
@@ -24,6 +25,7 @@ export const ModalWindow = (props: ModalWindowPropsType) => {
       className={active ? 'modal active' : 'modal'}
       onClick={() => setInactive()}
     >
+      {nameModalWindow === 'password-recovery-message' && <PopupEmail />}
       {nameModalWindow === 'create-pack' && <AddNewPack />}
       {nameModalWindow === 'delete-pack' && <PackDeletingForm />}
       {nameModalWindow === 'edit-pack-name' && <EditPackName />}

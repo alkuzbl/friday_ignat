@@ -7,6 +7,7 @@ import { deleteCardsPack } from 'bll/middlewares/packThunks/deleteCardsPack';
 const initialState: AppInitialStateType = {
   isInitialized: false,
   error: null,
+  status: 'idle',
   modalWindow: {
     modalWindowStatus: false,
     modalWindowName: null,
@@ -14,7 +15,6 @@ const initialState: AppInitialStateType = {
   },
 };
 enum GradeLevel {
-  noRating = 0,
   dontKnow = 1,
   dontKnowVeryWell = 2,
   KnowWell = 3,
@@ -30,6 +30,10 @@ const appSlice = createSlice({
     },
     setErrorApp: (state, action) => {
       state.error = action.payload;
+      state.status = 'failed';
+    },
+    setStatusApp: (state, action: PayloadAction<StatusType>) => {
+      state.status = action.payload;
     },
     setActiveModalWindow: (
       state,
@@ -72,6 +76,7 @@ export const {
   setErrorApp,
   setActiveModalWindow,
   setInactiveModalWindow,
+  setStatusApp,
 } = appSlice.actions;
 
 // thunks
@@ -80,6 +85,7 @@ export const {
 export type AppInitialStateType = {
   isInitialized: boolean;
   error: string | null;
+  status: StatusType;
   modalWindow: ModalWindowType;
 };
 export type ModalWindowNameType =
@@ -89,7 +95,8 @@ export type ModalWindowNameType =
   | 'edit-pack-name'
   | 'create-card'
   | 'edit-card'
-  | 'delete-card';
+  | 'delete-card'
+  | 'password-recovery-message';
 
 export type ModalWindowPackType = {
   _id?: string;
@@ -112,11 +119,13 @@ export type ModalWindowCardType = {
   questionVideo?: string;
   answerVideo?: string;
   type?: string;
+  email?: string;
 };
+export type ModalWindowDataType = ModalWindowPackType | ModalWindowCardType;
 
 type ModalWindowType = {
   modalWindowStatus: boolean;
   modalWindowName: ModalWindowNameType;
-  modalWindowData: ModalWindowPackType | ModalWindowCardType;
+  modalWindowData: ModalWindowDataType;
 };
 export type StatusType = 'idle' | 'loading' | 'succeed' | 'failed';

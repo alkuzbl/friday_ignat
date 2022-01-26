@@ -2,7 +2,10 @@ import React, { FC, useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { setCardAnswerSearch, setCardQuestionSearch } from 'bll/reducers/card-slice';
+import {
+  setCardAnswerSearch,
+  setCardQuestionSearch,
+} from 'bll/reducers/cardReducer/card-slice';
 import { Input } from 'components/common/Input/Input';
 import { InputChangeEventType } from 'components/common/Input/types';
 import useDebounce from 'utils/useDebounce';

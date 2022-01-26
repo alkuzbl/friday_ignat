@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { getCardsPack } from 'bll/middlewares/packThunks/getCardsPack';
+import { clearCardsPackDataForRequest } from 'bll/reducers/packReducer/pack-slice';
 import {
   CardsPackDataForRequestType,
-  clearCardsPackDataForRequest,
   DataPackType,
-} from 'bll/reducers/pack-slice';
+} from 'bll/reducers/packReducer/types';
 import { AppStoreType } from 'bll/store';
 import { CardsPackTable } from 'components/common/CardsPackTable';
 import { SearchForm } from 'components/common/SearchForm/SeachForm/SearchForm';

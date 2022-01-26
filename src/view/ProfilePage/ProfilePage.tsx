@@ -6,11 +6,11 @@ import { useParams } from 'react-router-dom';
 import { Profile } from './Profile/Profile';
 
 import {
-  DataPackType,
   setCardsPackDataForRequest,
   setPage,
   setPageCount,
-} from 'bll/reducers/pack-slice';
+} from 'bll/reducers/packReducer/pack-slice';
+import { DataPackType } from 'bll/reducers/packReducer/types';
 import { AppStoreType } from 'bll/store';
 import { Pagination, DoubleRange } from 'components';
 import { RedirectionIfNotAuthorized } from 'hoc/RedirectionIfNotAuthorized';

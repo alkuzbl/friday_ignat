@@ -2,7 +2,8 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { CardPackType, setCardsPackDataForRequest } from 'bll/reducers/pack-slice';
+import { setCardsPackDataForRequest } from 'bll/reducers/packReducer/pack-slice';
+import { CardPackType } from 'bll/reducers/packReducer/types';
 import { AppStoreType } from 'bll/store';
 import { SortButton } from 'components/common/SortButton';
 import { SortValueType } from 'components/common/SortButton/SortButton/types';

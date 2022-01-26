@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { setCardsPackDataForRequest } from 'bll/reducers/pack-slice';
+import { setCardsPackDataForRequest } from 'bll/reducers/packReducer/pack-slice';
 import { Input } from 'components/common/Input/Input';
 import { InputChangeEventType } from 'components/common/Input/types';
 import useDebounce from 'utils/useDebounce';
@@ -24,10 +24,8 @@ export const SearchForm = () => {
   useEffect(() => {
     if (debouncedValue) {
       dispatch(setCardsPackDataForRequest({ packName: debouncedValue }));
-    } else {
-      // чтобы запрос не шел вида .../?packName=
-      dispatch(setCardsPackDataForRequest({ packName: undefined }));
     }
+    dispatch(setCardsPackDataForRequest({ packName: undefined }));
   }, [debouncedValue]);
 
   return (

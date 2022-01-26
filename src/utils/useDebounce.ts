@@ -22,6 +22,10 @@ import { useEffect, useState } from 'react';
 //     timeoutRef.current = setTimeout(() => func(...args), delay);
 //   };
 // }
+
+// function comp() {
+//   const funcWrapper = useDebounce(dispatchFunc, 2000, true);
+// }
 export default function useDebounce(value: any, delay: number) {
   // Value - стартовое значения для значения, которое возвращает хук
   const [debouncedValue, setDebouncedValue] = useState(value);

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { getResponseError } from 'bll/middlewares/utils';
-import { setAuthStatus } from 'bll/reducers/auth-slice';
+import { setAuthStatus } from 'bll/reducers/authReducer/auth-slice';
 import { authAPI, NewPasswordDataType } from 'dal/auth-api';
 
 export const setNewPassword = createAsyncThunk(
