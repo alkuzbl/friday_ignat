@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { PackageCards } from './PackageCards/PackageCards';
+import { PackageCards } from './PackageCards';
 
 import { getAllCards, setPage, setPageCount } from 'bll/reducers/cardReducer/card-slice';
 import { AppStoreType } from 'bll/store';
@@ -64,7 +64,7 @@ const CardsList = () => {
               pathToUrl={`packs-list/${userId}/pack/${packId}`}
               pageCount={pageCount}
               setCountItem={setPageCountForCards}
-              optionValue={[1, 2, 3, 4, 5]}
+              optionValue={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
             />
           </div>
         </div>

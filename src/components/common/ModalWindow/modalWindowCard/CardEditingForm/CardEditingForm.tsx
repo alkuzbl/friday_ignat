@@ -1,12 +1,32 @@
 import React from 'react';
 
-import { CardInfo } from '../CardInfo/CardInfo';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { ModalWindowCardType } from '../../../../../app/app-slice';
+import { updateCard } from '../../../../../bll/card-slice';
+import { AppStoreType } from '../../../../../bll/store';
+import { CardInfo } from '../CardInfo';
 
 import { DataCardFormType } from 'components/common/ModalWindow/modalWindowCard/CardInfo/types';
 
 export const CardEditingForm = () => {
-  const updateCard = (data: DataCardFormType) => {
-    console.log(data);
+  const { cardsPackId, cardId } = useSelector<AppStoreType, ModalWindowCardType>(
+    state => state.app.modalWindow.modalWindowData,
+  );
+  const dispatch = useDispatch();
+
+  const updateCardHandler = (data: DataCardFormType) => {
+    if (cardsPackId && cardId) {
+      dispatch(
+        updateCard({
+          cardsPack_id: cardsPackId,
+          _id: cardId,
+          question: data.question,
+          answer: data.answer,
+        }),
+      );
+    }
   };
-  return <CardInfo onSubmit={updateCard} />;
+
+  return <CardInfo onSubmit={updateCardHandler} title="Edit card" />;
 };

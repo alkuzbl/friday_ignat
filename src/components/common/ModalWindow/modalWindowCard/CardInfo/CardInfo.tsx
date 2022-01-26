@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Button } from '../../../Button';
-import { InputF } from '../../../InputForReactHF/InputF';
+import { InputF } from '../../../InputForReactHF';
 
 import styles from './style/CardInfo.module.scss';
 import { CardInfoPropsType, DataCardFormType } from './types';
@@ -13,7 +13,7 @@ import { FormControl } from 'components/common/FormControl';
 import { cardInfoValidationSchema } from 'utils/validationSchemes';
 
 export const CardInfo: FC<CardInfoPropsType> = props => {
-  const { onSubmit } = props;
+  const { onSubmit, title } = props;
 
   const dispatch = useDispatch();
 
@@ -28,7 +28,7 @@ export const CardInfo: FC<CardInfoPropsType> = props => {
 
   return (
     <div className={styles.popup} role="presentation" onClick={onClickDiv}>
-      <h3 className={styles.popup__title}>Card info</h3>
+      <h3 className={styles.popup__title}>{title}</h3>
       <div className={styles.popup__inner}>
         <FormControl onSubmit={onSubmitHandler} defaultValues={cardInfoValidationSchema}>
           <InputF

@@ -27,7 +27,14 @@ export const ActionEditButtons = (props: ActionEditButtonsPropsType) => {
       }),
     );
   };
-  const onClickLearn = () => {};
+  const onClickLearn = () => {
+    dispatch(
+      setActiveModalWindow({
+        name: 'learn',
+        modalWindowData: { _id: packId, name: packName },
+      }),
+    );
+  };
   return (
     <div className={styles.packs__itemButtons}>
       <Button

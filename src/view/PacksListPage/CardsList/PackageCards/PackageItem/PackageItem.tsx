@@ -25,7 +25,7 @@ export const PackageItem: FC<PackageItemForMePropsType> = props => {
     dispatch(
       setActiveModalWindow({
         name: 'edit-card',
-        modalWindowData: { _id: cardId, question, answer },
+        modalWindowData: { cardsPackId: packId, cardId, question, answer },
       }),
     );
   };

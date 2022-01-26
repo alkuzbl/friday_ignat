@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { CardInfo } from '../CardInfo/CardInfo';
+import { CardInfo } from '../CardInfo';
 
 import { ModalWindowCardType } from 'app/types';
 import { addNewCard } from 'bll/reducers/cardReducer/card-slice';
@@ -14,7 +14,7 @@ export const FormAddingNewCard = () => {
   );
   const dispatch = useDispatch();
   const addNewCardHandler = (data: any) => {
-    dispatch(addNewCard({ ...data, cardsPack_id: cardsPackId, grade: 4 }));
+    dispatch(addNewCard({ ...data, cardsPack_id: cardsPackId }));
   };
-  return <CardInfo onSubmit={addNewCardHandler} />;
+  return <CardInfo onSubmit={addNewCardHandler} title="Add new card" />;
 };

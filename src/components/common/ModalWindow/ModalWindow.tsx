@@ -4,8 +4,8 @@ import 'components/common/ModalWindow/style/Modal.scss';
 import { useSelector } from 'react-redux';
 
 import { CardDeletingForm, CardEditingForm, FormAddingNewCard } from './modalWindowCard';
-import { AddNewPack } from './modalWindowPack/AddNewPack/AddNewPack';
-import { EditPackName } from './modalWindowPack/EditPackName/EditPackName';
+import { LearnForm } from './modalWindowLearn';
+import { AddNewPack, EditPackName } from './modalWindowPack';
 import { ModalWindowPropsType } from './types';
 
 import { ModalWindowNameType } from 'app/types';
@@ -32,6 +32,7 @@ export const ModalWindow = (props: ModalWindowPropsType) => {
       {nameModalWindow === 'create-card' && <FormAddingNewCard />}
       {nameModalWindow === 'edit-card' && <CardEditingForm />}
       {nameModalWindow === 'delete-card' && <CardDeletingForm />}
+      {nameModalWindow === 'learn' && <LearnForm />}
     </div>
   );
 };

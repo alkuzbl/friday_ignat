@@ -25,7 +25,7 @@ export const PackListItem: FC<PackListItemPropsType> = props => {
       {myCard ? (
         <ActionEditButtons packId={packId} packName={packName} />
       ) : (
-        <ActionButton />
+        <ActionButton packId={packId} packName={packName} />
       )}
     </div>
   );
