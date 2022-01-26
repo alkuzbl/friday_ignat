@@ -1,10 +1,20 @@
 import React from 'react';
 
-import { CardInfo, DataCardFormType } from '../CardInfo/CardInfo';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { CardInfo } from '../CardInfo/CardInfo';
+
+import { ModalWindowCardType } from 'app/types';
+import { addNewCard } from 'bll/reducers/cardReducer/card-slice';
+import { AppStoreType } from 'bll/store';
 
 export const FormAddingNewCard = () => {
-  const addNewCard = (data: DataCardFormType) => {
-    console.log(data);
+  const { cardsPackId } = useSelector<AppStoreType, ModalWindowCardType>(
+    state => state.app.modalWindow.modalWindowData,
+  );
+  const dispatch = useDispatch();
+  const addNewCardHandler = (data: any) => {
+    dispatch(addNewCard({ ...data, cardsPack_id: cardsPackId, grade: 4 }));
   };
-  return <CardInfo onSubmit={addNewCard} />;
+  return <CardInfo onSubmit={addNewCardHandler} />;
 };

@@ -1,8 +1,8 @@
-import { ModalWindowPackType } from '../app/app-slice';
-import { CardPackType, DataPackType } from '../bll/pack-slice';
-import { SortValueType } from '../components/common/SortButton/SortButton';
-
 import { instance } from './instance-axios';
+
+import { ModalWindowPackType } from 'app/types';
+import { CardPackType, DataPackType } from 'bll/reducers/packReducer/types';
+import { SortValueType } from 'components/common/SortButton/SortButton/types';
 
 export const packAPI = {
   getCardsPack: (data: RequestGetPayloadPacksType) =>
@@ -12,7 +12,7 @@ export const packAPI = {
       cardsPack: data,
     }),
 
-  deletePack: (data: { id: string }) =>
+  deletePack: (data: { id: string | undefined }) =>
     instance.delete<{ deletedCardsPack: CardPackType; error: string }>(`cards/pack`, {
       params: data,
     }),

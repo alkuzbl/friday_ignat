@@ -1,22 +1,17 @@
 import React from 'react';
 
-import './Modal.scss';
+import 'components/common/ModalWindow/style/Modal.scss';
 import { useSelector } from 'react-redux';
 
-import { ModalWindowNameType } from '../../../app/app-slice';
-import { AppStoreType } from '../../../bll/store';
-
-import { CardDeletingForm } from './modalWindowCard/CardDeletingForm/CardDeletingForm';
-import { CardEditingForm } from './modalWindowCard/CardEditingForm/CardEditingForm';
-import { FormAddingNewCard } from './modalWindowCard/NewCardAddingForm/FormAddingNewCard';
+import { CardDeletingForm, CardEditingForm, FormAddingNewCard } from './modalWindowCard';
 import { AddNewPack } from './modalWindowPack/AddNewPack/AddNewPack';
 import { EditPackName } from './modalWindowPack/EditPackName/EditPackName';
-import { PackDeletingForm } from './modalWindowPack/PackDeletingForm/PopupConfirmationDeletePack';
+import { ModalWindowPropsType } from './types';
 
-type ModalWindowPropsType = {
-  active: boolean;
-  setInactive: () => void;
-};
+import { ModalWindowNameType } from 'app/types';
+import { AppStoreType } from 'bll/store';
+import { PackDeletingForm } from 'components/common/ModalWindow/modalWindowPack';
+import { PopupEmail } from 'components/common/PopupEmail';
 
 export const ModalWindow = (props: ModalWindowPropsType) => {
   const { active, setInactive } = props;
@@ -30,6 +25,7 @@ export const ModalWindow = (props: ModalWindowPropsType) => {
       className={active ? 'modal active' : 'modal'}
       onClick={() => setInactive()}
     >
+      {nameModalWindow === 'password-recovery-message' && <PopupEmail />}
       {nameModalWindow === 'create-pack' && <AddNewPack />}
       {nameModalWindow === 'delete-pack' && <PackDeletingForm />}
       {nameModalWindow === 'edit-pack-name' && <EditPackName />}

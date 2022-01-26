@@ -3,20 +3,19 @@ import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { Profile } from './Profile/Profile';
+
 import {
-  DataPackType,
   setCardsPackDataForRequest,
   setPage,
   setPageCount,
-} from '../../bll/pack-slice';
-import { AppStoreType } from '../../bll/store';
-import { DoubleRange } from '../../components/common/DoubleRange/DoubleRange';
-import { Pagination } from '../../components/common/Pagination/Pagination';
-import { RedirectionIfNotAuthorized } from '../../hoc/RedirectionIfNotAuthorized';
-import { CardsPackList } from '../PacksListPage/CardsPackList/CardsPackList';
-
-import { Profile } from './Profile/Profile';
-import styles from './ProfilePage.module.scss';
+} from 'bll/reducers/packReducer/pack-slice';
+import { DataPackType } from 'bll/reducers/packReducer/types';
+import { AppStoreType } from 'bll/store';
+import { Pagination, DoubleRange } from 'components';
+import { RedirectionIfNotAuthorized } from 'hoc/RedirectionIfNotAuthorized';
+import { CardsPackList } from 'view/PacksListPage';
+import styles from 'view/ProfilePage/style/ProfilePage.module.scss';
 
 const ProfilePage = () => {
   // потом положить в redux, в зависимости что искать нужно

@@ -1,25 +1,12 @@
-import React, { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import React, { ChangeEvent } from 'react';
 
-import s from './Checkbox.module.css';
+import s from './style/Checkbox.module.css';
+import { SuperCheckboxPropsType } from './types';
 
-type DefaultInputPropsType = DetailedHTMLProps<
-  InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
->;
+export const Checkbox: React.FC<SuperCheckboxPropsType> = props => {
+  const { onChange, onChangeChecked, className, spanClassName, children, ...restProps } =
+    props;
 
-type SuperCheckboxPropsType = DefaultInputPropsType & {
-  onChangeChecked?: (checked: boolean) => void;
-  spanClassName?: string;
-};
-
-const Checkbox: React.FC<SuperCheckboxPropsType> = ({
-  onChange,
-  onChangeChecked,
-  className,
-  spanClassName,
-  children,
-  ...restProps // все остальные пропсы попадут в объект restProps
-}) => {
   const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
     onChange && onChange(e);
     onChangeChecked && onChangeChecked(e.currentTarget.checked);
@@ -40,5 +27,3 @@ const Checkbox: React.FC<SuperCheckboxPropsType> = ({
     </label>
   );
 };
-
-export default Checkbox;

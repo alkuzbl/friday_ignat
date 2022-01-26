@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-import styles from './Grade.module.scss';
+import styles from './style/Grade.module.scss';
+import { GradePropsType } from './types';
 
-type GradePropsType = {
-  score: number;
-};
-export const Grade = (props: GradePropsType) => {
+const STARS = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }];
+
+export const Grade: FC<GradePropsType> = props => {
   const { score } = props;
-  const starsArr = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }];
 
   return (
     <div className={styles.stars}>
-      {starsArr.map(s => (
+      {STARS.map(s => (
         <span key={s.id} className={styles.stars__item}>
           <svg
             width="12"

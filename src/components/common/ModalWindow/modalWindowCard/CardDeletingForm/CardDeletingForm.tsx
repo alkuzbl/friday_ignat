@@ -2,14 +2,12 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  ModalWindowCardType,
-  setInactiveModalWindow,
-} from '../../../../../app/app-slice';
-import { deleteCard } from '../../../../../bll/card-slice';
-import { AppStoreType } from '../../../../../bll/store';
-import { Button } from '../../../Button';
-import styles from '../../modalWindowPack/PackDeletingForm/PopupConfirmationProcessing.module.scss';
+import { setInactiveModalWindow } from 'app/app-slice';
+import { ModalWindowCardType } from 'app/types';
+import { deleteCard } from 'bll/reducers/cardReducer/card-slice';
+import { AppStoreType } from 'bll/store';
+import { Button } from 'components/common/Button';
+import styles from 'components/common/ModalWindow/modalWindowPack/PackDeletingForm/style/PackDeletingForm.module.scss';
 
 export const CardDeletingForm = () => {
   const { question, cardId, cardsPackId } = useSelector<
@@ -30,7 +28,7 @@ export const CardDeletingForm = () => {
   return (
     <div className={styles.popup} onClick={onClick} role="presentation">
       <div className={styles.popup__titleBox}>
-        <h3 className={styles.popup__title}>Delete Pack</h3>
+        <h3 className={styles.popup__title}>Delete Card</h3>
         <Button title="X" type="button" view="popup-close" onClick={cancel} />
       </div>
       <p className={styles.popup__content}>

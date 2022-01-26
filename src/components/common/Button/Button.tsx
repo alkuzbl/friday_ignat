@@ -1,25 +1,11 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import styles from './Button.module.scss';
+import styles from './style/Button.module.scss';
+import { ButtonPropsType } from './types';
 
-type ButtonPropsType = {
-  title: string;
-  onClick?: () => void;
-  type: 'submit' | 'button' | 'link';
-  view?:
-    | 'default'
-    | 'transparent'
-    | 'default-for-packsList'
-    | 'delete-for-packsList'
-    | 'delete-for-pack-name'
-    | 'default-for-pack-name'
-    | 'popup-close';
-  path?: string;
-  disabled?: boolean;
-};
-export const Button = (props: ButtonPropsType) => {
+export const Button: FC<ButtonPropsType> = props => {
   const { title, onClick, type, view, path = '', disabled = false } = props;
 
   const [active, setActive] = useState<boolean>(false);

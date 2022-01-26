@@ -1,14 +1,9 @@
 import React from 'react';
 
-import styles from '../../../../view/ProfilePage/ProfilePage.module.scss';
-import { Button } from '../../Button';
+import { Button } from 'components/common/Button';
+import styles from 'view/ProfilePage/style/ProfilePage.module.scss';
 
-// type ActionButtonPropsType = {
-//   id?: number;
-// };
 export const ActionButton = () => {
-  // const { id } = props;
-
   const onClickLearn = () => {};
   return (
     <div className={styles.packsList__itemButtons}>

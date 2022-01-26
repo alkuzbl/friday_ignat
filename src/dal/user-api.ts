@@ -1,6 +1,6 @@
-import { UserProfileDataType } from '../bll/userProfile-slice';
-
 import { instance } from './instance-axios';
+
+import { UserProfileDataType } from 'bll/reducers/types';
 
 export const userAPI = {
   getUser: (data: { id: string }) =>

@@ -1,26 +1,17 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { ActionButton } from '../../../../components/common/ActionButtons/ActionButton/ActionButton';
-import { ActionEditButtons } from '../../../../components/common/ActionButtons/ActionEditButtons/ActionButtons';
-import styles from '../CardsPackList.module.scss';
+import { ActionButton, ActionEditButtons } from 'components';
+import { PackListItemPropsType } from 'view/PacksListPage/CardsPackList/PackListItem/types';
+import styles from 'view/PacksListPage/CardsPackList/style/CardsPackList.module.scss';
 
-type PackListItemPropsType = {
-  userName: string;
-  index: number;
-  packId: string;
-  date: string;
-  packName: string;
-  count: number;
-  myCard: boolean;
-  userId: string;
-};
-export const PackListItem = (props: PackListItemPropsType) => {
+export const PackListItem: FC<PackListItemPropsType> = props => {
   const { userName, date, packName, count, index, myCard, packId, userId } = props;
 
   const styleItem =
     index % 2 === 0 ? styles.packs__item : `${styles.packs__item} ${styles.dark}`;
+
   return (
     <div className={styleItem}>
       <p className={styles.packs__itemContent}>

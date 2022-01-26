@@ -1,28 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-import styles from './InputF.module.scss';
+import styles from './style/InputF.module.scss';
+import { InputFPropsType } from './types';
 
-type InputPropsType = {
-  className?: string;
-  required?: boolean;
-  label?: string;
-  placeholder?: string;
-  name:
-    | 'email'
-    | 'password'
-    | 'rememberMe'
-    | 'confirmPassword'
-    | 'name'
-    | 'question'
-    | 'answer';
-  register?: any;
-  errors?: any;
-  type: 'checkbox' | 'text' | 'password' | 'email';
-  style?: any;
-  autoComplete?: 'on' | 'off' | 'username' | 'new-password' | 'current-password' | 'name';
-};
-
-export const InputF = (props: InputPropsType) => {
+export const InputF: FC<InputFPropsType> = props => {
   const {
     register,
     name,

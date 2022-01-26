@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-import { AppStoreType } from '../bll/store';
+import { AppStoreType } from 'bll/store';
 
 export const RedirectionIfNotAuthorized = (Component: React.FC) => {
   function newComponent(props: any) {
