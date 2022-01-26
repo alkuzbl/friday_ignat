@@ -2,17 +2,15 @@ import React, { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  ModalWindowPackType,
-  setInactiveModalWindow,
-} from '../../../../../app/app-slice';
-import { CardType, getAllCards, putCardGrade } from '../../../../../bll/card-slice';
-import { getRandomCard } from '../../../../../utils/smartRandom';
 import { Button } from '../../../Button';
 import { RadioButtons } from '../../../RadioButtons';
 import styles from '../../modalWindowPack/PackDeletingForm/style/PackDeletingForm.module.scss';
 
+import { setInactiveModalWindow } from 'app/app-slice';
+import { ModalWindowPackType } from 'app/types';
+import { CardType, getAllCards, putCardGrade } from 'bll/reducers/cardReducer/card-slice';
 import { AppStoreType } from 'bll/store';
+import { getRandomCard } from 'utils/smartRandom';
 
 const grades = [
   'Did not know',

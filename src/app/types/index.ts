@@ -14,7 +14,8 @@ export type ModalWindowNameType =
   | 'create-card'
   | 'edit-card'
   | 'delete-card'
-  | 'password-recovery-message';
+  | 'password-recovery-message'
+  | 'learn';
 
 export type ModalWindowPackType = {
   _id?: string;

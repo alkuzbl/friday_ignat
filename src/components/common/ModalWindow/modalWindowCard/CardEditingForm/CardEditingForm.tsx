@@ -2,11 +2,11 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ModalWindowCardType } from '../../../../../app/app-slice';
-import { updateCard } from '../../../../../bll/card-slice';
-import { AppStoreType } from '../../../../../bll/store';
 import { CardInfo } from '../CardInfo';
 
+import { ModalWindowCardType } from 'app/types';
+import { updateCard } from 'bll/reducers/cardReducer/card-slice';
+import { AppStoreType } from 'bll/store';
 import { DataCardFormType } from 'components/common/ModalWindow/modalWindowCard/CardInfo/types';
 
 export const CardEditingForm = () => {
