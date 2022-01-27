@@ -1,1 +1,1 @@
-export { getResponseError } from './getResponseError';
+export { setResponseError } from 'bll/middlewares/utils/setResponseError';

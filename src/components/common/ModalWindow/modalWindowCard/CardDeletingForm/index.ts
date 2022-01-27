@@ -1,1 +1,0 @@
-export { CardDeletingForm } from './CardDeletingForm';

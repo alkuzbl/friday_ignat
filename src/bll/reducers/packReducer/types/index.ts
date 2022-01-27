@@ -1,4 +1,4 @@
-import { SortValueType } from 'components/common/SortButton/SortButton/types';
+import { SortValueType } from 'components/SortButton/SortButton/types';
 import { Nullabell } from 'types/Nullabel';
 
 export type CardPackType = {

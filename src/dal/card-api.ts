@@ -14,9 +14,11 @@ export const cardAPI = {
 
   updateCard: (data: RequestPayloadUpdateCardType) =>
     instance.put<{ updatedCard: CardType }>(`cards/card`, { card: data }),
+
+  putCardGrade: (data: RequestPayloadPutCardGrade) => instance.put(`cards/grade`, data),
 };
 
-// types response
+// style response
 type ResponseCreateCardType = {
   newCard: CardType;
   token: string;
@@ -24,11 +26,16 @@ type ResponseCreateCardType = {
   error: string;
 };
 
-// types request
+// style request
+export type RequestPayloadPutCardGrade = {
+  grade: 1 | 2 | 3 | 4 | 5;
+  card_id: string;
+};
+
 export type RequestPayloadGetCardType = {
   cardsPack_id: string;
-  page: number;
-  pageCount: number;
+  page?: number;
+  pageCount?: number;
   cardAnswer?: string;
   cardQuestion?: string;
   min?: number;
@@ -50,7 +57,7 @@ export type RequestPayloadCreateCardType = {
   type?: string;
 };
 export type RequestPayloadUpdateCardType = {
-  card_id: string;
+  _id: string;
   question?: string;
   answer?: string;
 };

@@ -10,8 +10,8 @@ import {
   DataPackType,
 } from 'bll/reducers/packReducer/types';
 import { AppStoreType } from 'bll/store';
-import { CardsPackTable } from 'components/common/CardsPackTable';
-import { SearchForm } from 'components/common/SearchForm/SeachForm/SearchForm';
+import { CardsPackTable } from 'components/CardsPackTable';
+import { SearchForm } from 'components/SearchForm/SeachForm/SearchForm';
 import styles from 'view/PacksListPage/CardsPackList/style/CardsPackList.module.scss';
 
 export const CardsPackList = () => {

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { setStatusApp } from 'app/app-slice';
-import { setResponseError } from 'bll/middlewares/utils/getResponseError';
+import { setResponseError } from 'bll/middlewares/utils/setResponseError';
 import { authAPI, RegisterUserDataType } from 'dal/auth-api';
 
 export const registerUser = createAsyncThunk(

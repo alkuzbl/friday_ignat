@@ -2,7 +2,7 @@ import { createAsyncThunk, ThunkDispatch } from '@reduxjs/toolkit';
 
 import { setInactiveModalWindow, setStatusApp } from 'app/app-slice';
 import { getCardsPack } from 'bll/middlewares/packThunks/getCardsPack';
-import { setResponseError } from 'bll/middlewares/utils/getResponseError';
+import { setResponseError } from 'bll/middlewares/utils/setResponseError';
 import { AppAction, AppStoreType } from 'bll/store';
 import { packAPI } from 'dal/pack-api';
 // dispatch: AsyncThunkAction<any, any, any>;

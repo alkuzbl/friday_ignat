@@ -1,1 +1,0 @@
-export { SearchCardsForm } from './SearchCardsForm';

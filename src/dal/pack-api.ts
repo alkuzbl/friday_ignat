@@ -2,7 +2,7 @@ import { instance } from './instance-axios';
 
 import { ModalWindowPackType } from 'app/types';
 import { CardPackType, DataPackType } from 'bll/reducers/packReducer/types';
-import { SortValueType } from 'components/common/SortButton/SortButton/types';
+import { SortValueType } from 'components/SortButton/SortButton/types';
 
 export const packAPI = {
   getCardsPack: (data: RequestGetPayloadPacksType) =>
@@ -23,7 +23,7 @@ export const packAPI = {
     }),
 };
 
-// types request
+// style request
 export type RequestGetPayloadPacksType = {
   packName?: string;
   min?: number;

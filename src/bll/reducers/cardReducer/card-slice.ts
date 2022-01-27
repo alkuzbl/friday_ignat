@@ -7,6 +7,8 @@ import {
   cardAPI,
   RequestPayloadCreateCardType,
   RequestPayloadGetCardType,
+  RequestPayloadPutCardGrade,
+  RequestPayloadUpdateCardType,
   SortCardsType,
 } from 'dal/card-api';
 
@@ -80,10 +82,23 @@ type CardsActionsType =
   | ReturnType<typeof cardsSlice.actions.setPage>;
 
 export const getAllCards =
-  (data: RequestPayloadGetCardType) => async (dispatch: Dispatch) => {
+  (data: RequestPayloadGetCardType) =>
+  async (dispatch: Dispatch, getState: () => AppStoreType) => {
     dispatch(setStatusCard('loading'));
     try {
-      const res = await cardAPI.getAllCards(data);
+      const { page } = getState().cards.data;
+      const { pageCount } = getState().cards.data;
+      const { sortCards } = getState().cards.cardsDataForRequest;
+      const { cardAnswer } = getState().cards.cardsDataForRequest;
+      const { cardQuestion } = getState().cards.cardsDataForRequest;
+      const res = await cardAPI.getAllCards({
+        ...data,
+        page,
+        pageCount,
+        sortCards,
+        cardAnswer,
+        cardQuestion,
+      });
       dispatch(setCards(res.data));
       dispatch(setStatusCard('succeed'));
     } catch (e: any) {
@@ -97,51 +112,11 @@ export const getAllCards =
 
 export const addNewCard =
   (data: RequestPayloadCreateCardType) =>
-  async (
-    dispatch: ThunkDispatch<AppStoreType, undefined, CardsActionsType>,
-    getState: () => AppStoreType,
-  ) => {
+  async (dispatch: ThunkDispatch<AppStoreType, undefined, CardsActionsType>) => {
     dispatch(setStatusCard('loading'));
     try {
       await cardAPI.createCard(data);
-      const { page } = getState().cards.data;
-      const { pageCount } = getState().cards.data;
-      await dispatch(getAllCards({ cardsPack_id: data.cardsPack_id, page, pageCount }));
-      dispatch(setInactiveModalWindow());
-      dispatch(setStatusCard('succeed'));
-    } catch (e: any) {
-      const error = e.response
-        ? e.response.data.error
-        : `${e.message}, more details in the console`;
-      dispatch(setErrorCard(error));
-      dispatch(setStatusCard('failed'));
-    }
-  };
-
-export const deleteCard =
-  (data: { cardsPackId: string; cardId: string }) =>
-  async (
-    dispatch: ThunkDispatch<AppStoreType, undefined, CardsActionsType>,
-    getState: () => AppStoreType,
-  ) => {
-    dispatch(setStatusCard('loading'));
-    try {
-      await cardAPI.deleteCard(data);
-      const { page } = getState().cards.data;
-      const { pageCount } = getState().cards.data;
-      const { sortCards } = getState().cards.cardsDataForRequest;
-      const { cardAnswer } = getState().cards.cardsDataForRequest;
-      const { cardQuestion } = getState().cards.cardsDataForRequest;
-      await dispatch(
-        getAllCards({
-          cardsPack_id: data.cardsPackId,
-          page,
-          pageCount,
-          sortCards,
-          cardAnswer,
-          cardQuestion,
-        }),
-      );
+      await dispatch(getAllCards({ cardsPack_id: data.cardsPack_id }));
       dispatch(setStatusCard('succeed'));
     } catch (e: any) {
       const error = e.response
@@ -154,7 +129,65 @@ export const deleteCard =
     }
   };
 
-// types
+export const deleteCard =
+  (data: { cardsPackId: string; cardId: string }) =>
+  async (dispatch: ThunkDispatch<AppStoreType, undefined, CardsActionsType>) => {
+    dispatch(setStatusCard('loading'));
+    try {
+      await cardAPI.deleteCard(data);
+      await dispatch(getAllCards({ cardsPack_id: data.cardsPackId }));
+      dispatch(setStatusCard('succeed'));
+    } catch (e: any) {
+      const error = e.response
+        ? e.response.data.error
+        : `${e.message}, more details in the console`;
+      dispatch(setErrorCard(error));
+      dispatch(setStatusCard('failed'));
+    } finally {
+      dispatch(setInactiveModalWindow());
+    }
+  };
+
+export const updateCard =
+  (data: RequestPayloadUpdateCardType & { cardsPack_id: string }) =>
+  async (dispatch: ThunkDispatch<AppStoreType, undefined, CardsActionsType>) => {
+    dispatch(setStatusCard('loading'));
+    try {
+      await cardAPI.updateCard({
+        _id: data._id,
+        question: data.question,
+        answer: data.answer,
+      });
+      await dispatch(getAllCards({ cardsPack_id: data.cardsPack_id }));
+      dispatch(setStatusCard('succeed'));
+    } catch (e: any) {
+      const error = e.response
+        ? e.response.data.error
+        : `${e.message}, more details in the console`;
+      dispatch(setErrorCard(error));
+      dispatch(setStatusCard('failed'));
+    } finally {
+      dispatch(setInactiveModalWindow());
+    }
+  };
+
+export const putCardGrade =
+  (data: RequestPayloadPutCardGrade) =>
+  async (dispatch: ThunkDispatch<AppStoreType, undefined, CardsActionsType>) => {
+    dispatch(setStatusCard('loading'));
+    try {
+      await cardAPI.putCardGrade(data);
+      dispatch(setStatusCard('succeed'));
+    } catch (e: any) {
+      const error = e.response
+        ? e.response.data.error
+        : `${e.message}, more details in the console`;
+      dispatch(setErrorCard(error));
+      dispatch(setStatusCard('failed'));
+    }
+  };
+
+// style
 export type CardType = {
   _id: string;
   cardsPack_id: string;
