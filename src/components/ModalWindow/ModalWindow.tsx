@@ -1,6 +1,6 @@
 import React from 'react';
 
-import 'components/ModalWindowModal.scss';
+import './style/Modal.scss';
 import { useSelector } from 'react-redux';
 
 import { ModalWindowNameType } from 'app/types';
