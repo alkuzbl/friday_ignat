@@ -9,8 +9,8 @@ import { setActiveModalWindow } from 'app/app-slice';
 import { CardType, setSortingByGrade } from 'bll/reducers/cardReducer/card-slice';
 import { AppStoreType } from 'bll/store';
 import { Button } from 'components/common/Button';
-import { SearchCardsForm } from 'components/common/SearchForm/SearchCardForm/SearchCardsForm';
-import { SortCardsButton } from 'components/common/SortButton/SortCardsButton/SortCardsButton';
+import { SearchCardsForm } from 'components/SearchForm/SearchCardForm/SearchCardsForm';
+import { SortCardsButton } from 'components/SortButton/SortCardsButton/SortCardsButton';
 import { SortCardsType } from 'dal/card-api';
 import styles from 'view/PacksListPage/CardsPackList/style/CardsPackList.module.scss';
 
