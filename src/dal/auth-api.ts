@@ -14,7 +14,7 @@ export const authAPI = {
     instance.post<ResponseType>('auth/set-new-password', data),
 };
 
-// types
+// style
 export type LoginDataType = {
   email: string;
   password: string;

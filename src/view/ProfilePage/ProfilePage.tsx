@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { Profile } from './Profile/Profile';
+import styles from './style/ProfilePage.module.scss';
 
 import {
   setCardsPackDataForRequest,
@@ -15,23 +16,23 @@ import { AppStoreType } from 'bll/store';
 import { Pagination, DoubleRange } from 'components';
 import { RedirectionIfNotAuthorized } from 'hoc/RedirectionIfNotAuthorized';
 import { CardsPackList } from 'view/PacksListPage';
-import styles from 'view/ProfilePage/style/ProfilePage.module.scss';
 
 const ProfilePage = () => {
-  // потом положить в redux, в зависимости что искать нужно
+  const dispatch = useDispatch();
+
+  const { userId }: any = useParams<'userId'>();
+
   const { pageCount, cardPacksTotalCount, minCardsCount, maxCardsCount } = useSelector<
     AppStoreType,
     DataPackType
   >(state => state.packs.data);
-  const { userId }: any = useParams<'userId'>();
-  const dispatch = useDispatch();
-  // выбор страницы - то-есть переход постраничный
+
   const selectPage = (page: number) => dispatch(setPage({ page }));
-  // для выбора количества карточек (double-range)
+
   const onChangeRange = useCallback((value: number[]) => {
     dispatch(setCardsPackDataForRequest({ min: value[0], max: value[1] }));
   }, []);
-  // выбор количества элементов на странице (select)
+
   const setPageCountForPacks = (pageCountValue: number) => {
     dispatch(setPageCount({ pageCount: pageCountValue }));
   };

@@ -1,7 +1,8 @@
 import React, { ChangeEvent } from 'react';
 
-import s from './style/Checkbox.module.css';
 import { SuperCheckboxPropsType } from './types';
+
+import style from 'components/common/Checkbox/style/Checkbox.module.scss';
 
 export const Checkbox: React.FC<SuperCheckboxPropsType> = props => {
   const { onChange, onChangeChecked, className, spanClassName, children, ...restProps } =
@@ -12,7 +13,7 @@ export const Checkbox: React.FC<SuperCheckboxPropsType> = props => {
     onChangeChecked && onChangeChecked(e.currentTarget.checked);
   };
 
-  const finalInputClassName = `${s.checkbox} ${className || ''}`;
+  const finalInputClassName = `${style.checkbox} ${className || ''}`;
 
   return (
     <label>
@@ -23,7 +24,9 @@ export const Checkbox: React.FC<SuperCheckboxPropsType> = props => {
         checked={restProps.checked}
         {...restProps}
       />
-      {children && <span className={s.spanClassName && spanClassName}>{children}</span>}
+      {children && (
+        <span className={style.spanClassName && spanClassName}>{children}</span>
+      )}
     </label>
   );
 };

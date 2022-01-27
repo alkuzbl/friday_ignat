@@ -187,7 +187,7 @@ export const putCardGrade =
     }
   };
 
-// types
+// style
 export type CardType = {
   _id: string;
   cardsPack_id: string;

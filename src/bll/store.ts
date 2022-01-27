@@ -23,7 +23,7 @@ export const store = configureStore({
   devTools: process.env.NODE_ENV !== 'production',
 });
 
-// types
+// style
 export type AppStoreType = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 // странная типизация - но работает для thunk

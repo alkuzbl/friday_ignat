@@ -2,30 +2,41 @@ import React, { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Button } from '../../../Button';
-import { RadioButtons } from '../../../RadioButtons';
-import styles from '../../modalWindowPack/PackDeletingForm/style/PackDeletingForm.module.scss';
-
 import { setInactiveModalWindow } from 'app/app-slice';
 import { ModalWindowPackType } from 'app/types';
 import { CardType, getAllCards, putCardGrade } from 'bll/reducers/cardReducer/card-slice';
 import { AppStoreType } from 'bll/store';
+import { Button } from 'components/common/Button';
+import { LearnQuestion } from 'components/common/ModalWindow/modalWindowLearn/LearnForm/LearnQuestion';
+import { RadioButtons } from 'components/common/RadioButtons';
+import { GradesType } from 'components/common/RadioButtons/types';
+import { Nullabell } from 'types/Nullabel';
 import { getRandomCard } from 'utils/smartRandom';
 
-const grades = [
-  'Did not know',
-  'Forgot',
-  'A lot of thought',
-  'Confused',
-  'Knew the answer',
+const grades: GradesType[] = [
+  { id: 1, name: 'Did not know' },
+  { id: 2, name: 'Forgot' },
+  { id: 3, name: 'A lot of thought' },
+  { id: 4, name: 'Confused' },
+  { id: 5, name: 'Knew the answer' },
 ];
 
+enum GradesEnum {
+  'Did not know' = 1,
+  'Forgot' = 2,
+  'A lot of thought' = 3,
+  'Confused' = 4,
+  'Knew the answer' = 5,
+}
+
 export const LearnForm = () => {
+  const dispatch = useDispatch();
+
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [first, setFirst] = useState<boolean>(true);
-  const [value, onChangeOption] = useState<1 | 2 | 3 | 4 | 5>(1);
-  const [card, setCard] = useState<CardType>();
-  const dispatch = useDispatch();
+  const [value, onChangeOption] = useState<GradesEnum>(GradesEnum['Did not know']);
+  const [card, setCard] = useState<Nullabell<CardType>>(null);
+
   const cards = useSelector<AppStoreType, CardType[]>(state => state.cards.data.cards);
   const { _id, name } = useSelector<AppStoreType, ModalWindowPackType>(
     state => state.app.modalWindow.modalWindowData,
@@ -50,45 +61,39 @@ export const LearnForm = () => {
 
   const cancel = () => dispatch(setInactiveModalWindow());
 
+  const handleClickChecked = () => setIsChecked(true);
+
   const onClickDiv = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
     e.stopPropagation();
-  return (
-    <div role="presentation" className={styles.popup} onClick={onClickDiv}>
-      <div className={styles.popup__titleBox}>
-        <h3 className={styles.popup__title}>Learn «{name}»</h3>
-        <Button title="X" type="button" view="popup-close" onClick={cancel} />
-      </div>
 
-      {card ? (
-        <div>
-          <p className={styles.popup__content}>Answer the question</p>
-          <p>{card.question}</p>
-          <div>
-            <Button
-              title="Check answer"
-              type="button"
-              onClick={() => setIsChecked(true)}
-              view="default"
-            />
-          </div>
-          {isChecked && (
-            <>
-              <div>{card.answer}</div>
-              <RadioButtons
-                name="radio"
-                options={grades}
-                value={value}
-                onChangeOption={onChangeOption}
-              />
-              <div style={{ display: 'flex' }}>
-                <Button title="Cancel" type="button" onClick={cancel} view="default" />
-                <Button title="Next" type="button" onClick={onNext} view="default" />
-              </div>
-            </>
-          )}
-        </div>
+  return (
+    <div
+      role="presentation"
+      onClick={onClickDiv}
+      style={{
+        padding: '30px 30px 40px',
+        maxWidth: '400px',
+        borderRadius: '5px',
+        border: '1px solid #EDF0F6',
+        backgroundColor: ' #ffffff',
+      }}
+    >
+      {!isChecked ? (
+        <LearnQuestion
+          name={name || ''}
+          card={card}
+          onClickCancel={cancel}
+          onClickChecked={handleClickChecked}
+        />
       ) : (
-        <div>No cards =(</div>
+        <div>
+          <div style={{ fontWeight: 'bold' }}>{card && card.answer}</div>
+          <RadioButtons options={grades} value={value} onChangeOption={onChangeOption} />
+          <div style={{ display: 'flex' }}>
+            <Button title="Cancel" type="button" onClick={cancel} view="default" />
+            <Button title="Next" type="button" onClick={onNext} view="default" />
+          </div>
+        </div>
       )}
     </div>
   );

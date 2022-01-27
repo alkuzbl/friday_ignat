@@ -1,4 +1,4 @@
-// userProfile types
+// userProfile style
 import { UserType } from 'dal/auth-api';
 
 export type UserProfileType = {
@@ -20,7 +20,7 @@ export type UserProfileDataType = {
 export type UserProfileInitialStateType = {
   data: UserProfileDataType;
 };
-// auth-slice types
+// auth-slice style
 export type InitialStateAuthType = {
   user: UserType;
   isAuth: boolean;

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { setResponseError } from 'bll/middlewares/utils/getResponseError';
+import { setResponseError } from 'bll/middlewares/utils/setResponseError';
 import { setLogout } from 'bll/reducers/authReducer/auth-slice';
 import { authAPI } from 'dal/auth-api';
 

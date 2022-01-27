@@ -18,7 +18,7 @@ export const cardAPI = {
   putCardGrade: (data: RequestPayloadPutCardGrade) => instance.put(`cards/grade`, data),
 };
 
-// types response
+// style response
 type ResponseCreateCardType = {
   newCard: CardType;
   token: string;
@@ -26,7 +26,7 @@ type ResponseCreateCardType = {
   error: string;
 };
 
-// types request
+// style request
 export type RequestPayloadPutCardGrade = {
   grade: 1 | 2 | 3 | 4 | 5;
   card_id: string;

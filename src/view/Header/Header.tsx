@@ -2,10 +2,9 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import logo from '../../assets/images/logo.png';
-
 import { NavBar } from './Navbar/NavBar';
 
+import logo from 'assets/images/logo.png';
 import { logout } from 'bll/middlewares/authThunks/logout';
 import { AppStoreType } from 'bll/store';
 import { Button } from 'components';
