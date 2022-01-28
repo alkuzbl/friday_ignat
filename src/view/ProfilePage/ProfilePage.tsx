@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { CSSProperties, useCallback } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { Profile } from './Profile/Profile';
 import styles from './style/ProfilePage.module.scss';
 
+import { StatusType } from 'app/types';
 import {
   setCardsPackDataForRequest,
   setPage,
@@ -22,6 +23,8 @@ const ProfilePage = () => {
 
   const { userId }: any = useParams<'userId'>();
 
+  const requestStatus = useSelector<AppStoreType, StatusType>(state => state.app.status);
+
   const { pageCount, cardPacksTotalCount, minCardsCount, maxCardsCount } = useSelector<
     AppStoreType,
     DataPackType
@@ -29,16 +32,22 @@ const ProfilePage = () => {
 
   const selectPage = (page: number) => dispatch(setPage({ page }));
 
-  const onChangeRange = useCallback((value: number[]) => {
-    dispatch(setCardsPackDataForRequest({ min: value[0], max: value[1] }));
-  }, []);
+  const onChangeRange = useCallback(
+    (value: number[]) => {
+      dispatch(setCardsPackDataForRequest({ min: value[0], max: value[1] }));
+    },
+    [dispatch],
+  );
 
   const setPageCountForPacks = (pageCountValue: number) => {
     dispatch(setPageCount({ pageCount: pageCountValue }));
   };
 
+  const disabledStyle: CSSProperties =
+    requestStatus === 'loading' ? { pointerEvents: 'none', opacity: '.8' } : {};
+
   return (
-    <div className={styles.profilePage}>
+    <div className={styles.profilePage} style={disabledStyle}>
       <div className="container">
         <div className={styles.profilePage__wrapper}>
           <div className={styles.profilePage__profile}>

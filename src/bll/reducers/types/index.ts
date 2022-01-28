@@ -11,11 +11,11 @@ export type UserProfileType = {
   created: string;
   updated: string;
   avatar: string;
-  token: string;
-  tokenDeathTime: number;
 };
 export type UserProfileDataType = {
   user: UserProfileType;
+  token: string | undefined;
+  tokenDeathTime: number | undefined;
 };
 export type UserProfileInitialStateType = {
   data: UserProfileDataType;

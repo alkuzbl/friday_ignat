@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { logout } from 'bll/middlewares';
 import {
   UserProfileDataType,
   UserProfileInitialStateType,
@@ -9,6 +10,8 @@ import {
 const userProfileInitialState: UserProfileInitialStateType = {
   data: {
     user: {} as UserProfileType,
+    token: undefined,
+    tokenDeathTime: undefined,
   },
 };
 
@@ -19,6 +22,12 @@ const userProfileSlice = createSlice({
     setUserProfile: (state, action: PayloadAction<UserProfileDataType>) => {
       state.data = action.payload;
     },
+  },
+  extraReducers: builder => {
+    builder.addCase(logout.fulfilled, state => {
+      state.data = {} as UserProfileDataType;
+      state.data.user = {} as UserProfileType;
+    });
   },
 });
 
