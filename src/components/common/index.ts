@@ -1,5 +1,7 @@
 export { AuthBox } from './AuthBox';
+export { BackDrop } from './BackDrop';
 export { Button } from './Button';
+export { ErrorMessage } from './ErrorMessage';
 export { Checkbox } from './Checkbox';
 export { CustomNavLink } from './CustomNavLink';
 export { DoubleRange } from './DoubleRange';

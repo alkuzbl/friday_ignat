@@ -5,14 +5,16 @@ import { useParams } from 'react-router-dom';
 
 import { PackageCards } from './PackageCards';
 
+import { StatusType } from 'app/types';
 import { getAllCards, setPage, setPageCount } from 'bll/reducers/cardReducer/card-slice';
 import { AppStoreType } from 'bll/store';
-import { Pagination } from 'components';
+import { BackDrop, Pagination } from 'components';
 import { SortCardsType } from 'dal/card-api';
 import { RedirectionIfNotAuthorized } from 'hoc/RedirectionIfNotAuthorized';
 import styles from 'view/ProfilePage/style/ProfilePage.module.scss';
 
 const CardsList = () => {
+  const requestStatus = useSelector<AppStoreType, StatusType>(state => state.app.status);
   const cardsTotalCount = useSelector<AppStoreType, number>(
     state => state.cards.data.cardsTotalCount,
   );
@@ -54,6 +56,7 @@ const CardsList = () => {
   }, [packId, currentPage, pageCount, sortCards, cardQuestion, cardAnswer]);
   return (
     <div className={styles.packsListPage}>
+      <BackDrop active={requestStatus === 'loading'} />
       <div className="container">
         <div className={styles.packsListPage__packsList}>
           <PackageCards />

@@ -14,6 +14,5 @@ export const registerUser = createAsyncThunk(
     } catch (e: any) {
       setResponseError(e, dispatch);
     }
-    dispatch(setStatusApp('idle'));
   },
 );

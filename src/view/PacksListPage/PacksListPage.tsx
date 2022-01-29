@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { setActiveModalWindow } from 'app/app-slice';
+import { StatusType } from 'app/types';
 import { getCardsPack } from 'bll/middlewares/packThunks/getCardsPack';
 import { setPage, setPageCount } from 'bll/reducers/packReducer/pack-slice';
 import {
@@ -12,6 +13,7 @@ import {
 } from 'bll/reducers/packReducer/types';
 import { AppStoreType } from 'bll/store';
 import {
+  BackDrop,
   Button,
   CardsPackTable,
   DoubleRangeMUI,
@@ -31,6 +33,7 @@ const PacksListPage = () => {
   let userId = useSelector<AppStoreType, string | undefined>(
     state => state.auth.user._id,
   );
+  const requestStatus = useSelector<AppStoreType, StatusType>(state => state.app.status);
   const { packName, sortPacks } = useSelector<AppStoreType, CardsPackDataForRequestType>(
     state => state.packs.cardsPackDataForRequest,
   );
@@ -76,6 +79,7 @@ const PacksListPage = () => {
 
   return (
     <div className={styles.profilePage}>
+      <BackDrop active={requestStatus === 'loading'} />
       <div className="container">
         <div className={styles.profilePage__wrapper}>
           <div className={styles.profilePage__profile}>

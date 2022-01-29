@@ -36,6 +36,10 @@ const appSlice = createSlice({
       state.error = action.payload;
       state.status = 'failed';
     },
+    clearErrorApp: state => {
+      state.error = null;
+      state.status = 'idle';
+    },
     setStatusApp: (state, action: PayloadAction<StatusType>) => {
       state.status = action.payload;
     },
@@ -72,5 +76,10 @@ const appSlice = createSlice({
 
 export const appReducer = appSlice.reducer;
 
-export const { setErrorApp, setActiveModalWindow, setInactiveModalWindow, setStatusApp } =
-  appSlice.actions;
+export const {
+  setErrorApp,
+  clearErrorApp,
+  setActiveModalWindow,
+  setInactiveModalWindow,
+  setStatusApp,
+} = appSlice.actions;

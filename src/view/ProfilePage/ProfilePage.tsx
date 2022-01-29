@@ -1,4 +1,4 @@
-import React, { CSSProperties, useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -10,7 +10,7 @@ import { StatusType } from 'app/types';
 import { setPage, setPageCount } from 'bll/reducers/packReducer/pack-slice';
 import { DataPackType } from 'bll/reducers/packReducer/types';
 import { AppStoreType } from 'bll/store';
-import { Pagination } from 'components';
+import { BackDrop, Pagination } from 'components';
 import { DoubleRangeMUI } from 'components/common/DoubleRangeMUI/DoubleRangeMUI';
 import { RedirectionIfNotAuthorized } from 'hoc/RedirectionIfNotAuthorized';
 import { CardsPackList } from 'view/PacksListPage';
@@ -43,11 +43,9 @@ const ProfilePage = () => {
     dispatch(setPageCount({ pageCount: pageCountValue }));
   };
 
-  const disabledStyle: CSSProperties =
-    requestStatus === 'loading' ? { pointerEvents: 'none', opacity: '.8' } : {};
-
   return (
-    <div className={styles.profilePage} style={disabledStyle}>
+    <div className={styles.profilePage}>
+      <BackDrop active={requestStatus === 'loading'} />
       <div className="container">
         <div className={styles.profilePage__wrapper}>
           <div className={styles.profilePage__profile}>
