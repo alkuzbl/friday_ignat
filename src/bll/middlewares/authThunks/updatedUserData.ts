@@ -16,6 +16,5 @@ export const updatedUserData = createAsyncThunk(
     } catch (e: any) {
       setResponseError(e, dispatch);
     }
-    dispatch(setStatusApp('idle'));
   },
 );

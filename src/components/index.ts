@@ -4,6 +4,8 @@ export {
   EditableSpan,
   Form,
   Button,
+  ErrorMessage,
+  BackDrop,
   PaginationListItem,
   Pagination,
   DoubleRange,

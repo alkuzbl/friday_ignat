@@ -16,6 +16,5 @@ export const login = createAsyncThunk(
     } catch (e: any) {
       setResponseError(e, dispatch);
     }
-    dispatch(setStatusApp('idle'));
   },
 );

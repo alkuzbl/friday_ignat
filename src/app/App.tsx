@@ -9,7 +9,7 @@ import { setInactiveModalWindow } from './app-slice';
 
 import { getAuthUser } from 'bll/middlewares';
 import { AppStoreType } from 'bll/store';
-import { ModalWindow, Spinner } from 'components';
+import { ErrorMessage, ModalWindow, Spinner } from 'components';
 import {
   CardsListContainer,
   Header,
@@ -70,6 +70,7 @@ const App = () => {
         <Route path="*" element={<NotPage />} />
       </Routes>
       <ModalWindow active={activeModalWindow} setInactive={closeModalWindow} />
+      <ErrorMessage />
     </div>
   );
 };
