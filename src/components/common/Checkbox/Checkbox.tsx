@@ -1,10 +1,10 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, FC, memo } from 'react';
 
 import { SuperCheckboxPropsType } from './types';
 
 import style from 'components/common/Checkbox/style/Checkbox.module.scss';
 
-export const Checkbox: React.FC<SuperCheckboxPropsType> = props => {
+export const Checkbox: FC<SuperCheckboxPropsType> = memo(props => {
   const { onChange, onChangeChecked, className, spanClassName, children, ...restProps } =
     props;
 
@@ -29,4 +29,4 @@ export const Checkbox: React.FC<SuperCheckboxPropsType> = props => {
       )}
     </label>
   );
-};
+});

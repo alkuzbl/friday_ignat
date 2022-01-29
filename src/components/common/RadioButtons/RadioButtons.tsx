@@ -1,8 +1,8 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, FC, memo } from 'react';
 
 import { RadioButtonsPropsType } from './types';
 
-export const RadioButtons: React.FC<RadioButtonsPropsType> = props => {
+export const RadioButtons: FC<RadioButtonsPropsType> = memo(props => {
   const { options, value, onChangeOption } = props;
 
   const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,4 +25,4 @@ export const RadioButtons: React.FC<RadioButtonsPropsType> = props => {
         ))}
     </div>
   );
-};
+});

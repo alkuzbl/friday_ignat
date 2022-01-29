@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, memo, useState } from 'react';
 
 import styles from './style/EditableSpan.module.scss';
 import { EditableSpanPropsType } from './types';
@@ -7,7 +7,7 @@ import iconEditError from 'assets/images/edit_icon-error.svg';
 import iconEdit from 'assets/images/edit_icon.svg';
 import { InputChangeEventType } from 'components/common/Input/types';
 
-export const EditableSpan: FC<EditableSpanPropsType> = props => {
+export const EditableSpan: FC<EditableSpanPropsType> = memo(props => {
   const { value, onClick, onChange, name, placeholder, iconEditButton } = props;
 
   const [edit, setEdit] = useState<boolean>(false);
@@ -66,4 +66,4 @@ export const EditableSpan: FC<EditableSpanPropsType> = props => {
       )}
     </div>
   );
-};
+});

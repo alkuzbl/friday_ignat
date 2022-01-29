@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 
 import styles from './style/Grade.module.scss';
 import { GradePropsType } from './types';
 
 const STARS = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }];
 
-export const Grade: FC<GradePropsType> = props => {
+export const Grade: FC<GradePropsType> = memo(props => {
   const { score } = props;
 
   return (
@@ -28,4 +28,4 @@ export const Grade: FC<GradePropsType> = props => {
       ))}
     </div>
   );
-};
+});

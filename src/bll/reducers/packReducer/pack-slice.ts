@@ -47,10 +47,11 @@ const packSlice = createSlice({
       state,
       action: PayloadAction<CardsPackDataForRequestType>,
     ) => {
-      state.cardsPackDataForRequest = {
-        ...state.cardsPackDataForRequest,
-        ...action.payload,
-      };
+      state.cardsPackDataForRequest = action.payload;
+      // state.cardsPackDataForRequest = {
+      //   ...state.cardsPackDataForRequest,
+      //   ...action.payload,
+      // };
     },
   },
   extraReducers: builder => {

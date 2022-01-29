@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ import { NavLinkPropsType } from 'components/common/CustomNavLink/types';
 const activeStyleNavLink = (isActive: boolean) =>
   isActive ? { fontWeight: 'bold' } : {};
 
-export const CustomNavLink: FC<NavLinkPropsType> = props => {
+export const CustomNavLink: FC<NavLinkPropsType> = memo(props => {
   const { path, title } = props;
 
   return (
@@ -17,4 +17,4 @@ export const CustomNavLink: FC<NavLinkPropsType> = props => {
       </NavLink>
     </li>
   );
-};
+});

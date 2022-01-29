@@ -14,6 +14,7 @@ export {
   AuthBox,
   Checkbox,
   Spinner,
+  DoubleRangeMUI,
   RadioButtons,
 } from './common';
 

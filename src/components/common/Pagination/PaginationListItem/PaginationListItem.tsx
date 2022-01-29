@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 
 import { Link } from 'react-router-dom';
 
 import { PaginationListItemPropsType } from 'components/common/Pagination/PaginationListItem/types';
 import styles from 'components/common/Pagination/style/Pagination.module.scss';
 
-export const PaginationListItem: FC<PaginationListItemPropsType> = props => {
+export const PaginationListItem: FC<PaginationListItemPropsType> = memo(props => {
   const { value, currentValue = 1, link, onClick } = props;
 
   const activeStyle =
@@ -22,4 +22,4 @@ export const PaginationListItem: FC<PaginationListItemPropsType> = props => {
       </Link>
     </li>
   );
-};
+});

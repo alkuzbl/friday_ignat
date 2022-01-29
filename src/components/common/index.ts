@@ -11,5 +11,6 @@ export { Input } from './Input';
 export { InputF } from './InputForReactHF';
 export { PaginationListItem, Pagination } from './Pagination';
 export { RadioButtons } from './RadioButtons';
+export { DoubleRangeMUI } from './DoubleRangeMUI';
 export { Select } from './Select';
 export { Spinner } from './Spinner';

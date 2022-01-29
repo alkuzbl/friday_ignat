@@ -11,12 +11,13 @@ import { PackListItem } from 'view/PacksListPage/CardsPackList/PackListItem/Pack
 import styles from 'view/PacksListPage/CardsPackList/style/CardsPackList.module.scss';
 
 export const CardsPackTable = () => {
+  const dispatch = useDispatch();
+
   const myId = useSelector<AppStoreType, string>(state => state.auth.user._id);
   const cardsPack = useSelector<AppStoreType, CardPackType[]>(
     state => state.packs.data.cardPacks,
   );
 
-  const dispatch = useDispatch();
   const sortByDate = (value: SortValueType) => {
     dispatch(setCardsPackDataForRequest({ sortPacks: value }));
   };

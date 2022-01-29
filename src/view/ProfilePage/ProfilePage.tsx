@@ -1,4 +1,4 @@
-import React, { CSSProperties, useCallback } from 'react';
+import React, { CSSProperties, useCallback, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -7,14 +7,11 @@ import { Profile } from './Profile/Profile';
 import styles from './style/ProfilePage.module.scss';
 
 import { StatusType } from 'app/types';
-import {
-  setCardsPackDataForRequest,
-  setPage,
-  setPageCount,
-} from 'bll/reducers/packReducer/pack-slice';
+import { setPage, setPageCount } from 'bll/reducers/packReducer/pack-slice';
 import { DataPackType } from 'bll/reducers/packReducer/types';
 import { AppStoreType } from 'bll/store';
-import { Pagination, DoubleRange } from 'components';
+import { Pagination } from 'components';
+import { DoubleRangeMUI } from 'components/common/DoubleRangeMUI/DoubleRangeMUI';
 import { RedirectionIfNotAuthorized } from 'hoc/RedirectionIfNotAuthorized';
 import { CardsPackList } from 'view/PacksListPage';
 
@@ -24,19 +21,22 @@ const ProfilePage = () => {
   const { userId }: any = useParams<'userId'>();
 
   const requestStatus = useSelector<AppStoreType, StatusType>(state => state.app.status);
-
   const { pageCount, cardPacksTotalCount, minCardsCount, maxCardsCount } = useSelector<
     AppStoreType,
     DataPackType
   >(state => state.packs.data);
+  const [cardsCountForRequest, setCardsCountForRequest] = useState<{
+    min: number;
+    max: number;
+  }>({ min: 0, max: 0 });
 
   const selectPage = (page: number) => dispatch(setPage({ page }));
 
-  const onChangeRange = useCallback(
+  const onAfterChange = useCallback(
     (value: number[]) => {
-      dispatch(setCardsPackDataForRequest({ min: value[0], max: value[1] }));
+      setCardsCountForRequest({ min: value[0], max: value[1] });
     },
-    [dispatch],
+    [cardsCountForRequest],
   );
 
   const setPageCountForPacks = (pageCountValue: number) => {
@@ -54,16 +54,15 @@ const ProfilePage = () => {
             <Profile />
             <div className={styles.profilePage__range}>
               <h4 className={styles.profilePage__rangeTitle}>Number of cards</h4>
-              <DoubleRange
-                onAfterChange={onChangeRange}
-                allowCross={false}
+              <DoubleRangeMUI
                 min={minCardsCount}
                 max={maxCardsCount}
+                submitValueAfterChange={onAfterChange}
               />
             </div>
           </div>
           <div className={styles.profilePage__packsList}>
-            <CardsPackList />
+            <CardsPackList cardsCountForRequest={cardsCountForRequest} />
             <div className={styles.profilePage__pagination}>
               <Pagination
                 totalCount={cardPacksTotalCount}
