@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/friday_ignat/static/css/main.b149fea4.css",
-    "main.js": "/friday_ignat/static/js/main.fb678f16.js",
+    "main.css": "/friday_ignat/static/css/main.4ae7e810.css",
+    "main.js": "/friday_ignat/static/js/main.9fecb8c6.js",
     "static/js/787.bb9e822e.chunk.js": "/friday_ignat/static/js/787.bb9e822e.chunk.js",
     "static/media/card.svg": "/friday_ignat/static/media/card.95b09153bd3e7087d1bc916fa9116422.svg",
     "static/media/logo.png": "/friday_ignat/static/media/logo.1b4c94fff68583c25478.png",
@@ -13,12 +13,12 @@
     "static/media/edit_icon.svg": "/friday_ignat/static/media/edit_icon.da0773a9b1f44d8e656b8e17aa467b43.svg",
     "static/media/edit_icon-error.svg": "/friday_ignat/static/media/edit_icon-error.19fc4f245a1afc028973a798934754e1.svg",
     "static/media/arrow.svg": "/friday_ignat/static/media/arrow.f30a3c93800d45e28b3fd57be8ec4b46.svg",
-    "main.b149fea4.css.map": "/friday_ignat/static/css/main.b149fea4.css.map",
-    "main.fb678f16.js.map": "/friday_ignat/static/js/main.fb678f16.js.map",
+    "main.4ae7e810.css.map": "/friday_ignat/static/css/main.4ae7e810.css.map",
+    "main.9fecb8c6.js.map": "/friday_ignat/static/js/main.9fecb8c6.js.map",
     "787.bb9e822e.chunk.js.map": "/friday_ignat/static/js/787.bb9e822e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b149fea4.css",
-    "static/js/main.fb678f16.js"
+    "static/css/main.4ae7e810.css",
+    "static/js/main.9fecb8c6.js"
   ]
 }
