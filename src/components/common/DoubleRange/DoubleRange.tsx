@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useEffect, useState } from 'react';
 
 import 'rc-slider/assets/index.css';
 
@@ -10,13 +10,22 @@ const Slider = require('rc-slider');
 const { createSliderWithTooltip } = Slider;
 const Range = createSliderWithTooltip(Slider.Range);
 
-export const DoubleRange = (props: DoubleRangePropsType) => {
+export const DoubleRange = memo((props: DoubleRangePropsType) => {
   const { min, max, ...restProps } = props;
+
+  const [value, setValue] = useState<number | number[]>([0, 0]);
+
+  useEffect(() => {
+    if (min !== undefined && max !== undefined) setValue([min, max]);
+  }, [min, max]);
+
+  const handleOnChange = (newValue: number | number[]) => {
+    setValue(newValue);
+  };
 
   if (!min && !max) {
     return <div>Карточки отсутствуют</div>;
   }
-
   return (
     <div className={styles.range}>
       <div className={styles.range__box}>
@@ -30,9 +39,10 @@ export const DoubleRange = (props: DoubleRangePropsType) => {
         className={styles.range__input}
         min={min}
         max={max}
-        defaultValue={[min, max]}
+        onChange={handleOnChange}
+        value={value}
         {...restProps}
       />
     </div>
   );
-};
+});

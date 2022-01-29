@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 
 import { FormControlPropsType } from './types';
 
-export const FormControl: FC<FormControlPropsType> = props => {
+export const FormControl: FC<FormControlPropsType> = memo(props => {
   const { children, onSubmit, defaultValues } = props;
 
   const {
@@ -33,4 +33,4 @@ export const FormControl: FC<FormControlPropsType> = props => {
       )}
     </form>
   );
-};
+});

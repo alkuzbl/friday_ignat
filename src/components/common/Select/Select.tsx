@@ -1,10 +1,10 @@
-import React, { ChangeEvent, FC } from 'react';
+import React, { ChangeEvent, FC, memo } from 'react';
 
 import { SelectPropsType } from './types';
 
 import styles from 'components/common/Pagination/style/Pagination.module.scss';
 
-export const Select: FC<SelectPropsType> = props => {
+export const Select: FC<SelectPropsType> = memo(props => {
   const { value, onChange, defaultValue } = props;
 
   const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -24,4 +24,4 @@ export const Select: FC<SelectPropsType> = props => {
       ))}
     </select>
   );
-};
+});

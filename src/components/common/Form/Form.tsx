@@ -1,8 +1,8 @@
-import React, { FC, FormEvent } from 'react';
+import React, { FC, FormEvent, memo } from 'react';
 
 import { FormControlPropsType } from './types';
 
-export const Form: FC<FormControlPropsType> = props => {
+export const Form: FC<FormControlPropsType> = memo(props => {
   const { children, resetValue } = props;
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
@@ -10,4 +10,4 @@ export const Form: FC<FormControlPropsType> = props => {
     resetValue && resetValue({});
   };
   return <form onSubmit={onSubmitHandler}>{children}</form>;
-};
+});

@@ -4,7 +4,10 @@
   "homepage": "https://alkuzbl.github.io/friday_ignat",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
     "@hookform/resolvers": "^2.8.8",
+    "@mui/material": "^5.3.1",
     "@reduxjs/toolkit": "^1.7.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^12.1.2",

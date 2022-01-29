@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FC, memo } from 'react';
 
 import styles from './style/AuthBox.module.scss';
 import { AuthBoxPropsType } from './types';
 
-export const AuthBox = (props: AuthBoxPropsType) => {
+export const AuthBox: FC<AuthBoxPropsType> = memo(props => {
   const { children } = props;
   return (
     <div className={styles.authBox}>
@@ -11,4 +11,4 @@ export const AuthBox = (props: AuthBoxPropsType) => {
       {children}
     </div>
   );
-};
+});

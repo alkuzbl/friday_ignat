@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 
 import styles from './style/InputF.module.scss';
 import { InputFPropsType } from './types';
 
-export const InputF: FC<InputFPropsType> = props => {
+export const InputF: FC<InputFPropsType> = memo(props => {
   const {
     register,
     name,
@@ -34,4 +34,4 @@ export const InputF: FC<InputFPropsType> = props => {
       <p className={styles.input__error}>{errors[name] && errors[name].message}</p>
     </div>
   );
-};
+});

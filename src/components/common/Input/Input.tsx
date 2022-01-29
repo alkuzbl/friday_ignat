@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 
 import styles from './style/Input.module.scss';
 import { DefaultType, InputChangeEventType, InputPropsType } from './types';
 
-export const Input: FC<InputPropsType> = props => {
+export const Input: FC<InputPropsType> = memo(props => {
   const {
     classNameElement,
     label,
@@ -51,4 +51,4 @@ export const Input: FC<InputPropsType> = props => {
       </label>
     </div>
   );
-};
+});

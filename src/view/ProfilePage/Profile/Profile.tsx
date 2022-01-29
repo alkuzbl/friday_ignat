@@ -1,38 +1,21 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
 import { UserImageBox } from './UserImageBox/UserImageBox';
 
-import { getUserProfile } from 'bll/middlewares';
 import { UserProfileType } from 'bll/reducers/types';
 import { AppStoreType } from 'bll/store';
 import styles from 'view/ProfilePage/Profile/style/Profile.module.scss';
 
-const DELAY_TIME = 1000;
-
 export const Profile = () => {
+  const { userId } = useParams<'userId'>();
+
   const myId = useSelector<AppStoreType, string>(state => state.auth.user._id);
   const { avatar, name } = useSelector<AppStoreType, UserProfileType>(
     state => state.userProfile.data.user,
   );
-
-  const dispatch = useDispatch();
-
-  const { userId } = useParams<'userId'>();
-
-  useEffect(() => {
-    // заглушка в виде setTimeout чтобы одновременно не шли запросы
-    // eslint-disable-next-line no-undef
-    let idTimer: NodeJS.Timeout;
-    if (userId) {
-      idTimer = setTimeout(() => {
-        dispatch(getUserProfile({ id: userId }));
-      }, DELAY_TIME);
-    }
-    return () => clearTimeout(idTimer);
-  }, [userId]);
 
   return (
     <div className={styles.profile}>

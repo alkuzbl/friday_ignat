@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, memo, useState } from 'react';
 
 import { Link, useParams } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ import { PaginationListItem } from './PaginationListItem/PaginationListItem';
 import styles from './style/Pagination.module.scss';
 import { PaginationPropsType } from './types';
 
-export const Pagination: FC<PaginationPropsType> = props => {
+export const Pagination: FC<PaginationPropsType> = memo(props => {
   const {
     totalCount = 0,
     portionSize = 7,
@@ -111,4 +111,4 @@ export const Pagination: FC<PaginationPropsType> = props => {
       </div>
     </div>
   );
-};
+});

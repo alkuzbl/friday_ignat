@@ -1,11 +1,11 @@
-import React, { FC, useState } from 'react';
+import React, { FC, memo, useState } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
 import styles from './style/Button.module.scss';
 import { ButtonPropsType } from './types';
 
-export const Button: FC<ButtonPropsType> = props => {
+export const Button: FC<ButtonPropsType> = memo(props => {
   const { title, onClick, type, view, path = '', disabled = false } = props;
 
   const [active, setActive] = useState<boolean>(false);
@@ -93,4 +93,4 @@ export const Button: FC<ButtonPropsType> = props => {
       )}
     </>
   );
-};
+});

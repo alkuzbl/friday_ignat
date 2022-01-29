@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { getCardsPack } from 'bll/middlewares/packThunks/getCardsPack';
-import { clearCardsPackDataForRequest } from 'bll/reducers/packReducer/pack-slice';
 import {
   CardsPackDataForRequestType,
   DataPackType,
@@ -13,17 +12,17 @@ import { AppStoreType } from 'bll/store';
 import { CardsPackTable } from 'components/CardsPackTable';
 import { SearchForm } from 'components/SearchForm/SeachForm/SearchForm';
 import styles from 'view/PacksListPage/CardsPackList/style/CardsPackList.module.scss';
+import { CardsPackListPropsType } from 'view/PacksListPage/CardsPackList/types';
 
-export const CardsPackList = () => {
+export const CardsPackList = memo<CardsPackListPropsType>(({ cardsCountForRequest }) => {
+  const dispatch = useDispatch();
+
   const { page, pageCount } = useSelector<AppStoreType, DataPackType>(
     state => state.packs.data,
   );
-  const { min, max, packName, sortPacks } = useSelector<
-    AppStoreType,
-    CardsPackDataForRequestType
-  >(state => state.packs.cardsPackDataForRequest);
-
-  const dispatch = useDispatch();
+  const { packName, sortPacks } = useSelector<AppStoreType, CardsPackDataForRequestType>(
+    state => state.packs.cardsPackDataForRequest,
+  );
 
   const { userId } = useParams<'userId'>();
 
@@ -33,16 +32,12 @@ export const CardsPackList = () => {
         page,
         pageCount,
         user_id: userId,
-        min,
-        max,
+        ...cardsCountForRequest,
         packName,
         sortPacks,
       }),
     );
-    return () => {
-      dispatch(clearCardsPackDataForRequest());
-    };
-  }, [pageCount, page, userId, min, max, packName, sortPacks]);
+  }, [pageCount, page, userId, packName, sortPacks, cardsCountForRequest]);
 
   return (
     <div className={styles.packs}>
@@ -51,4 +46,4 @@ export const CardsPackList = () => {
       <CardsPackTable />
     </div>
   );
-};
+});
