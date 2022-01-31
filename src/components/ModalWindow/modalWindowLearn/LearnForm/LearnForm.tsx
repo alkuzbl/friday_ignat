@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { setInactiveModalWindow } from 'app/app-slice';
 import { ModalWindowPackType } from 'app/types';
-import { CardType, getAllCards, putCardGrade } from 'bll/reducers/cardReducer/card-slice';
+import { getAllCards, putCardGrade } from 'bll/middlewares';
+import { CardType } from 'bll/reducers/cardReducer/card-slice';
 import { AppStoreType } from 'bll/store';
 import { Button } from 'components/common/Button';
 import { RadioButtons } from 'components/common/RadioButtons';

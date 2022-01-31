@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { ModalWindowCardType } from 'app/types';
-import { updateCard } from 'bll/reducers/cardReducer/card-slice';
+import { updateCard } from 'bll/middlewares';
 import { AppStoreType } from 'bll/store';
 import { CardInfo } from 'components/ModalWindow/modalWindowCard/CardInfo';
 import { DataCardFormType } from 'components/ModalWindow/modalWindowCard/CardInfo/types';

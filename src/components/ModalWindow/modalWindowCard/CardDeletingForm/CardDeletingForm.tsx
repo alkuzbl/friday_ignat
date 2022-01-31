@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { setInactiveModalWindow } from 'app/app-slice';
 import { ModalWindowCardType } from 'app/types';
-import { deleteCard } from 'bll/reducers/cardReducer/card-slice';
+import { deleteCard } from 'bll/middlewares';
 import { AppStoreType } from 'bll/store';
 import { Button } from 'components/common/Button';
 import styles from 'components/ModalWindow/modalWindowPack/PackDeletingForm/style/PackDeletingForm.module.scss';
