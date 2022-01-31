@@ -19,13 +19,12 @@ export const SearchForm = () => {
     setValue(e.currentTarget.value);
   };
 
-  const onBlurHandler = () => setValue('');
-
   useEffect(() => {
     if (debouncedValue) {
       dispatch(setCardsPackDataForRequest({ packName: debouncedValue }));
+    } else {
+      dispatch(setCardsPackDataForRequest({ packName: undefined }));
     }
-    dispatch(setCardsPackDataForRequest({ packName: undefined }));
   }, [debouncedValue]);
 
   return (
@@ -36,7 +35,6 @@ export const SearchForm = () => {
         onChange={onChangeSearch}
         value={value}
         placeholder="Search..."
-        onBlur={onBlurHandler}
       />
     </div>
   );

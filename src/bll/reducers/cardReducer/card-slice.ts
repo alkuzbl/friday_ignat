@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { StatusType } from 'app/types';
 import { SortCardsType } from 'dal/card-api';
 
 const cardsInitialState: CardsInitialStateType = {
@@ -17,7 +16,6 @@ const cardsInitialState: CardsInitialStateType = {
     error: null,
   },
   cardsDataForRequest: {},
-  status: 'idle',
 };
 
 const cardsSlice = createSlice({
@@ -32,12 +30,6 @@ const cardsSlice = createSlice({
     },
     setPageCount: (state, action: PayloadAction<{ pageCount: number }>) => {
       state.data.pageCount = action.payload.pageCount;
-    },
-    setErrorCard: (state, action) => {
-      state.data.error = action.payload;
-    },
-    setStatusCard: (state, action: PayloadAction<StatusType>) => {
-      state.status = action.payload;
     },
     setSortingByGrade: (state, action: PayloadAction<SortCardsType>) => {
       state.cardsDataForRequest.sortCards = action.payload;
@@ -57,8 +49,6 @@ export const cardsReducer = cardsSlice.reducer;
 // actions
 export const {
   setCards,
-  setStatusCard,
-  setErrorCard,
   setPage,
   setPageCount,
   setSortingByGrade,
@@ -68,8 +58,6 @@ export const {
 
 export type CardsActionsType =
   | ReturnType<typeof cardsSlice.actions.setCards>
-  | ReturnType<typeof cardsSlice.actions.setStatusCard>
-  | ReturnType<typeof cardsSlice.actions.setErrorCard>
   | ReturnType<typeof cardsSlice.actions.setPage>;
 
 // style
@@ -112,6 +100,5 @@ export type CardsDataForRequestType = {
 
 export type CardsInitialStateType = {
   data: CardsType;
-  status: StatusType;
   cardsDataForRequest: CardsDataForRequestType;
 };

@@ -1,27 +1,23 @@
 import { createAsyncThunk, ThunkDispatch } from '@reduxjs/toolkit';
 
-import { setInactiveModalWindow } from 'app/app-slice';
+import { setInactiveModalWindow, setStatusApp } from 'app/app-slice';
 import { getAllCards } from 'bll/middlewares/cardThunks/getAllCards';
-import {
-  CardsActionsType,
-  setErrorCard,
-  setStatusCard,
-} from 'bll/reducers/cardReducer/card-slice';
-import { AppStoreType } from 'bll/store';
+import { setResponseError } from 'bll/middlewares/utils';
+import { AppAction, AppStoreType } from 'bll/store';
 import { cardAPI, RequestPayloadUpdateCardType } from 'dal/card-api';
 
 export const updateCard = createAsyncThunk<
   {},
   RequestPayloadUpdateCardType & { cardsPack_id: string },
   {
-    dispatch: ThunkDispatch<AppStoreType, undefined, CardsActionsType>;
+    dispatch: ThunkDispatch<AppStoreType, undefined, AppAction>;
     state: AppStoreType;
   }
 >(
   'card/updateCard',
 
   async (data, { dispatch }) => {
-    dispatch(setStatusCard('loading'));
+    dispatch(setStatusApp('loading'));
     try {
       await cardAPI.updateCard({
         _id: data._id,
@@ -29,13 +25,9 @@ export const updateCard = createAsyncThunk<
         answer: data.answer,
       });
       await dispatch(getAllCards({ cardsPack_id: data.cardsPack_id }));
-      dispatch(setStatusCard('succeed'));
+      dispatch(setStatusApp('succeed'));
     } catch (e: any) {
-      const error = e.response
-        ? e.response.data.error
-        : `${e.message}, more details in the console`;
-      dispatch(setErrorCard(error));
-      dispatch(setStatusCard('failed'));
+      setResponseError(e, dispatch);
     } finally {
       dispatch(setInactiveModalWindow());
     }
