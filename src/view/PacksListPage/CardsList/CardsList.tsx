@@ -6,7 +6,8 @@ import { useParams } from 'react-router-dom';
 import { PackageCards } from './PackageCards';
 
 import { StatusType } from 'app/types';
-import { getAllCards, setPage, setPageCount } from 'bll/reducers/cardReducer/card-slice';
+import { getAllCards } from 'bll/middlewares';
+import { setPage, setPageCount } from 'bll/reducers/cardReducer/card-slice';
 import { AppStoreType } from 'bll/store';
 import { BackDrop, Pagination } from 'components';
 import { SortCardsType } from 'dal/card-api';

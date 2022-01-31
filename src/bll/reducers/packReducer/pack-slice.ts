@@ -40,9 +40,6 @@ const packSlice = createSlice({
     setPage: (state, action: PayloadAction<{ page: number }>) => {
       state.data.page = action.payload.page;
     },
-    clearCardsPackDataForRequest: state => {
-      state.cardsPackDataForRequest = {};
-    },
     setCardsPackDataForRequest: (
       state,
       action: PayloadAction<CardsPackDataForRequestType>,
@@ -69,11 +66,5 @@ const packSlice = createSlice({
 // reducer
 export const packReducer = packSlice.reducer;
 // actions
-export const {
-  setPacks,
-  updatePack,
-  setPageCount,
-  setPage,
-  clearCardsPackDataForRequest,
-  setCardsPackDataForRequest,
-} = packSlice.actions;
+export const { setPacks, updatePack, setPageCount, setPage, setCardsPackDataForRequest } =
+  packSlice.actions;
