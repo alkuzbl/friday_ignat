@@ -49,6 +49,7 @@ const App = () => {
         <Route path="recovery" element={<RecoveryPassword />} />
         <Route path="new-password/:token" element={<NewPassword />} />
 
+        <Route path="packs-list" element={<Navigate to="cards-pack/all/1" />} />
         <Route
           path="packs-list/:userId/pack/:packId/:currentPage"
           element={<CardsListContainer />}

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -7,42 +7,36 @@ import { PackageCards } from './PackageCards';
 
 import { StatusType } from 'app/types';
 import { getAllCards } from 'bll/middlewares';
-import { setPage, setPageCount } from 'bll/reducers/cardReducer/card-slice';
+import {
+  CardsDataForRequestType,
+  setPage,
+  setPageCount,
+} from 'bll/reducers/cardReducer/card-slice';
 import { AppStoreType } from 'bll/store';
 import { BackDrop, Pagination } from 'components';
-import { SortCardsType } from 'dal/card-api';
 import { RedirectionIfNotAuthorized } from 'hoc/RedirectionIfNotAuthorized';
 import styles from 'view/ProfilePage/style/ProfilePage.module.scss';
 
 const CardsList = () => {
-  const requestStatus = useSelector<AppStoreType, StatusType>(state => state.app.status);
-  const cardsTotalCount = useSelector<AppStoreType, number>(
-    state => state.cards.data.cardsTotalCount,
-  );
-  const pageCount = useSelector<AppStoreType, number>(
-    state => state.cards.data.pageCount,
-  );
-  const currentPage = useSelector<AppStoreType, number>(state => state.cards.data.page);
-  const sortCards = useSelector<AppStoreType, SortCardsType>(
-    state => state.cards.cardsDataForRequest.sortCards,
-  );
-  const cardQuestion = useSelector<AppStoreType, string | undefined>(
-    state => state.cards.cardsDataForRequest.cardQuestion,
-  );
-  const cardAnswer = useSelector<AppStoreType, string | undefined>(
-    state => state.cards.cardsDataForRequest.cardAnswer,
-  );
-
   const dispatch = useDispatch();
 
   const { packId } = useParams<'packId'>();
   const { userId } = useParams<'userId'>();
 
-  const selectPage = (page: number) => dispatch(setPage({ page }));
+  const requestStatus = useSelector<AppStoreType, StatusType>(state => state.app.status);
+  const {
+    cardsTotalCount,
+    pageCount,
+    page: currentPage,
+  } = useSelector<
+    AppStoreType,
+    { cardsTotalCount: number; pageCount: number; page: number }
+  >(state => state.cards.data);
+  const { sortCards, cardQuestion, cardAnswer } = useSelector<
+    AppStoreType,
+    CardsDataForRequestType
+  >(state => state.cards.cardsDataForRequest);
 
-  const setPageCountForCards = (pageCountValue: number) => {
-    dispatch(setPageCount({ pageCount: pageCountValue }));
-  };
   useEffect(() => {
     dispatch(
       getAllCards({
@@ -55,13 +49,39 @@ const CardsList = () => {
       }),
     );
   }, [packId, currentPage, pageCount, sortCards, cardQuestion, cardAnswer]);
+
+  const selectPage = useCallback(
+    (page: number) => dispatch(setPage({ page })),
+    [dispatch, currentPage],
+  );
+
+  const setPageCountForCards = useCallback(
+    (pageCountValue: number) => {
+      dispatch(setPageCount({ pageCount: pageCountValue }));
+    },
+    [dispatch, pageCount],
+  );
+
   return (
     <div className={styles.packsListPage}>
       <BackDrop active={requestStatus === 'loading'} />
       <div className="container">
         <div className={styles.packsListPage__packsList}>
           <PackageCards />
-          <div className={styles.packsListPage__pagination}>
+        </div>
+        <div className={styles.packsListPage__pagination}>
+          {!cardsTotalCount ? (
+            <div
+              style={{
+                display: 'inline-block',
+                textAlign: 'center',
+                width: '100%',
+                paddingTop: '50px',
+              }}
+            >
+              Add your first card
+            </div>
+          ) : (
             <Pagination
               totalCount={cardsTotalCount}
               selectPage={selectPage}
@@ -70,7 +90,7 @@ const CardsList = () => {
               setCountItem={setPageCountForCards}
               optionValue={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
             />
-          </div>
+          )}
         </div>
       </div>
     </div>

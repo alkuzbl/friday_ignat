@@ -18,17 +18,15 @@ export const Pagination: FC<PaginationPropsType> = memo(props => {
     optionValue,
     pathToUrl,
   } = props;
-  const [portionNumber, setPortionNumber] = useState(1);
-
   const { currentPage } = useParams();
-  // создание массива страниц
+
+  const [portionNumber, setPortionNumber] = useState(1);
 
   const pagesCount = Math.ceil(totalCount / pageCount);
   const pages = [];
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
-  // создание количества отрисованных страниц в pagination
   const portionCount = Math.ceil(pagesCount / portionSize);
   const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
   const rightPortionPageNumber = portionNumber * portionSize;
