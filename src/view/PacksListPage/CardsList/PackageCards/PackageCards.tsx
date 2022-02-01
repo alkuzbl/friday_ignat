@@ -15,16 +15,18 @@ import { SortCardsType } from 'dal/card-api';
 import styles from 'view/PacksListPage/CardsPackList/style/CardsPackList.module.scss';
 
 export const PackageCards = () => {
-  const cards = useSelector<AppStoreType, CardType[]>(state => state.cards.data.cards);
-  const myId = useSelector<AppStoreType, string>(state => state.auth.user._id);
-
   const dispatch = useDispatch();
 
   const { packId } = useParams<'packId'>();
   const { userId } = useParams<'userId'>();
 
-  // далее дописать логику
-  const title = 'Pack name';
+  const cards = useSelector<AppStoreType, CardType[]>(state => state.cards.data.cards);
+
+  const title = useSelector<AppStoreType, string | undefined>(
+    state => state.packs.data.cardPacks.find(pack => pack._id === packId)?.name,
+  );
+  const myId = useSelector<AppStoreType, string>(state => state.auth.user._id);
+
   const isMyCards = myId === userId;
 
   const sortByGrade = (value: SortCardsType) => {
@@ -42,9 +44,13 @@ export const PackageCards = () => {
     }
   };
 
+  const styleForCardsList = isMyCards
+    ? `${styles.packs__itemsTitle} ${styles.pack__itemsTitle}`
+    : `${styles.packs__itemsTitle} ${styles.packCardsAll__itemsTitle}`;
+
   return (
     <div className={styles.packs} style={{ paddingTop: '40px' }}>
-      <h3 className={styles.packs__title}>{title}</h3>
+      <h3 className={styles.packs__title}>{title || ''}</h3>
       <div
         style={{
           display: 'flex',
@@ -70,7 +76,7 @@ export const PackageCards = () => {
       </div>
 
       <div className={styles.packs__box}>
-        <div className={`${styles.packs__itemsTitle} ${styles.pack__itemsTitle}`}>
+        <div className={styleForCardsList}>
           <h4>Question</h4>
           <h4>Answer</h4>
           <h4>Last Updated</h4>

@@ -125,7 +125,6 @@ const PacksListPage = () => {
                   />
                 </div>
               </div>
-
               <CardsPackTable />
             </div>
             <div className={styles.profilePage__pagination}>

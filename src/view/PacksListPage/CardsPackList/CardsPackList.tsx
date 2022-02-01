@@ -27,7 +27,6 @@ export const CardsPackList = memo<CardsPackListPropsType>(({ cardsCountForReques
   const { userId } = useParams<'userId'>();
 
   useEffect(() => {
-    console.log(packName);
     dispatch(
       getCardsPack({
         page,

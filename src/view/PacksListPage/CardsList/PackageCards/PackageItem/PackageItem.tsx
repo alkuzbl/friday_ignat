@@ -30,13 +30,20 @@ export const PackageItem: FC<PackageItemForMePropsType> = props => {
     );
   };
 
-  const styleItem =
+  const styleItemMy =
     index % 2 === 0
       ? `${styles.packs__item} ${styles.pack__item}`
       : `${styles.packs__item} ${styles.pack__item} ${styles.dark}`;
 
+  const styleItemAll =
+    index % 2 === 0
+      ? `${styles.packs__item} ${styles.packCardsAll__item}`
+      : `${styles.packs__item} ${styles.packCardsAll__item} ${styles.dark}`;
+
+  const styleItemForCard = isMyCards ? styleItemMy : styleItemAll;
+
   return (
-    <div className={styleItem}>
+    <div className={styleItemForCard}>
       <p className={styles.packs__itemContent}>{question}</p>
       <p className={styles.packs__itemContent}>{answer}</p>
       <p className={styles.packs__itemContent}>{date}</p>
