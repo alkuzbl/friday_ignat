@@ -7,11 +7,8 @@ import { PackageCards } from './PackageCards';
 
 import { StatusType } from 'app/types';
 import { getAllCards } from 'bll/middlewares';
-import {
-  CardsDataForRequestType,
-  setPage,
-  setPageCount,
-} from 'bll/reducers/cardReducer/card-slice';
+import { setPage, setPageCount } from 'bll/reducers/cardReducer/card-slice';
+import { CardsDataForRequestType } from 'bll/reducers/cardReducer/types';
 import { AppStoreType } from 'bll/store';
 import { BackDrop, Pagination } from 'components';
 import { RedirectionIfNotAuthorized } from 'hoc/RedirectionIfNotAuthorized';

@@ -7,7 +7,7 @@ import { AppAction, AppStoreType } from 'bll/store';
 import { cardAPI, RequestPayloadUpdateCardType } from 'dal/card-api';
 
 export const updateCard = createAsyncThunk<
-  {},
+  void,
   RequestPayloadUpdateCardType & { cardsPack_id: string },
   {
     dispatch: ThunkDispatch<AppStoreType, undefined, AppAction>;
@@ -24,12 +24,10 @@ export const updateCard = createAsyncThunk<
         question: data.question,
         answer: data.answer,
       });
-      await dispatch(getAllCards({ cardsPack_id: data.cardsPack_id }));
-      dispatch(setStatusApp('succeed'));
+      dispatch(getAllCards({ cardsPack_id: data.cardsPack_id }));
     } catch (e: any) {
       setResponseError(e, dispatch);
-    } finally {
-      dispatch(setInactiveModalWindow());
     }
+    dispatch(setInactiveModalWindow());
   },
 );

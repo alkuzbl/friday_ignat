@@ -1,4 +1,4 @@
-import { CardType } from 'bll/reducers/cardReducer/card-slice';
+import { CardType } from 'bll/reducers/cardReducer/types';
 
 export const getRandomCard = (cards: CardType[]) => {
   const sum = cards.reduce((acc, card) => acc + (6 - card.grade) * (6 - card.grade), 0);

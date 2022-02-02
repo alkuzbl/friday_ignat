@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { getAllCards } from 'bll/middlewares';
+import { CardsInitialStateType } from 'bll/reducers/cardReducer/types';
 import { SortCardsType } from 'dal/card-api';
 
 const cardsInitialState: CardsInitialStateType = {
@@ -22,9 +24,6 @@ const cardsSlice = createSlice({
   name: 'cards',
   initialState: cardsInitialState,
   reducers: {
-    setCards: (state, action: PayloadAction<CardsType>) => {
-      state.data = action.payload;
-    },
     setPage: (state, action: PayloadAction<{ page: number }>) => {
       state.data.page = action.payload.page;
     },
@@ -41,6 +40,11 @@ const cardsSlice = createSlice({
       state.cardsDataForRequest.cardAnswer = action.payload;
     },
   },
+  extraReducers: builder => {
+    builder.addCase(getAllCards.fulfilled, (state, action) => {
+      state.data = action.payload;
+    });
+  },
 });
 
 // reducer
@@ -48,57 +52,9 @@ export const cardsReducer = cardsSlice.reducer;
 
 // actions
 export const {
-  setCards,
   setPage,
   setPageCount,
   setSortingByGrade,
   setCardQuestionSearch,
   setCardAnswerSearch,
 } = cardsSlice.actions;
-
-export type CardsActionsType =
-  | ReturnType<typeof cardsSlice.actions.setCards>
-  | ReturnType<typeof cardsSlice.actions.setPage>;
-
-// style
-export type CardType = {
-  _id: string;
-  cardsPack_id: string;
-  user_id: string;
-  answer: string;
-  question: string;
-  grade: number;
-  shots: number;
-  type: string;
-  rating: number;
-  more_id: string;
-  created: string;
-  updated: string;
-  answerImg?: string;
-  answerVideo?: string;
-  questionImg?: string;
-  questionVideo?: string;
-};
-export type CardsType = {
-  cards: CardType[];
-  packUserId: string;
-  page: number;
-  pageCount: number;
-  cardsTotalCount: number;
-  minGrade: number;
-  maxGrade: number;
-  token: string;
-  tokenDeathTime: number;
-  error: null | string;
-};
-
-export type CardsDataForRequestType = {
-  sortCards?: SortCardsType;
-  cardQuestion?: string | undefined;
-  cardAnswer?: string | undefined;
-};
-
-export type CardsInitialStateType = {
-  data: CardsType;
-  cardsDataForRequest: CardsDataForRequestType;
-};

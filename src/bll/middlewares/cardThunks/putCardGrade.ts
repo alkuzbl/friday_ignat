@@ -6,7 +6,7 @@ import { AppAction, AppStoreType } from 'bll/store';
 import { cardAPI, RequestPayloadPutCardGrade } from 'dal/card-api';
 
 export const putCardGrade = createAsyncThunk<
-  {},
+  void,
   RequestPayloadPutCardGrade,
   {
     dispatch: ThunkDispatch<AppStoreType, undefined, AppAction>;

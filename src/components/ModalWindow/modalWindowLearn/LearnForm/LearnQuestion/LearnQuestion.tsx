@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { CardType } from 'bll/reducers/cardReducer/card-slice';
+import { CardType } from 'bll/reducers/cardReducer/types';
 import { Button } from 'components/common/Button';
 import { Nullabell } from 'types/Nullabel';
 

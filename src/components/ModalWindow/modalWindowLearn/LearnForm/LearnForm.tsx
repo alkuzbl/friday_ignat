@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setInactiveModalWindow } from 'app/app-slice';
 import { ModalWindowPackType } from 'app/types';
 import { getAllCards, putCardGrade } from 'bll/middlewares';
-import { CardType } from 'bll/reducers/cardReducer/card-slice';
+import { CardType } from 'bll/reducers/cardReducer/types';
 import { AppStoreType } from 'bll/store';
 import { Button } from 'components/common/Button';
 import { RadioButtons } from 'components/common/RadioButtons';
@@ -36,6 +36,7 @@ export const LearnForm = () => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [first, setFirst] = useState<boolean>(true);
   const [value, onChangeOption] = useState<GradesEnum>(GradesEnum['Did not know']);
+
   const [card, setCard] = useState<Nullabell<CardType>>(null);
 
   const cards = useSelector<AppStoreType, CardType[]>(state => state.cards.data.cards);

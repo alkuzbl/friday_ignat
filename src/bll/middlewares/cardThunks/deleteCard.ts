@@ -20,12 +20,10 @@ export const deleteCard = createAsyncThunk<
     dispatch(setStatusApp('loading'));
     try {
       await cardAPI.deleteCard(data);
-      await dispatch(getAllCards({ cardsPack_id: data.cardsPackId }));
-      dispatch(setStatusApp('succeed'));
+      dispatch(getAllCards({ cardsPack_id: data.cardsPackId }));
     } catch (e: any) {
       setResponseError(e, dispatch);
-    } finally {
-      dispatch(setInactiveModalWindow());
     }
+    dispatch(setInactiveModalWindow());
   },
 );

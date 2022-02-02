@@ -6,7 +6,8 @@ import { useParams } from 'react-router-dom';
 import { PackageItem } from './PackageItem/PackageItem';
 
 import { setActiveModalWindow } from 'app/app-slice';
-import { CardType, setSortingByGrade } from 'bll/reducers/cardReducer/card-slice';
+import { setSortingByGrade } from 'bll/reducers/cardReducer/card-slice';
+import { CardType } from 'bll/reducers/cardReducer/types';
 import { AppStoreType } from 'bll/store';
 import { Button } from 'components/common/Button';
 import { SearchCardsForm } from 'components/SearchForm/SearchCardForm/SearchCardsForm';

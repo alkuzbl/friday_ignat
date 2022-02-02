@@ -1,10 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { logout } from 'bll/middlewares';
+import { getCardsPack, logout, updateCardsPack } from 'bll/middlewares';
 import {
-  CardPackType,
   CardsPackDataForRequestType,
-  DataPackType,
   PackInitialStateType,
 } from 'bll/reducers/packReducer/types';
 
@@ -26,14 +24,6 @@ const packSlice = createSlice({
   name: 'pack',
   initialState: packInitialState,
   reducers: {
-    setPacks: (state, action: PayloadAction<DataPackType>) => {
-      state.data = action.payload;
-    },
-    updatePack: (state, action: PayloadAction<CardPackType>) => {
-      state.data.cardPacks = state.data.cardPacks.map(pack =>
-        pack._id === action.payload._id ? { ...pack, ...action.payload } : pack,
-      );
-    },
     setPageCount: (state, action: PayloadAction<{ pageCount: number }>) => {
       state.data.pageCount = action.payload.pageCount;
     },
@@ -60,11 +50,18 @@ const packSlice = createSlice({
         tokenDeathTime: undefined,
       };
     });
+    builder.addCase(updateCardsPack.fulfilled, (state, action) => {
+      state.data.cardPacks = state.data.cardPacks.map(pack =>
+        pack._id === action.payload._id ? { ...pack, ...action.payload } : pack,
+      );
+    });
+    builder.addCase(getCardsPack.fulfilled, (state, action) => {
+      state.data = action.payload;
+    });
   },
 });
 
 // reducer
 export const packReducer = packSlice.reducer;
 // actions
-export const { setPacks, updatePack, setPageCount, setPage, setCardsPackDataForRequest } =
-  packSlice.actions;
+export const { setPageCount, setPage, setCardsPackDataForRequest } = packSlice.actions;

@@ -1,10 +1,9 @@
+import { getCardsPack, updateCardsPack } from 'bll/middlewares';
 import {
   packReducer,
   setCardsPackDataForRequest,
-  setPacks,
   setPage,
   setPageCount,
-  updatePack,
 } from 'bll/reducers/packReducer/pack-slice';
 import {
   CardsPackDataForRequestType,
@@ -64,7 +63,7 @@ beforeEach(() => {
   return packInitialState;
 });
 
-test('CardsPackages should be installed', () => {
+test('CardsPackages should be installed when getCardsPack is fulfilled', () => {
   const data: DataPackType = {
     cardPacks: [
       {
@@ -124,8 +123,9 @@ test('CardsPackages should be installed', () => {
     token: 'ff504140-71e2-11ec-844a-1f968609bc33',
     tokenDeathTime: 1642402830164,
   };
+  const action = { type: getCardsPack.fulfilled.type, payload: data };
 
-  const testState = packReducer(packInitialState, setPacks(data));
+  const testState = packReducer(packInitialState, action);
 
   expect(testState.data.cardPacks[0].name).toBe('Test name');
   expect(testState.data.cardPacks[0]._id).toBe('111');
@@ -135,7 +135,7 @@ test('CardsPackages should be installed', () => {
   expect(testState.data.cardPacks.length).toBe(3);
 });
 
-test('CardsPack should be updated', () => {
+test('CardsPack should be updated when updateCardsPack is fulfilled', () => {
   const data = {
     _id: '1',
     user_id: '12345',
@@ -154,7 +154,8 @@ test('CardsPack should be updated', () => {
     __v: 0,
   };
 
-  const testState = packReducer(packInitialState, updatePack(data));
+  const action = { type: updateCardsPack.fulfilled.type, payload: data };
+  const testState = packReducer(packInitialState, action);
 
   expect(testState.data.cardPacks[0].name).toBe('Test name');
   expect(testState.data.cardPacks.length).toBe(2);

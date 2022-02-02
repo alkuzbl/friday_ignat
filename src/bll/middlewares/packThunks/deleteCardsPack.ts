@@ -5,7 +5,7 @@ import { getCardsPack } from 'bll/middlewares/packThunks/getCardsPack';
 import { setResponseError } from 'bll/middlewares/utils/setResponseError';
 import { AppAction, AppStoreType } from 'bll/store';
 import { packAPI } from 'dal/pack-api';
-// dispatch: AsyncThunkAction<any, any, any>;
+
 export const deleteCardsPack = createAsyncThunk<
   {},
   undefined,
@@ -21,7 +21,6 @@ export const deleteCardsPack = createAsyncThunk<
   dispatch(setStatusApp('loading'));
   try {
     await packAPI.deletePack({ id });
-    dispatch(setStatusApp('succeed'));
     dispatch(getCardsPack({ user_id: userId, page, pageCount }));
   } catch (e: any) {
     setResponseError(e, dispatch);

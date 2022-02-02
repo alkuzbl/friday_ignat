@@ -7,7 +7,7 @@ import {
   ModalWindowPackType,
   StatusType,
 } from 'app/types';
-import { getAuthUser } from 'bll/middlewares';
+import { getAllCards, getAuthUser, getCardsPack, getUserProfile } from 'bll/middlewares';
 import { createNewPack } from 'bll/middlewares/packThunks/createNewPack';
 import { deleteCardsPack } from 'bll/middlewares/packThunks/deleteCardsPack';
 
@@ -70,6 +70,15 @@ const appSlice = createSlice({
     });
     builder.addCase(createNewPack.fulfilled, state => {
       state.modalWindow.modalWindowStatus = false;
+    });
+    builder.addCase(getCardsPack.fulfilled, state => {
+      state.status = 'succeed';
+    });
+    builder.addCase(getAllCards.fulfilled, state => {
+      state.status = 'succeed';
+    });
+    builder.addCase(getUserProfile.fulfilled, state => {
+      state.status = 'succeed';
     });
   },
 });

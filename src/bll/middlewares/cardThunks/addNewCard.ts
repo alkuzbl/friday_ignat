@@ -7,7 +7,7 @@ import { AppAction, AppStoreType } from 'bll/store';
 import { cardAPI, RequestPayloadCreateCardType } from 'dal/card-api';
 
 export const addNewCard = createAsyncThunk<
-  {},
+  void,
   RequestPayloadCreateCardType,
   {
     dispatch: ThunkDispatch<AppStoreType, undefined, AppAction>;
@@ -17,11 +17,9 @@ export const addNewCard = createAsyncThunk<
   dispatch(setStatusApp('loading'));
   try {
     await cardAPI.createCard(data);
-    await dispatch(getAllCards({ cardsPack_id: data.cardsPack_id }));
-    dispatch(setStatusApp('succeed'));
+    dispatch(getAllCards({ cardsPack_id: data.cardsPack_id }));
   } catch (e: any) {
     setResponseError(e, dispatch);
-  } finally {
-    dispatch(setInactiveModalWindow());
   }
+  dispatch(setInactiveModalWindow());
 });

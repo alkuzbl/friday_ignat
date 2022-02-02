@@ -24,7 +24,6 @@ export const createNewPack = createAsyncThunk<
     dispatch(setStatusApp('loading'));
     try {
       await packAPI.createNewPack(data);
-      dispatch(setStatusApp('succeed'));
       dispatch(getCardsPack({ user_id: userId, page, pageCount, sortPacks }));
     } catch (e: any) {
       setResponseError(e, dispatch);
